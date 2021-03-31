@@ -10,20 +10,20 @@ Author URL: http://w3layouts.com
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Design Blog a Blog Category Bootstrap Responsive Website Template | Home : W3layouts</title>
+    <title>@ViewBag.Title</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="~/Content/Layout/css/style-starter.css">
+    <link href="~/Content/fontawesome-free-5.15.3-web/css/all.min.css" rel="stylesheet" />
 </head>
 
 <body>
     <!-- header -->
     @Html.Action("Menu", "View")
     <!-- //header -->
-
     @RenderBody()
 
     <!-- footer -->

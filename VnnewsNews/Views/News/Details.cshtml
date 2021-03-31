@@ -4,6 +4,119 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .top-container {
+        display: flex;
+        align-items: center
+    }
+
+    .profile-image {
+        border-radius: 10px;
+        border: 2px solid #5957f9
+    }
+
+    .name {
+        font-size: 15px;
+        font-weight: bold;
+        color: #272727;
+        position: relative;
+        top: 8px
+    }
+
+    .mail {
+        font-size: 14px;
+        color: grey;
+        position: relative;
+        top: 2px
+    }
+
+    .middle-container {
+        background-color: #eee;
+        border-radius: 12px
+    }
+
+        .middle-container:hover {
+            border: 1px solid #5957f9
+        }
+
+    .dollar-div {
+        background-color: #5957f9;
+        padding: 12px;
+        border-radius: 10px
+    }
+
+    .round-div {
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center
+    }
+
+    .dollar {
+        font-size: 16px !important;
+        color: #5957f9 !important;
+        font-weight: bold !important
+    }
+
+    .current-balance {
+        font-size: 15px;
+        color: #272727;
+        font-weight: bold
+    }
+
+    .amount {
+        color: #5957f9;
+        font-size: 16px;
+        font-weight: bold
+    }
+
+    .dollar-sign {
+        font-size: 16px;
+        color: #272727;
+        font-weight: bold
+    }
+
+    .recent-border {
+        border-left: 2px solid #5957f9;
+        display: flex;
+        align-items: center
+    }
+
+        .recent-border:hover {
+            border-bottom: 1px solid #dee2e6 !important
+        }
+
+    .recent-orders {
+        font-size: 16px;
+        font-weight: 700;
+        color: #5957f9;
+        margin-left: 2px
+    }
+
+    .wishlist {
+        font-size: 16px;
+        font-weight: 700;
+        color: #272727
+    }
+
+    .wishlist-border:hover {
+        border-bottom: 1px solid #dee2e6 !important
+    }
+
+    .fashion-studio {
+        font-size: 16px;
+        font-weight: 700;
+        color: #272727
+    }
+
+    .fashion-studio-border:hover {
+        border-bottom: 1px solid #dee2e6 !important
+    }
+</style>
 <nav id="breadcrumbs" class="breadcrumbs">
     <div class="container page-wrapper">
         <a href="index.html">Home</a> / Categories /<span class="breadcrumb_last" aria-current="page">Culture</span>
@@ -13,7 +126,7 @@
     <div class="container py-lg-4 py-md-3">
         <!-- block -->
         <div class="row">
-            <div class="col-lg-8 most-recent">
+            <div class="col-lg-9 most-recent">
                 <h3 class="section-title-left">@Model.vnew_title</h3>
 
                 <div class="row">
@@ -169,11 +282,29 @@
                 </div>
                 <!-- //pagination -->
             </div>
-            <div class="col-lg-4 trending mt-lg-0 mt-5 mb-lg-5">
+            <div class="col-lg-3 trending mt-lg-0 mt-5 mb-lg-5">
                 <div class="pos-sticky">
-                    <h3 class="section-title-left">Trending </h3>
-
-                    <div class="grids5-info">
+                    <div class="card mt-3">
+                        <h4><b>Tác giả</b></h4>
+                    </div>
+                    <div class="card mt-1">
+                        <div class="top-container">
+                            <div class="row" style="font-size: 20px !important">
+                                <div class="col-lg-4">
+                                    <img src="https://i.imgur.com/G1pXs7D.jpg" class="img-fluid profile-image" style="width: 100%; height: 60px">
+                                </div>
+                                <div class="col-lg-8">
+                                    <h5 class="name">@Model.User.user_name</h5>
+                                    <p class="mail"><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <button class="btn btn-danger w-100"><i class=""></i><i class="fa fa-thumbs-up">&nbsp;</i>Thích</button>
+                        <button class="btn btn-primary w-100 mt-1"><i class=""></i><i class="fa fa-heart">&nbsp;</i>Lưu tin</button>
+                    </div>
+                    <div class="grids5-info mt-3">
                         <h4>01.</h4>
                         <div class="blog-info">
                             <a href="#blog-single" class="blog-desc1">

@@ -16,5 +16,9 @@ namespace VnnewsNews.Controllers
         {
             return View(db.News.Find(id));
         }
+        public ActionResult Search(string key)
+        {
+            return View();
+        }
     }
 }
