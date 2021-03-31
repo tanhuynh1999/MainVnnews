@@ -15,8 +15,20 @@ namespace VnnewsNews.Controllers
         public JsonResult IndexNews(string key)
         {
             //Làm form
-            //List<News> news = db.News.Where(n => n.vnew_active == true && n.vnew_option == true).ToList();
-            return Json(11);
+            var list = from item in db.News
+                       where item.vnew_active == true
+                       orderby item.vnew_datecreate descending
+                       select new
+                       {
+                           id = item.user_id,
+                           title = item.vnew_title,
+                           category = item.Groups,
+                           content = item.vnew_content,
+                           view = item.vnew_view,
+                           datecarete = item.vnew_datecreate
+                       };
+
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }

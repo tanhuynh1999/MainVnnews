@@ -9,15 +9,14 @@
         <a href="index.html">Home</a> / Categories / <span class="breadcrumb_last" aria-current="page">Lifestyle</span>
     </div>
 </nav>
-<div class="w3l-searchblock w3l-homeblock1 py-5">
+<div class="w3l-searchblock w3l-homeblock1 py-5" ng-app="myApp">
     <div class="container py-lg-4 py-md-3">
         <!-- block -->
-        <div class="row">
+        <div class="row" ng-controller="myCtrl">
             <div class="col-lg-8 most-recent">
-                <h3 class="section-title-left">Lifestyle</h3>
-
+                <h3 class="section-title-left">Có ... bài viết được tìm</h3>
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 item">
+                    <div class="col-lg-6 col-md-6 item" ng-repeat="list in list | filter: key">
                         <div class="card">
                             <div class="card-header p-0 position-relative">
                                 <a href="#blog-single">
@@ -26,11 +25,11 @@
                             </div>
                             <div class="card-body p-0 blog-details">
                                 <a href="#blog-single" class="blog-desc">
-                                    Here are a few tips that will help you to get started about lifestyle
+                                    {{list.title}}
                                 </a>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur ipsum adipisicing elit. Qui eligendi
-                                    vitae sit.
+                                    {{list.content}}
+
                                 </p>
                                 <div class="author align-items-center mt-3 mb-1">
                                     <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
@@ -46,153 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 item mt-md-0 mt-5">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative">
-                                <a href="#blog-single">
-                                    <img class="card-img-bottom d-block radius-image" src="~/Content/Layout/images/p1.jpg" alt="Card image cap">
-                                </a>
-                            </div>
-                            <div class="card-body p-0 blog-details">
-                                <a href="#blog-single" class="blog-desc">
-                                    Before you start writing first blog post, you should make a content plan.
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur ipsum adipisicing elit. Qui eligendi
-                                    vitae sit.
-                                </p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                                </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6min read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 item mt-5 pt-lg-3">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative">
-                                <a href="#blog-single">
-                                    <img class="card-img-bottom d-block radius-image" src="~/Content/Layout/images/p4.jpg" alt="Card image cap">
-                                </a>
-                            </div>
-                            <div class="card-body p-0 blog-details">
-                                <a href="#blog-single" class="blog-desc">
-                                    Guidelines to help you decide what your blog post should be about.
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur ipsum adipisicing elit. Qui eligendi
-                                    vitae sit.
-                                </p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                                </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6min read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 item mt-5 pt-lg-3">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative">
-                                <a href="#blog-single">
-                                    <img class="card-img-bottom d-block radius-image" src="~/Content/Layout/images/p3.jpg" alt="Card image cap">
-                                </a>
-                            </div>
-                            <div class="card-body p-0 blog-details">
-                                <a href="#blog-single" class="blog-desc">
-                                    Now, Make money from blogging in easy steps
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur ipsum adipisicing elit. Qui eligendi
-                                    vitae sit.
-                                </p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                                </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6min read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 item mt-5 pt-lg-3">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative">
-                                <a href="#blog-single">
-                                    <img class="card-img-bottom d-block radius-image" src="~/Content/Layout/images/p7.jpg"
-                                         alt="Card image cap">
-                                </a>
-                            </div>
-                            <div class="card-body p-0 blog-details">
-                                <a href="#blog-single" class="blog-desc">
-                                    Many ways by which your blog can earn passive income for you.
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur ipsum adipisicing elit. Qui eligendi
-                                    vitae sit.
-                                </p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                                </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6min read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 item mt-5 pt-lg-3">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative">
-                                <a href="#blog-single">
-                                    <img class="card-img-bottom d-block radius-image" src="~/Content/Layout/images/p8.jpg"
-                                         alt="Card image cap">
-                                </a>
-                            </div>
-                            <div class="card-body p-0 blog-details">
-                                <a href="#blog-single" class="blog-desc">
-                                    Keyword research for dummies using the Google Keyword tool
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur ipsum adipisicing elit. Qui eligendi
-                                    vitae sit.
-                                </p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                                </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6min read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <!-- pagination -->
@@ -302,4 +155,18 @@
 </div>
 
 <!--Bỏ angular vào đây-->
+<script>
+    var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    $http.get("/Json/IndexNews")
+  .then(function(response) {
+    // First function handles success
+    $scope.list = response.data;
+      $scope.key = "@(ViewBag.key)";
+  }, function(response) {
+    // Second function handles error
+    $scope.list = "Something went wrong";
+  });
+});
+</script>
 

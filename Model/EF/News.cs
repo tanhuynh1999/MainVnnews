@@ -18,6 +18,7 @@ namespace Model.EF
         public News()
         {
             this.Reports = new HashSet<Report>();
+            this.Groups = new HashSet<Group>();
         }
     
         public int vnew_id { get; set; }
@@ -35,5 +36,7 @@ namespace Model.EF
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Report> Reports { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Group> Groups { get; set; }
     }
 }

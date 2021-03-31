@@ -23,5 +23,6 @@ namespace Model.EF
     
         public virtual Category Category { get; set; }
         public virtual User User { get; set; }
+        public virtual News News { get; set; }
     }
 }

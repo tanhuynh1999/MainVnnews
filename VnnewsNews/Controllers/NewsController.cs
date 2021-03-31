@@ -19,6 +19,7 @@ namespace VnnewsNews.Controllers
         public ActionResult Search(string key)
         {
             //Lam cho này
+            ViewBag.key = key;
             return View();
         }
     }

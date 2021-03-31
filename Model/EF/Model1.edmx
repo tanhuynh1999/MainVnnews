@@ -4,274 +4,290 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DBvnewsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="DBvnewsModelStoreContainer">
-    <EntitySet Name="Categorys" EntityType="DBvnewsModel.Store.Categorys" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Comments" EntityType="DBvnewsModel.Store.Comments" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Editors" EntityType="DBvnewsModel.Store.Editors" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Groups" EntityType="DBvnewsModel.Store.Groups" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="News" EntityType="DBvnewsModel.Store.News" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Replys" EntityType="DBvnewsModel.Store.Replys" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Reports" EntityType="DBvnewsModel.Store.Reports" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Roles" EntityType="DBvnewsModel.Store.Roles" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="sysdiagrams" EntityType="DBvnewsModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Users" EntityType="DBvnewsModel.Store.Users" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_Groups_Categorys" Association="DBvnewsModel.Store.FK_Groups_Categorys">
-      <End Role="Categorys" EntitySet="Categorys" />
-      <End Role="Groups" EntitySet="Groups" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Comments_Users" Association="DBvnewsModel.Store.FK_Comments_Users">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Comments" EntitySet="Comments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Replys_Comments" Association="DBvnewsModel.Store.FK_Replys_Comments">
-      <End Role="Comments" EntitySet="Comments" />
-      <End Role="Replys" EntitySet="Replys" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Editors_Users" Association="DBvnewsModel.Store.FK_Editors_Users">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Editors" EntitySet="Editors" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Groups_Users" Association="DBvnewsModel.Store.FK_Groups_Users">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Groups" EntitySet="Groups" />
-    </AssociationSet>
-    <AssociationSet Name="FK_news_Users" Association="DBvnewsModel.Store.FK_news_Users">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="News" EntitySet="News" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Reports_news" Association="DBvnewsModel.Store.FK_Reports_news">
-      <End Role="News" EntitySet="News" />
-      <End Role="Reports" EntitySet="Reports" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Replys_Users" Association="DBvnewsModel.Store.FK_Replys_Users">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Replys" EntitySet="Replys" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Reports_Users" Association="DBvnewsModel.Store.FK_Reports_Users">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Reports" EntitySet="Reports" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Categorys">
-    <Key>
-      <PropertyRef Name="category_id" />
-    </Key>
-    <Property Name="category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="category_name" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="category_view" Type="int" Nullable="true" />
-    <Property Name="category_active" Type="bit" Nullable="true" />
-    <Property Name="category_datecreate" Type="datetime" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Comments">
-    <Key>
-      <PropertyRef Name="comment_id" />
-    </Key>
-    <Property Name="comment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="comment_content" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="comment_datecreate" Type="datetime" Nullable="true" />
-    <Property Name="user_id" Type="int" Nullable="true" />
-    <Property Name="news_id" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Editors">
-    <Key>
-      <PropertyRef Name="editor_id" />
-    </Key>
-    <Property Name="editor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="editor_fullname" Type="nvarchar" Nullable="true" MaxLength="300" />
-    <Property Name="editor_sex" Type="bit" Nullable="true" />
-    <Property Name="editor_fb" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="editor_phone" Type="varchar" Nullable="true" MaxLength="15" />
-    <Property Name="editor_time" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="editor_intro" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="editor_interests" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="editor_enthusiasm" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="user_id" Type="int" Nullable="true" />
-    <Property Name="editor_zalo" Type="varchar" Nullable="true" MaxLength="15" />
-    <Property Name="editor_active" Type="bit" Nullable="true" />
-    <Property Name="editor_status" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Groups">
-    <Key>
-      <PropertyRef Name="group_id" />
-    </Key>
-    <Property Name="group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="news_id" Type="int" Nullable="true" />
-    <Property Name="user_id" Type="int" Nullable="true" />
-    <Property Name="group_item" Type="int" Nullable="true" />
-    <Property Name="group_datecreate" Type="datetime" Nullable="true" />
-    <Property Name="category_id" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="News">
-    <Key>
-      <PropertyRef Name="vnew_id" />
-    </Key>
-    <Property Name="vnew_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="vnew_title" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="vnew_content" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="vnew_view" Type="int" Nullable="true" />
-    <Property Name="vnew_active" Type="bit" Nullable="true" />
-    <Property Name="vnew_option" Type="bit" Nullable="true" />
-    <Property Name="vnew_datecreate" Type="datetime" Nullable="true" />
-    <Property Name="vnew_dateupdate" Type="datetime" Nullable="true" />
-    <Property Name="user_id" Type="int" Nullable="true" />
-    <Property Name="vnews_des" Type="nvarchar" Nullable="true" MaxLength="1000" />
-    <Property Name="vnew_img" Type="nvarchar(max)" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Replys">
-    <Key>
-      <PropertyRef Name="reply_id" />
-    </Key>
-    <Property Name="reply_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="reply_content" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="reply_datecreate" Type="datetime" Nullable="true" />
-    <Property Name="user_id" Type="int" Nullable="true" />
-    <Property Name="comment_id" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Reports">
-    <Key>
-      <PropertyRef Name="report_id" />
-    </Key>
-    <Property Name="report_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="report_content" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="dow_id" Type="int" Nullable="true" />
-    <Property Name="report_datecreate" Type="datetime" Nullable="true" />
-    <Property Name="user_id" Type="int" Nullable="true" />
-    <Property Name="news_id" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Roles">
-    <Key>
-      <PropertyRef Name="role_id" />
-    </Key>
-    <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="role_name" Type="nvarchar" Nullable="true" MaxLength="200" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" Nullable="true" />
-    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Users">
-    <Key>
-      <PropertyRef Name="user_id" />
-    </Key>
-    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="user_name" Type="nvarchar" Nullable="true" MaxLength="200" />
-  </EntityType>
-  <Association Name="FK_Groups_Categorys">
-    <End Role="Categorys" Type="DBvnewsModel.Store.Categorys" Multiplicity="0..1" />
-    <End Role="Groups" Type="DBvnewsModel.Store.Groups" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Categorys">
-        <PropertyRef Name="category_id" />
-      </Principal>
-      <Dependent Role="Groups">
-        <PropertyRef Name="category_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Comments_Users">
-    <End Role="Users" Type="DBvnewsModel.Store.Users" Multiplicity="0..1" />
-    <End Role="Comments" Type="DBvnewsModel.Store.Comments" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="user_id" />
-      </Principal>
-      <Dependent Role="Comments">
-        <PropertyRef Name="user_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Replys_Comments">
-    <End Role="Comments" Type="DBvnewsModel.Store.Comments" Multiplicity="0..1" />
-    <End Role="Replys" Type="DBvnewsModel.Store.Replys" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Comments">
-        <PropertyRef Name="comment_id" />
-      </Principal>
-      <Dependent Role="Replys">
-        <PropertyRef Name="comment_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Editors_Users">
-    <End Role="Users" Type="DBvnewsModel.Store.Users" Multiplicity="0..1" />
-    <End Role="Editors" Type="DBvnewsModel.Store.Editors" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="user_id" />
-      </Principal>
-      <Dependent Role="Editors">
-        <PropertyRef Name="user_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Groups_Users">
-    <End Role="Users" Type="DBvnewsModel.Store.Users" Multiplicity="0..1" />
-    <End Role="Groups" Type="DBvnewsModel.Store.Groups" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="user_id" />
-      </Principal>
-      <Dependent Role="Groups">
-        <PropertyRef Name="user_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_news_Users">
-    <End Role="Users" Type="DBvnewsModel.Store.Users" Multiplicity="0..1" />
-    <End Role="News" Type="DBvnewsModel.Store.News" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="user_id" />
-      </Principal>
-      <Dependent Role="News">
-        <PropertyRef Name="user_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Reports_news">
-    <End Role="News" Type="DBvnewsModel.Store.News" Multiplicity="0..1" />
-    <End Role="Reports" Type="DBvnewsModel.Store.Reports" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="News">
-        <PropertyRef Name="vnew_id" />
-      </Principal>
-      <Dependent Role="Reports">
-        <PropertyRef Name="news_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Replys_Users">
-    <End Role="Users" Type="DBvnewsModel.Store.Users" Multiplicity="0..1" />
-    <End Role="Replys" Type="DBvnewsModel.Store.Replys" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="user_id" />
-      </Principal>
-      <Dependent Role="Replys">
-        <PropertyRef Name="user_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Reports_Users">
-    <End Role="Users" Type="DBvnewsModel.Store.Users" Multiplicity="0..1" />
-    <End Role="Reports" Type="DBvnewsModel.Store.Reports" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="user_id" />
-      </Principal>
-      <Dependent Role="Reports">
-        <PropertyRef Name="user_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="DBvnewsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categorys">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category_name" Type="nvarchar(max)" />
+          <Property Name="category_view" Type="int" />
+          <Property Name="category_active" Type="bit" />
+          <Property Name="category_datecreate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="comment_content" Type="nvarchar(max)" />
+          <Property Name="comment_datecreate" Type="datetime" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="news_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Editors">
+          <Key>
+            <PropertyRef Name="editor_id" />
+          </Key>
+          <Property Name="editor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="editor_fullname" Type="nvarchar" MaxLength="300" />
+          <Property Name="editor_sex" Type="bit" />
+          <Property Name="editor_fb" Type="nvarchar(max)" />
+          <Property Name="editor_phone" Type="varchar" MaxLength="15" />
+          <Property Name="editor_time" Type="nvarchar" MaxLength="100" />
+          <Property Name="editor_intro" Type="nvarchar(max)" />
+          <Property Name="editor_interests" Type="nvarchar(max)" />
+          <Property Name="editor_enthusiasm" Type="nvarchar(max)" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="editor_zalo" Type="varchar" MaxLength="15" />
+          <Property Name="editor_active" Type="bit" />
+          <Property Name="editor_status" Type="int" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="news_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="group_item" Type="int" />
+          <Property Name="group_datecreate" Type="datetime" />
+          <Property Name="category_id" Type="int" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="vnew_id" />
+          </Key>
+          <Property Name="vnew_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vnew_title" Type="nvarchar(max)" />
+          <Property Name="vnew_content" Type="nvarchar(max)" />
+          <Property Name="vnew_view" Type="int" />
+          <Property Name="vnew_active" Type="bit" />
+          <Property Name="vnew_option" Type="bit" />
+          <Property Name="vnew_datecreate" Type="datetime" />
+          <Property Name="vnew_dateupdate" Type="datetime" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="vnews_des" Type="nvarchar" MaxLength="1000" />
+          <Property Name="vnew_img" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Replys">
+          <Key>
+            <PropertyRef Name="reply_id" />
+          </Key>
+          <Property Name="reply_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reply_content" Type="nvarchar(max)" />
+          <Property Name="reply_datecreate" Type="datetime" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="comment_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Reports">
+          <Key>
+            <PropertyRef Name="report_id" />
+          </Key>
+          <Property Name="report_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="report_content" Type="nvarchar(max)" />
+          <Property Name="dow_id" Type="int" />
+          <Property Name="report_datecreate" Type="datetime" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="news_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_name" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_Comments_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Editors_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Editors" Type="Self.Editors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Editors">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Categorys">
+          <End Role="Categorys" Type="Self.Categorys" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorys">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_News">
+          <End Role="News" Type="Self.News" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="vnew_id" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="news_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_news_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replys_Comments">
+          <End Role="Comments" Type="Self.Comments" Multiplicity="0..1" />
+          <End Role="Replys" Type="Self.Replys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comments">
+              <PropertyRef Name="comment_id" />
+            </Principal>
+            <Dependent Role="Replys">
+              <PropertyRef Name="comment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replys_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Replys" Type="Self.Replys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Replys">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_news">
+          <End Role="News" Type="Self.News" Multiplicity="0..1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="vnew_id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="news_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBvnewsModelStoreContainer">
+          <EntitySet Name="Categorys" EntityType="Self.Categorys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Editors" EntityType="Self.Editors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Replys" EntityType="Self.Replys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Comments_Users" Association="Self.FK_Comments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Editors_Users" Association="Self.FK_Editors_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Editors" EntitySet="Editors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Categorys" Association="Self.FK_Groups_Categorys">
+            <End Role="Categorys" EntitySet="Categorys" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_News" Association="Self.FK_Groups_News">
+            <End Role="News" EntitySet="News" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Users" Association="Self.FK_Groups_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_news_Users" Association="Self.FK_news_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replys_Comments" Association="Self.FK_Replys_Comments">
+            <End Role="Comments" EntitySet="Comments" />
+            <End Role="Replys" EntitySet="Replys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replys_Users" Association="Self.FK_Replys_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Replys" EntitySet="Replys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_news" Association="Self.FK_Reports_news">
+            <End Role="News" EntitySet="News" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Users" Association="Self.FK_Reports_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBvnewsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -329,6 +345,7 @@
           <Property Name="category_id" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Groups_Categorys" FromRole="Groups" ToRole="Categorys" />
           <NavigationProperty Name="User" Relationship="Self.FK_Groups_Users" FromRole="Groups" ToRole="Users" />
+          <NavigationProperty Name="News" Relationship="DBvnewsModel.FK_Groups_News" FromRole="Group" ToRole="News" />
         </EntityType>
         <EntityType Name="News">
           <Key>
@@ -347,6 +364,7 @@
           <Property Name="vnew_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="Self.FK_news_Users" FromRole="News" ToRole="Users" />
           <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_news" FromRole="News" ToRole="Reports" />
+          <NavigationProperty Name="Groups" Relationship="DBvnewsModel.FK_Groups_News" FromRole="News" ToRole="Group" />
         </EntityType>
         <EntityType Name="Reply">
           <Key>
@@ -558,7 +576,23 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Reports" EntitySet="Reports" />
           </AssociationSet>
+          <AssociationSet Name="FK_Groups_News" Association="DBvnewsModel.FK_Groups_News">
+            <End Role="News" EntitySet="News" />
+            <End Role="Group" EntitySet="Groups" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Groups_News">
+          <End Type="DBvnewsModel.News" Role="News" Multiplicity="0..1" />
+          <End Type="DBvnewsModel.Group" Role="Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="vnew_id" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="news_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
