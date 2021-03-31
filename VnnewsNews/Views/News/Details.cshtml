@@ -518,6 +518,16 @@
         }, function myError(response) {
             $scope.com = response.statusText;
         });
+        $scope.love = function () {
+            $http({
+                method: "GET",
+                url: "/News/Love"
+            }).then(function mySuccess(response) {
+                $scope.myWelcome = response.data;
+            }, function myError(response) {
+                $scope.myWelcome = response.statusText;
+            });
+        }
     });
 </script>
 <script>
