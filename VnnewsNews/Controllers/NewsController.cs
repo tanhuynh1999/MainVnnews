@@ -48,5 +48,11 @@ namespace VnnewsNews.Controllers
 
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Love(string key)
+        {
+            //Lam cho này
+            ViewBag.key = key;
+            return View();
+        }
     }
 }
