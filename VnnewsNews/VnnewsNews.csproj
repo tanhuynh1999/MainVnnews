@@ -523,6 +523,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Images\News\" />
+    <Folder Include="Images\Users\" />
     <Folder Include="Scripts\Data\" />
     <Folder Include="Views\New\" />
   </ItemGroup>
