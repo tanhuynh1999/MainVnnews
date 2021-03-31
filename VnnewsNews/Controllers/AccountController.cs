@@ -162,10 +162,10 @@ namespace VnnewsNews.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                var result = userDAO.Insert(new User() { user_email = model.Email, user_name = model.Email, user_password = model.Password })  ;
+                if (result == 1)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    return RedirectToAction("Login", new LoginViewModel() { Email = model.Email, Password = model.Password });
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -175,7 +175,6 @@ namespace VnnewsNews.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
