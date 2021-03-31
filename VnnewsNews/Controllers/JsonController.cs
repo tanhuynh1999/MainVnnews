@@ -48,5 +48,16 @@ namespace VnnewsNews.Controllers
 
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult favourite(int? id)
+        {
+            //Làm form
+            var list = from item in db.Groups
+                       where item.news_id == id && item.user_id == 1 && item.group_item == Common.Common.GROUP_THICH
+                       select new
+                       {
+                           id = item.group_id
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }
