@@ -12,10 +12,11 @@ namespace VnnewsNews.Controllers
         DBvnewsEntities db = new DBvnewsEntities();
         // GET: Json
         //Danh sách tất cả tin tức bang json
-        public JsonResult IndexNews()
+        public JsonResult IndexNews(string key)
         {
             //Làm form
-            return Json(null);
+            //List<News> news = db.News.Where(n => n.vnew_active == true && n.vnew_option == true).ToList();
+            return Json(11);
         }
     }
 }
