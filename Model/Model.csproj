@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="EF\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -98,7 +99,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DAO\" />
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{E7A4813E-E3A3-456E-BF98-5EFB8D9F75AE}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="EF\Model1.edmx">

@@ -114,6 +114,16 @@
           </Key>
           <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="user_password" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_image" Type="nvarchar(max)" />
+          <Property Name="user_phone" Type="varchar" MaxLength="14" />
+          <Property Name="user_active" Type="bit" />
+          <Property Name="user_bin" Type="bit" />
+          <Property Name="user_datecreate" Type="datetime" />
+          <Property Name="user_dateupdate" Type="datetime" />
+          <Property Name="user_datelogin" Type="datetime" />
+          <Property Name="user_email" Type="varchar" MaxLength="255" />
+          <Property Name="role_id" Type="int" />
         </EntityType>
         <Association Name="FK_Comments_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
@@ -148,18 +158,6 @@
             </Principal>
             <Dependent Role="Groups">
               <PropertyRef Name="category_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Groups_News">
-          <End Role="News" Type="Self.News" Multiplicity="0..1" />
-          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="News">
-              <PropertyRef Name="vnew_id" />
-            </Principal>
-            <Dependent Role="Groups">
-              <PropertyRef Name="news_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -235,6 +233,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Users_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DBvnewsModelStoreContainer">
           <EntitySet Name="Categorys" EntityType="Self.Categorys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
@@ -256,10 +266,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Groups_Categorys" Association="Self.FK_Groups_Categorys">
             <End Role="Categorys" EntitySet="Categorys" />
-            <End Role="Groups" EntitySet="Groups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Groups_News" Association="Self.FK_Groups_News">
-            <End Role="News" EntitySet="News" />
             <End Role="Groups" EntitySet="Groups" />
           </AssociationSet>
           <AssociationSet Name="FK_Groups_Users" Association="Self.FK_Groups_Users">
@@ -285,6 +291,10 @@
           <AssociationSet Name="FK_Reports_Users" Association="Self.FK_Reports_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -397,6 +407,7 @@
           </Key>
           <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="role_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="DBvnewsModel.FK_Users_Roles" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -420,6 +431,17 @@
           <NavigationProperty Name="News" Relationship="Self.FK_news_Users" FromRole="Users" ToRole="News" />
           <NavigationProperty Name="Replys" Relationship="Self.FK_Replys_Users" FromRole="Users" ToRole="Replys" />
           <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_Users" FromRole="Users" ToRole="Reports" />
+          <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_phone" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="user_active" Type="Boolean" />
+          <Property Name="user_bin" Type="Boolean" />
+          <Property Name="user_datecreate" Type="DateTime" Precision="3" />
+          <Property Name="user_dateupdate" Type="DateTime" Precision="3" />
+          <Property Name="user_datelogin" Type="DateTime" Precision="3" />
+          <Property Name="user_email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="role_id" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="DBvnewsModel.FK_Users_Roles" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Groups_Categorys">
           <End Role="Categorys" Type="Self.Category" Multiplicity="0..1" />
@@ -580,6 +602,10 @@
             <End Role="News" EntitySet="News" />
             <End Role="Group" EntitySet="Groups" />
           </AssociationSet>
+          <AssociationSet Name="FK_Users_Roles" Association="DBvnewsModel.FK_Users_Roles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_Groups_News">
           <End Type="DBvnewsModel.News" Role="News" Multiplicity="0..1" />
@@ -590,6 +616,18 @@
             </Principal>
             <Dependent Role="Group">
               <PropertyRef Name="news_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Roles">
+          <End Type="DBvnewsModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="DBvnewsModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="role_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -714,7 +752,17 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="IsTypeOf(DBvnewsModel.User)">
         <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_datelogin" ColumnName="user_datelogin" />
+                <ScalarProperty Name="user_dateupdate" ColumnName="user_dateupdate" />
+                <ScalarProperty Name="user_datecreate" ColumnName="user_datecreate" />
+                <ScalarProperty Name="user_bin" ColumnName="user_bin" />
+                <ScalarProperty Name="user_active" ColumnName="user_active" />
+                <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+                <ScalarProperty Name="user_image" ColumnName="user_image" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="user_name" ColumnName="user_name" />
         </MappingFragment>
       </EntityTypeMapping>

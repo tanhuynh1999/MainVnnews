@@ -27,6 +27,16 @@ namespace Model.EF
     
         public int user_id { get; set; }
         public string user_name { get; set; }
+        public string user_password { get; set; }
+        public string user_image { get; set; }
+        public string user_phone { get; set; }
+        public Nullable<bool> user_active { get; set; }
+        public Nullable<bool> user_bin { get; set; }
+        public Nullable<System.DateTime> user_datecreate { get; set; }
+        public Nullable<System.DateTime> user_dateupdate { get; set; }
+        public Nullable<System.DateTime> user_datelogin { get; set; }
+        public string user_email { get; set; }
+        public Nullable<int> role_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
@@ -40,5 +50,6 @@ namespace Model.EF
         public virtual ICollection<Reply> Replys { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Report> Reports { get; set; }
+        public virtual Role Role { get; set; }
     }
 }
