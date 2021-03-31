@@ -2,10 +2,10 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/31/2021 13:24:08
+-- Date Created: 03/31/2021 21:48:38
 -- Generated from EDMX file: C:\Users\Tan\Desktop\VnnewsNews\Model\EF\Model1.edmx
 -- --------------------------------------------------
-CREATE DATABASE DBvnews
+
 SET QUOTED_IDENTIFIER OFF;
 GO
 USE [DBvnews];
@@ -43,6 +43,9 @@ IF OBJECT_ID(N'[dbo].[FK_Reports_news]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_Reports_Users]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Reports] DROP CONSTRAINT [FK_Reports_Users];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Users_Roles]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_Users_Roles];
 GO
 
 -- --------------------------------------------------
@@ -190,7 +193,17 @@ GO
 -- Creating table 'Users'
 CREATE TABLE [dbo].[Users] (
     [user_id] int IDENTITY(1,1) NOT NULL,
-    [user_name] nvarchar(200)  NULL
+    [user_name] nvarchar(200)  NULL,
+    [user_password] nvarchar(50)  NULL,
+    [user_image] nvarchar(max)  NULL,
+    [user_phone] varchar(14)  NULL,
+    [user_active] bit  NULL,
+    [user_bin] bit  NULL,
+    [user_datecreate] datetime  NULL,
+    [user_dateupdate] datetime  NULL,
+    [user_datelogin] datetime  NULL,
+    [user_email] varchar(255)  NULL,
+    [role_id] int  NULL
 );
 GO
 
@@ -395,6 +408,36 @@ GO
 CREATE INDEX [IX_FK_Reports_Users]
 ON [dbo].[Reports]
     ([user_id]);
+GO
+
+-- Creating foreign key on [news_id] in table 'Groups'
+ALTER TABLE [dbo].[Groups]
+ADD CONSTRAINT [FK_Groups_News]
+    FOREIGN KEY ([news_id])
+    REFERENCES [dbo].[News]
+        ([vnew_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Groups_News'
+CREATE INDEX [IX_FK_Groups_News]
+ON [dbo].[Groups]
+    ([news_id]);
+GO
+
+-- Creating foreign key on [role_id] in table 'Users'
+ALTER TABLE [dbo].[Users]
+ADD CONSTRAINT [FK_Users_Roles]
+    FOREIGN KEY ([role_id])
+    REFERENCES [dbo].[Roles]
+        ([role_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Users_Roles'
+CREATE INDEX [IX_FK_Users_Roles]
+ON [dbo].[Users]
+    ([role_id]);
 GO
 
 -- --------------------------------------------------
