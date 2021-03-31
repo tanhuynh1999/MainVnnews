@@ -529,11 +529,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{72477de8-32da-401d-9039-6a24fb4f2f7a}</Project>
+      <Project>{e7a4813e-e3a3-456e-bf98-5efb8d9f75ae}</Project>
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{19c5bcd1-b8ef-479a-a7f2-a14af9888ac8}</Project>
+      <Project>{6338f459-b7fd-4c14-96be-08b6e94a3d3e}</Project>
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
