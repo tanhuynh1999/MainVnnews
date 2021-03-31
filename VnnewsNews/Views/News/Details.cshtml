@@ -377,8 +377,8 @@
                         </div>
                     </div>
                     <div class="card mt-3" ng-controller="myFavourite">
-                        <button ng-show="listfavourite.length >0" class="btn btn-danger w-100" ng-click="favourite(@(Model.vnew_id))"><i class=""></i><i class="fa fa-thumbs-up">&nbsp;</i>Thích</button>
-                        <button ng-show="listfavourite.length  == 0 " class="btn btn-dark w-100" ng-click="favourite(@(Model.vnew_id))"><i class=""></i><i class="fa fa-thumbs-up">&nbsp;</i>Thích</button>
+                        <button ng-show="listfavourite.length != 0" class="btn btn-danger w-100" ng-click="favourite(@(Model.vnew_id))"><i class=""></i><i class="fa fa-thumbs-up">&nbsp;</i>Thích</button>
+                        <button ng-show="listfavourite.length  == 0 " class="btn btn-dark w-100" ng-click="favourite(@(Model.vnew_id))"><i class=""></i><i class="fa fa-thumbs-up">&nbsp;</i>Hủy Thích</button>
                         <button class="btn btn-primary w-100 mt-1"><i class=""></i><i class="fa fa-heart">&nbsp;</i>Lưu tin</button>
                     </div>
                     <div class="grids5-info mt-3">
@@ -528,13 +528,14 @@
             }).then(function mySuccess(response) {
                 $scope.listfavourite = response.data;
             });
-        $scope.favourite = function (new_id) {
-            $http({
-                method: "GET",
-                url: "/News/Favourite?new_id=" + new_id
-            }).then(function mySuccess(response) {
-                $scope.listfavourite = response.data;
-            });
+
+                $scope.favourite = function (new_id) {
+                    $http({
+                        method: "GET",
+                        url: "/News/Favourite?new_id=" + new_id
+                    }).then(function mySuccess(response) {
+                        $scope.listfavourite = response.data;
+                    });
         }
     });
 </script>
