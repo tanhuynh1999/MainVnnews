@@ -13,9 +13,5 @@ namespace VnnewsNews.Areas.Admin.Controllers
         {
             return View();
         }
-        public ActionResult test()
-        {
-            return View();
-        }
     }
 }
