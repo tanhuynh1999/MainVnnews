@@ -80,13 +80,43 @@
                     {
                         var user = functions.CookieID();
                         <a class="img-circle img-circle-sm" href="#author">
-                            <img src="~/Content/Layout/@user.user_image" class="img-fluid" alt="...">
+                            @if(user.user_image == null)
+                            {
+                                <img src="https://th.bing.com/th/id/OIP.SxuyKL-Ca-_bXp1TC4c4-gHaF3?pid=ImgDet&rs=1" class="img-fluid" alt="...">
+                            }
+                            else
+                            {
+                                <img src="~/Content/Layout/@user.user_image" class="img-fluid" alt="...">
+                            }
                         </a>
                         <div class="align-self ml-3">
                             <a href="#author">
                                 <h5>Chào @user.user_name</h5>
                             </a>
-                            <span>@user.Role.role_name</span>
+                            <ul>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                        <span>@user.Role.role_name</span> <span class="fa fa-angle-down"></span>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item text-dark" href="lifestyle.html"><i class="fa fa-user">&nbsp;</i>Thông tin cá nhân</a>
+                                        <a class="dropdown-item text-dark" href="lifestyle.html"><i class="fa fa-newspaper">&nbsp;</i>Tin tức cá nhân</a>
+                                        <a class="dropdown-item text-dark" href="culture.html"><i class="fa fa-box">&nbsp;</i>Tin tức đã lưu</a>
+                                        <a class="dropdown-item text-dark" href="culture.html"><i class="fa fa-heart">&nbsp;</i>Hoạt động tin tức</a>
+                                        <a class="dropdown-item text-dark" href="culture.html"><i class="fa fa-users">&nbsp;</i>Đăng ký làm biên tập viên</a>
+                                        <a class="dropdown-item text-dark" href="culture.html"><i class="fa fa-ad">&nbsp;</i>Quảng cáo tự động</a>
+                                        <a class="dropdown-item text-dark" href="culture.html"><i class="fa fa-money">&nbsp;</i>Rút tiền</a>
+                                        <a class="dropdown-item text-dark" href="culture.html"><i class="fa fa-comment-alt">&nbsp;</i>Phòng họp biên tập viên</a>
+                                        <a class="dropdown-item text-dark" href="culture.html"><i class="fa fa-comment">&nbsp;</i>Lịch sử tin nhắn</a>
+                                        <a class="dropdown-item text-dark" href="culture.html"><i class="fa fa-newspaper-o">&nbsp;</i>Cài đặt ưu tiên</a>
+                                        <a class="dropdown-item text-dark" href="culture.html"><i class="fa fa-history">&nbsp;</i>Lịch sử thanh toán</a>
+                                        <a class="dropdown-item text-dark" href="culture.html"><i class="fa fa-key">&nbsp;</i>Đổi mật khẩu</a>
+                                        <a class="dropdown-item text-dark" href="culture.html"><i class="fa fa-sign-out-alt">&nbsp;</i>Đăng xuất</a>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     }
                     else
