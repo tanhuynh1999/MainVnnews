@@ -188,10 +188,12 @@
     <Compile Include="Areas\Admin\Controllers\ViewAdminController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdsController.cs" />
+    <Compile Include="Controllers\EditorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\PaysController.cs" />
     <Compile Include="Controllers\ViewController.cs" />
     <Compile Include="Function\FunctionsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2362,6 +2364,11 @@
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Search.cshtml" />
     <Content Include="Views\Ads\CreateAds.cshtml" />
+    <Content Include="Views\News\IndexFavourite.cshtml" />
+    <Content Include="Views\News\IndexActive.cshtml" />
+    <Content Include="Views\Editors\Create.cshtml" />
+    <Content Include="Views\Ads\Index.cshtml" />
+    <Content Include="Views\Pays\TakePrice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

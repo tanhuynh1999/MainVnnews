@@ -78,5 +78,17 @@ namespace VnnewsNews.Controllers
                        };
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+        //Danh sách Tin tức yêu thích
+        public ActionResult IndexFavourite()
+        {
+            return View();
+        }
+        //Danh sách Hoat dộng tin tức (comment, like)
+        //Chia 2 cái row : 1 bên là thông báo comment và còn lại là đã like
+        //Có khả năng làm real time
+        public ActionResult IndexActive()
+        {
+            return View();
+        }
     }
 }

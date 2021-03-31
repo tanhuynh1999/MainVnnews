@@ -19,5 +19,11 @@ namespace VnnewsNews.Controllers
         {
             return View();
         }
+        //Danh sách quản lý ads cá nhân
+        public ActionResult Index()
+        {
+            return View();
+        }
+        
     }
 }
