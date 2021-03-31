@@ -181,7 +181,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EditorsAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NewsAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ViewAdminController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JsonController.cs" />
@@ -2121,10 +2125,23 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ShareViewAdmin\Panel.cshtml" />
-    <Content Include="Areas\Admin\Views\ShareViewAdmin\Menu.cshtml" />
-    <Content Include="Areas\Admin\Views\HomeAdmin\test.cshtml" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Areas\Admin\Views\ViewAdmin\Menu.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoriesAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoriesAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoriesAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoriesAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoriesAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\EditorsAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\EditorsAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\EditorsAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\EditorsAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\EditorsAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2181,7 +2198,6 @@
     <Folder Include="Images\Users\" />
     <Folder Include="Scripts\Data\" />
     <Folder Include="Views\Json\" />
-    <Folder Include="Views\New\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

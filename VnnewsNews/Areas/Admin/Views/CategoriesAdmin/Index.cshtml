@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Model.EF.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="col-xl-12 col-md-12">
+    <div class="card table-card">
+        <div class="card-header">
+            <h5>Member’s performance</h5>
+            <br />
+            @Html.ActionLink("Create New", "Create")
+            
+        </div>
+        <div class="card-block">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.category_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.category_view)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.category_active)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.category_datecreate)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.category_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.category_view)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.category_active)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.category_datecreate)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.category_id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.category_id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.category_id })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Model.EF.Editor>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-xl-12 col-md-12">
+    <div class="card table-card">
+        <div class="card-header">
+            <h5>Member’s performance</h5>
+            @Html.ActionLink("Create New", "Create")
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                    <li><i class="fa fa-minus minimize-card"></i></li>
+                    <li><i class="fa fa-refresh reload-card"></i></li>
+                    <li><i class="fa fa-trash close-card"></i></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-block">
+            <div class="table-responsive">
+
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.editor_fullname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.editor_sex)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.editor_fb)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.editor_phone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.editor_time)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.editor_intro)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.editor_interests)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.editor_enthusiasm)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.editor_zalo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.editor_active)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.editor_status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.User.user_name)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.editor_fullname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.editor_sex)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.editor_fb)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.editor_phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.editor_time)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.editor_intro)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.editor_interests)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.editor_enthusiasm)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.editor_zalo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.editor_active)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.editor_status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.user_name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.editor_id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.editor_id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.editor_id })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>
