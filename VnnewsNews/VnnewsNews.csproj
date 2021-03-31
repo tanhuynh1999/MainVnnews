@@ -188,6 +188,7 @@
     <Compile Include="Areas\Admin\Controllers\ShareViewAdminController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ViewController.cs" />
@@ -2062,6 +2063,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\LayoutAdmin\icon\CAW.TTF" />
@@ -2159,6 +2163,7 @@
     <Content Include="Areas\Admin\Views\Roles\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\test.cshtml" />
+    <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2206,6 +2211,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\View\Menu.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2213,6 +2219,7 @@
     <Folder Include="Images\News\" />
     <Folder Include="Images\Users\" />
     <Folder Include="Scripts\Data\" />
+    <Folder Include="Views\Json\" />
     <Folder Include="Views\New\" />
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,7 @@ namespace VnnewsNews.Controllers
         }
         public ActionResult Search(string key)
         {
+            //Lam cho này
             return View();
         }
     }
