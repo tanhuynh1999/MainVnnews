@@ -60,6 +60,7 @@ namespace Model.DAO
                     user.user_datecreate = DateTime.Now;
                     user.user_datelogin = DateTime.Now;
                     user.user_password = Encryptor.MD5Hash(user.user_password);
+                    user.role_id = 4;
                     db.Users.Add(user);
                     db.SaveChanges();
 
