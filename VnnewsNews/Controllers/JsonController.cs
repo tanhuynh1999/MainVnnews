@@ -31,5 +31,22 @@ namespace VnnewsNews.Controllers
 
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult IndexComment(int ? id)
+        {
+            //Làm form
+            var list = from item in db.Comments
+                       where item.news_id == id
+                       orderby item.comment_datecreate
+                       select new
+                       {
+                           id = item.comment_id,
+                           content = item.comment_content,
+                           comment_datecreate = item.comment_datecreate.ToString(),
+                           name = item.User.user_name,
+                           news_id = item.news_id
+                       };
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }

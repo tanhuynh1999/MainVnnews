@@ -1,6 +1,7 @@
 ﻿@using Model.EF;
 @model News
 @{
+    DBvnewsEntities db = new DBvnewsEntities();
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -122,7 +123,7 @@
         <a href="index.html">Home</a> / Categories /<span class="breadcrumb_last" aria-current="page">Culture</span>
     </div>
 </nav>
-<div class="w3l-searchblock w3l-homeblock1 py-5">
+<div class="w3l-searchblock w3l-homeblock1 py-5" ng-app="myApp">
     <div class="container py-lg-4 py-md-3">
         <!-- block -->
         <div class="row">
@@ -200,180 +201,162 @@
                         }
                     </style>
                     <!-- //pagination -->
-                    <div class="row height d-flex justify-content-center align-items-center">
+                    <div class="row height d-flex justify-content-center align-items-center" ng-controller="myComment">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="p-3">
-                                    <h6>Comments</h6>
+                                    <h6>Bình luận ({{countcomment}})</h6>
                                 </div>
-                                <div class="mt-3 d-flex flex-row align-items-center p-3 form-color"> <img src="https://i.imgur.com/zQZSWrt.jpg" width="50" class="rounded-circle mr-2"> <input type="text" class="form-control" placeholder="Enter your comment..."> </div>
+                                <div class="mt-3 d-flex flex-row align-items-center p-3 form-color"> <img src="https://i.imgur.com/zQZSWrt.jpg" width="50" class="rounded-circle mr-2"> <input name="content" type="text" ng-model="content" class="form-control" placeholder="Enter your comment..." id="content"> </div>
+                                <button style="display: none" id="myBtn" ng-click="create(@Model.vnew_id)">gui</button>
                                 <div class="mt-2">
-                                    <div class="d-flex flex-row p-3">
+                                    <div class="d-flex flex-row p-3" ng-repeat="com in com">
                                         <img src="https://i.imgur.com/zQZSWrt.jpg" width="40" height="40" class="rounded-circle mr-3">
                                         <div class="w-100">
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex flex-row align-items-center"> <span class="mr-2">Brian selter</span> <small class="c-badge">Top Comment</small> </div> <small>12h ago</small>
+                                                <div class="d-flex flex-row align-items-center"> <span class="mr-2">{{com.name}}</span> <small class="c-badge">Top Comment</small> </div> <small>{{com.comment_datecreate}}</small>
                                             </div>
-                                            <p class="text-justify comment-text mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                            <p class="text-justify comment-text mb-0">{{com.content}}</p>
                                             <div class="d-flex flex-row user-feed"> <span class="wish"><i class="fa fa-heartbeat mr-2"></i>24</span> <span class="ml-3"><i class="fa fa-comments-o mr-2"></i>Reply</span> </div>
                                         </div>
                                     </div>
-                                    <div class="d-flex flex-row p-3">
-                                        <img src="https://i.imgur.com/3J8lTLm.jpg" width="40" height="40" class="rounded-circle mr-3">
-                                        <div class="w-100">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex flex-row align-items-center"> <span class="mr-2">Seltos Majito</span> <small class="c-badge">Top Comment</small> </div> <small>2h ago</small>
-                                            </div>
-                                            <p class="text-justify comment-text mb-0">Tellus in hac habitasse platea dictumst vestibulum. Lectus nulla at volutpat diam ut venenatis tellus. Aliquam etiam erat velit scelerisque in dictum non consectetur. Sagittis nisl rhoncus mattis rhoncus urna neque viverra justo nec. Tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra. Aliquam faucibus purus in massa.</p>
-                                            <div class="d-flex flex-row user-feed"> <span class="wish"><i class="fa fa-heartbeat mr-2"></i>14</span> <span class="ml-3"><i class="fa fa-comments-o mr-2"></i>Reply</span> </div>
-                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 item mt-5 pt-lg-3">
+                            <div class="card">
+                                <div class="card-header p-0 position-relative">
+                                    <a href="#blog-single">
+                                        <img class="card-img-bottom d-block radius-image" src="~/Content/Layout/images/p1.jpg" alt="Card image cap">
+                                    </a>
+                                </div>
+                                <div class="card-body p-0 blog-details">
+                                    <a href="#blog-single" class="blog-desc">
+                                        How to Start a Blog and make money every Month from it
+                                    </a>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur ipsum adipisicing elit. Qui eligendi
+                                        vitae sit.
+                                    </p>
+                                    <div class="author align-items-center mt-3 mb-1">
+                                        <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
                                     </div>
-                                    <div class="d-flex flex-row p-3">
-                                        <img src="https://i.imgur.com/agRGhBc.jpg" width="40" height="40" class="rounded-circle mr-3">
-                                        <div class="w-100">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex flex-row align-items-center"> <span class="mr-2">Maria Santola</span> <small class="c-badge">Top Comment</small> </div> <small>12h ago</small>
-                                            </div>
-                                            <p class="text-justify comment-text mb-0"> Id eu nisl nunc mi ipsum faucibus. Massa massa ultricies mi quis hendrerit dolor. Arcu bibendum at varius vel pharetra vel turpis nunc eget. Habitasse platea dictumst quisque sagittis purus sit amet volutpat. Urna condimentum mattis pellentesque id.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                                            <div class="d-flex flex-row user-feed"> <span class="wish"><i class="fa fa-heartbeat mr-2"></i>54</span> <span class="ml-3"><i class="fa fa-comments-o mr-2"></i>Reply</span> </div>
-                                        </div>
+                                    <ul class="blog-meta">
+                                        <li class="meta-item blog-lesson">
+                                            <span class="meta-value"> April 13, 2020 </span>
+                                        </li>
+                                        <li class="meta-item blog-students">
+                                            <span class="meta-value"> 6min read</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 item mt-5 pt-lg-3">
+                            <div class="card">
+                                <div class="card-header p-0 position-relative">
+                                    <a href="#blog-single">
+                                        <img class="card-img-bottom d-block radius-image" src="~/Content/Layout/images/p4.jpg" alt="Card image cap">
+                                    </a>
+                                </div>
+                                <div class="card-body p-0 blog-details">
+                                    <a href="#blog-single" class="blog-desc">
+                                        What’s better than following your passion and making income
+                                    </a>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur ipsum adipisicing elit. Qui eligendi
+                                        vitae sit.
+                                    </p>
+                                    <div class="author align-items-center mt-3 mb-1">
+                                        <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
                                     </div>
+                                    <ul class="blog-meta">
+                                        <li class="meta-item blog-lesson">
+                                            <span class="meta-value"> April 13, 2020 </span>
+                                        </li>
+                                        <li class="meta-item blog-students">
+                                            <span class="meta-value"> 6min read</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 item mt-5 pt-lg-3">
+                            <div class="card">
+                                <div class="card-header p-0 position-relative">
+                                    <a href="#blog-single">
+                                        <img class="card-img-bottom d-block radius-image" src="~/Content/Layout/images/p3.jpg" alt="Card image cap">
+                                    </a>
+                                </div>
+                                <div class="card-body p-0 blog-details">
+                                    <a href="#blog-single" class="blog-desc">
+                                        Without further delay, let’s learn how you can start a blog today.
+                                    </a>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur ipsum adipisicing elit. Qui eligendi
+                                        vitae sit.
+                                    </p>
+                                    <div class="author align-items-center mt-3 mb-1">
+                                        <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
+                                    </div>
+                                    <ul class="blog-meta">
+                                        <li class="meta-item blog-lesson">
+                                            <span class="meta-value"> April 13, 2020 </span>
+                                        </li>
+                                        <li class="meta-item blog-students">
+                                            <span class="meta-value"> 6min read</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 item mt-5 pt-lg-3">
+                            <div class="card">
+                                <div class="card-header p-0 position-relative">
+                                    <a href="#blog-single">
+                                        <img class="card-img-bottom d-block radius-image" src="~/Content/Layout/images/p7.jpg"
+                                             alt="Card image cap">
+                                    </a>
+                                </div>
+                                <div class="card-body p-0 blog-details">
+                                    <a href="#blog-single" class="blog-desc">
+                                        Either way, Blogging could help you achieve your goal.
+                                    </a>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur ipsum adipisicing elit. Qui eligendi
+                                        vitae sit.
+                                    </p>
+                                    <div class="author align-items-center mt-3 mb-1">
+                                        <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
+                                    </div>
+                                    <ul class="blog-meta">
+                                        <li class="meta-item blog-lesson">
+                                            <span class="meta-value"> April 13, 2020 </span>
+                                        </li>
+                                        <li class="meta-item blog-students">
+                                            <span class="meta-value"> 6min read</span>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 item mt-5 pt-lg-3">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative">
-                                <a href="#blog-single">
-                                    <img class="card-img-bottom d-block radius-image" src="~/Content/Layout/images/p1.jpg" alt="Card image cap">
-                                </a>
-                            </div>
-                            <div class="card-body p-0 blog-details">
-                                <a href="#blog-single" class="blog-desc">
-                                    How to Start a Blog and make money every Month from it
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur ipsum adipisicing elit. Qui eligendi
-                                    vitae sit.
-                                </p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                                </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6min read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+
+                    <!-- pagination -->
+                    <div class="pagination-wrapper mt-5">
+                        <ul class="page-pagination">
+                            <li><span aria-current="page" class="page-numbers current">1</span></li>
+                            <li><a class="page-numbers" href="#url">2</a></li>
+                            <li><a class="page-numbers" href="#url">3</a></li>
+                            <li><a class="page-numbers" href="#url">4</a></li>
+                            <li><a class="page-numbers" href="#url">....</a></li>
+                            <li><a class="page-numbers" href="#url">15</a></li>
+                            <li><a class="next" href="#url"><span class="fa fa-angle-right"></span></a></li>
+                        </ul>
                     </div>
-                    <div class="col-lg-6 col-md-6 item mt-5 pt-lg-3">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative">
-                                <a href="#blog-single">
-                                    <img class="card-img-bottom d-block radius-image" src="~/Content/Layout/images/p4.jpg" alt="Card image cap">
-                                </a>
-                            </div>
-                            <div class="card-body p-0 blog-details">
-                                <a href="#blog-single" class="blog-desc">
-                                    What’s better than following your passion and making income
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur ipsum adipisicing elit. Qui eligendi
-                                    vitae sit.
-                                </p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                                </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6min read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 item mt-5 pt-lg-3">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative">
-                                <a href="#blog-single">
-                                    <img class="card-img-bottom d-block radius-image" src="~/Content/Layout/images/p3.jpg" alt="Card image cap">
-                                </a>
-                            </div>
-                            <div class="card-body p-0 blog-details">
-                                <a href="#blog-single" class="blog-desc">
-                                    Without further delay, let’s learn how you can start a blog today.
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur ipsum adipisicing elit. Qui eligendi
-                                    vitae sit.
-                                </p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                                </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6min read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 item mt-5 pt-lg-3">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative">
-                                <a href="#blog-single">
-                                    <img class="card-img-bottom d-block radius-image" src="~/Content/Layout/images/p7.jpg"
-                                         alt="Card image cap">
-                                </a>
-                            </div>
-                            <div class="card-body p-0 blog-details">
-                                <a href="#blog-single" class="blog-desc">
-                                    Either way, Blogging could help you achieve your goal.
-                                </a>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur ipsum adipisicing elit. Qui eligendi
-                                    vitae sit.
-                                </p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                                </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6min read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
 
-                <!-- pagination -->
-                <div class="pagination-wrapper mt-5">
-                    <ul class="page-pagination">
-                        <li><span aria-current="page" class="page-numbers current">1</span></li>
-                        <li><a class="page-numbers" href="#url">2</a></li>
-                        <li><a class="page-numbers" href="#url">3</a></li>
-                        <li><a class="page-numbers" href="#url">4</a></li>
-                        <li><a class="page-numbers" href="#url">....</a></li>
-                        <li><a class="page-numbers" href="#url">15</a></li>
-                        <li><a class="next" href="#url"><span class="fa fa-angle-right"></span></a></li>
-                    </ul>
-                </div>
-                
             </div>
             <div class="col-lg-3 trending mt-lg-0 mt-5 mb-lg-5">
                 <div class="pos-sticky">
@@ -476,32 +459,73 @@
                     </div>
                 </div>
             </div>
+            <!-- //block-->
+            <!-- ad block -->
+            <div class="ad-block text-center mt-5">
+                <a href="#url"><img src="~/Content/Layout/images/ad.gif" class="img-fluid" alt="ad image" /></a>
+            </div>
+            <!-- //ad block -->
         </div>
-        <!-- //block-->
-        <!-- ad block -->
-        <div class="ad-block text-center mt-5">
-            <a href="#url"><img src="~/Content/Layout/images/ad.gif" class="img-fluid" alt="ad image" /></a>
-        </div>
-        <!-- //ad block -->
     </div>
 </div>
+
 <script>
     // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function () {
-      scrollFunction()
+        scrollFunction()
     };
 
     function scrollFunction() {
-      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("movetop").style.display = "block";
-      } else {
-        document.getElementById("movetop").style.display = "none";
-      }
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
     }
 
     // When the user clicks on the button, scroll to the top of the document
     function topFunction() {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     }
+</script>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myComment', function ($scope, $http) {
+        $http({
+            method: "GET",
+            url: "/Json/IndexComment?id=@Model.user_id"
+        }).then(function mySuccess(response) {
+            $scope.com = response.data;
+            $scope.countcomment = $scope.com.length;
+
+            $scope.create = function (id) {
+                var content = document.getElementsByName("content")[0].value;
+
+                $http({
+                    method: "GET",
+                    url: "/News/CreateComment?content=" + content
+                    + "&id="+id
+                }).then(function mySuccess(response) {
+                    $scope.com = response.data;
+                    $scope.countcomment = $scope.com.length;
+                }, function myError(response) {
+                    $scope.com = response.statusText;
+                });
+
+                document.getElementsByName("content")[0].value = "";
+            }
+        }, function myError(response) {
+            $scope.com = response.statusText;
+        });
+    });
+</script>
+<script>
+    var input = document.getElementById("content");
+    input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("myBtn").click();
+        }
+    });
 </script>
