@@ -48,11 +48,35 @@ namespace VnnewsNews.Controllers
 
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Love(string key)
+
+        public JsonResult Favourite(int? new_id)
         {
-            //Lam cho này
-            ViewBag.key = key;
-            return View();
+            Group checkLove = db.Groups.SingleOrDefault(n => n.news_id == new_id && n.user_id == 1 && n.group_item == Common.Common.GROUP_THICH);
+            if(checkLove == null)
+            {
+                Group group = new Group
+                {
+                    news_id = new_id,
+                    user_id = 1,
+                    group_item = Common.Common.GROUP_THICH,
+                    group_datecreate = DateTime.Now,
+                };
+                db.Groups.Add(group);
+                db.SaveChanges();
+            }
+            else
+            {
+                db.Groups.Remove(db.Groups.Find(checkLove.group_id));
+                db.SaveChanges();
+
+            }
+            var list = from item in db.Groups
+                       where item.news_id == new_id && item.user_id == 1 && item.group_item == Common.Common.GROUP_THICH
+                       select new
+                       {
+                           id = item.group_id
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }
