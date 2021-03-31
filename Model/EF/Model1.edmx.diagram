@@ -25,6 +25,7 @@
         <AssociationConnector Association="DBvnewsModel.FK_Replys_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Reports_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Groups_News" />
+        <AssociationConnector Association="DBvnewsModel.FK_Users_Roles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

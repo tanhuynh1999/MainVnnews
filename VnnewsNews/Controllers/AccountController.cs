@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Model.DAO;
+using Model.EF;
 using VnnewsNews.Models;
 
 namespace VnnewsNews.Controllers
@@ -17,6 +19,8 @@ namespace VnnewsNews.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private UserDAO userDAO = new UserDAO();
+        private DBvnewsEntities db = new DBvnewsEntities();
 
         public AccountController()
         {
@@ -75,18 +79,24 @@ namespace VnnewsNews.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = userDAO.LoginWithAccount(model.Email, model.Password);
             switch (result)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
+                case 1:
+                    var user = db.Users.FirstOrDefault(x => x.user_email == model.Email);
+                    HttpCookie cookie = new HttpCookie("user_id", user.user_id.ToString());
+                    cookie.Expires.AddDays(10);
+                    Response.Cookies.Set(cookie);
+                    return Redirect("/");
+                case -2:
+                    TempData["noti_signup"] = "Tài khoản không tồn tại!";
+                    return View(model);
+                case -1:
+                    TempData["noti_signup"] = "Tài khoản đã bị khóa!";
+                    return View(model);
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    TempData["noti_signup"] = "Sai tài khoản hoặc mật khẩu!";
                     return View(model);
             }
         }

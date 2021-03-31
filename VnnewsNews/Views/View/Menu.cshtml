@@ -1,6 +1,8 @@
 ﻿@using Model.EF;
+@using VnnewsNews.Function;
 @{ 
     DBvnewsEntities db = new DBvnewsEntities();
+    FunctionsController functions = new FunctionsController();
 }
 <header class="w3l-header">
     <!--/nav-->
@@ -74,15 +76,28 @@
                 <!--//search-right-->
                 <!-- author -->
                 <div class="header-author d-flex ml-lg-4 pl-2 mt-lg-0 mt-3">
-                    <a class="img-circle img-circle-sm" href="#author">
-                        <img src="~/Content/Layout/images/author.jpg" class="img-fluid" alt="...">
-                    </a>
-                    <div class="align-self ml-3">
-                        <a href="#author">
-                            <h5>Alexander</h5>
+                    @if (functions.CookieID() != null)
+                    {
+                        var user = functions.CookieID();
+                        <a class="img-circle img-circle-sm" href="#author">
+                            <img src="~/Content/Layout/@user.user_image" class="img-fluid" alt="...">
                         </a>
-                        <span>Blog Writer</span>
-                    </div>
+                        <div class="align-self ml-3">
+                            <a href="#author">
+                                <h5>Chào @user.user_name</h5>
+                            </a>
+                            <span>@user.Role.role_name</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="align-self ml-3">
+                            <a href="/Account/Login">
+                                <h5>Đăng nhập</h5>
+                            </a>
+                            @*<span>Blog Writer</span>*@
+                        </div>
+                    }
                 </div>
                 <!-- // author-->
             </div>

@@ -25,7 +25,15 @@ Author URL: http://w3layouts.com
     <!-- header -->
     @Html.Action("Menu", "View")
     <!-- //header -->
-    @RenderBody()
+
+
+    <div class="w3l-homeblock1 py-5">
+        <div class="container pt-lg-5 pt-md-4">
+
+            @RenderBody()
+
+        </div>
+    </div>
 
     <!-- footer -->
     <footer class="w3l-footer-16">
