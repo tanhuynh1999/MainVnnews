@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAO\" />
+    <Folder Include="Data\" />
     <Folder Include="EF\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
