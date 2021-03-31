@@ -25,7 +25,8 @@ namespace VnnewsNews.Controllers
                            category = item.Groups,
                            content = item.vnew_content,
                            view = item.vnew_view,
-                           datecarete = item.vnew_datecreate
+                           datecarete = item.vnew_datecreate,
+                           vnews_des = item.vnews_des
                        };
 
             return Json(list, JsonRequestBehavior.AllowGet);
