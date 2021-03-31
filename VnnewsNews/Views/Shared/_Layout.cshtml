@@ -95,7 +95,23 @@ Author URL: http://w3layouts.com
     <!-- disable body scroll which navbar is in active -->
 
     <script src="~/Content/Layout/js/bootstrap.min.js"></script>
-
+    <link href="~/Content/Call.css" rel="stylesheet" />
+    <div class="hotline-phone-ring-wrap">
+        <div class="hotline-phone-ring">
+            <div class="hotline-phone-ring-circle"></div>
+            <div class="hotline-phone-ring-circle-fill"></div>
+            <div class="hotline-phone-ring-img-circle">
+                <a href="tel:0987654321" class="pps-btn-img">
+                    <i class="fa fa-ad text-white"></i>
+                </a>
+            </div>
+        </div>
+        <div class="hotline-bar" style="width: 250px">
+            <a href="@Url.Action("CreateAds","Ads")">
+                <span class="text-hotline">Quảng cáo tự động</span>
+            </a>
+        </div>
+    </div>
 </body>
 
 </html>

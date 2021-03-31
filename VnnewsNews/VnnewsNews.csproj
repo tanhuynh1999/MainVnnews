@@ -187,6 +187,7 @@
     <Compile Include="Areas\Admin\Controllers\NewsAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ViewAdminController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -206,6 +207,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Call.css" />
     <Content Include="Content\fontawesome-free-5.15.3-web\attribution.js" />
     <Content Include="Content\fontawesome-free-5.15.3-web\css\all.css" />
     <Content Include="Content\fontawesome-free-5.15.3-web\css\all.min.css" />
@@ -2190,6 +2192,7 @@
     <Content Include="Views\View\Menu.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Search.cshtml" />
+    <Content Include="Views\Ads\CreateAds.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
