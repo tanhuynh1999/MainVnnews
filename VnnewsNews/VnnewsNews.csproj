@@ -188,6 +188,7 @@
     <Compile Include="Areas\Admin\Controllers\ViewAdminController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdsController.cs" />
+    <Compile Include="Controllers\ChatsController.cs" />
     <Compile Include="Controllers\EditorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JsonController.cs" />
@@ -2369,6 +2370,7 @@
     <Content Include="Views\Editors\Create.cshtml" />
     <Content Include="Views\Ads\Index.cshtml" />
     <Content Include="Views\Pays\TakePrice.cshtml" />
+    <Content Include="Views\Chats\ChatAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
