@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model.EF;
+using VnnewsNews.Function;
 
 namespace VnnewsNews.Controllers
 {
     public class JsonController : Controller
     {
         DBvnewsEntities db = new DBvnewsEntities();
+        FunctionsController functions = new FunctionsController();
         // GET: Json
         //Danh sách tất cả tin tức bang json
         public JsonResult IndexNews(string key)
@@ -56,6 +58,34 @@ namespace VnnewsNews.Controllers
                        select new
                        {
                            id = item.group_id
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult News()
+        {
+
+            //Làm form
+            var user = functions.CookieID();
+            var list = from item in db.News
+                       where item.user_id == user.user_id
+                       select new
+                       {
+                           vnew_title = item.vnew_title,
+                           vnew_datecreate = item.vnew_datecreate.ToString()
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Active()
+        {
+
+            //Làm form
+            var user = functions.CookieID();
+            var list = from item in db.News
+                       where item.user_id == user.user_id
+                       select new
+                       {
+                           vnew_title = item.vnew_title,
+                           vnew_datecreate = item.vnew_datecreate
                        };
             return Json(list, JsonRequestBehavior.AllowGet);
         }
