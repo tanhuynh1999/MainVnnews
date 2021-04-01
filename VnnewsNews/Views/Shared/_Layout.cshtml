@@ -15,6 +15,7 @@ Author URL: http://w3layouts.com
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
     <link href="~/Content/Semantic-UI-CSS-master/semantic.min.css" rel="stylesheet" />
     <script src="~/Content/Semantic-UI-CSS-master/semantic.min.js"></script>
     <script src="~/Scripts/angular.min.js"></script>
@@ -22,7 +23,7 @@ Author URL: http://w3layouts.com
     <link rel="stylesheet" href="~/Content/Layout/css/style-starter.css">
     <link href="~/Content/fontawesome-free-5.15.3-web/css/all.min.css" rel="stylesheet" />
     <style>
-        body{
+        body {
             font-size: 16px;
         }
     </style>
@@ -32,7 +33,6 @@ Author URL: http://w3layouts.com
     <!-- header -->
     @Html.Action("Menu", "View")
     <!-- //header -->
-
 
     <div class="w3l-homeblock1 py-5">
         <div class="container pt-lg-5 pt-md-4">
@@ -97,7 +97,10 @@ Author URL: http://w3layouts.com
     <!-- Template JavaScript -->
     <script src="~/Content/Layout/js/theme-change.js"></script>
 
-    <script src="~/Content/Layout/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+    <script src="~/signalr/hubs" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
 
     <!-- disable body scroll which navbar is in active -->
     <script>
@@ -127,6 +130,7 @@ Author URL: http://w3layouts.com
             </a>
         </div>
     </div>
+
 </body>
 
 </html>

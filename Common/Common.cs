@@ -11,5 +11,10 @@ namespace VnnewsNews.Common
         public static int GROUP_THICH = 1;
         public static int GROUP_LUUBAIVIET = 2;
         public static int GROUP_NEWS_CATEGORY = 3;
+
+
+        //Chat
+        public static int CHAT_ALL = 1;
+        public static int CHAT_USER = 2;
     }
 }
