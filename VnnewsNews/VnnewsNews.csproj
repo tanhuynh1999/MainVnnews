@@ -2222,6 +2222,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Users\author.jpg" />
+    <Content Include="Images\Users\blank-profile-picture-973460_640.png" />
+    <Content Include="Images\Users\harry4.jpg" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
@@ -2374,12 +2377,12 @@
     <Content Include="Views\Pays\TakePrice.cshtml" />
     <Content Include="Views\Chats\ChatAll.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\News\MyNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Images\News\" />
-    <Folder Include="Images\Users\" />
     <Folder Include="Scripts\Data\" />
     <Folder Include="Views\Functions\" />
     <Folder Include="Views\Json\" />

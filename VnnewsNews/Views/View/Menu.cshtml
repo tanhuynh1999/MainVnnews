@@ -86,7 +86,7 @@
                             }
                             else
                             {
-                                <img src="~/Content/Layout/@user.user_image" class="img-fluid" alt="...">
+                                <img src="@user.user_image" class="img-fluid" alt="...">
                             }
                         </a>
                         <div class="align-self ml-3">
@@ -101,8 +101,8 @@
                                         <span>@user.Role.role_name</span> <span class="fa fa-angle-down"></span>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item text-dark" href="lifestyle.html"><i class="fa fa-user">&nbsp;</i>Thông tin cá nhân</a>
-                                        <a class="dropdown-item text-dark" href="lifestyle.html"><i class="fa fa-newspaper">&nbsp;</i>Tin tức cá nhân</a>
+                                        <a class="dropdown-item text-dark" href="@Url.Action("Profile", "Account")"><i class="fa fa-user">&nbsp;</i>Thông tin cá nhân</a>
+                                        <a class="dropdown-item text-dark" href="@Url.Action("MyNews", "News")"><i class="fa fa-newspaper">&nbsp;</i>Tin tức cá nhân</a>
                                         <a class="dropdown-item text-dark" href="/News/IndexFavourite"><i class="fa fa-box">&nbsp;</i>Tin tức đã lưu</a>
                                         <a class="dropdown-item text-dark" href="/News/IndexActive"><i class="fa fa-heart">&nbsp;</i>Hoạt động tin tức</a>
                                         <a class="dropdown-item text-dark" href="/Editors/Create"><i class="fa fa-users">&nbsp;</i>Đăng ký làm biên tập viên</a>
@@ -119,9 +119,9 @@
                                         <!--Tao làm-->
                                         <a class="dropdown-item text-dark" href="culture.html"><i class="fa fa-history">&nbsp;</i>Lịch sử thanh toán</a>
                                         <!--Nhớ làm-->
-                                        <a class="dropdown-item text-dark" href="culture.html"><i class="fa fa-key">&nbsp;</i>Đổi mật khẩu</a>
+                                        <a class="dropdown-item text-dark" href="@Url.Action("ResetPassword", "Account")"><i class="fa fa-key">&nbsp;</i>Đổi mật khẩu</a>
                                         <!--Nhớ gán vào-->
-                                        <a class="dropdown-item text-dark" href="culture.html"><i class="fa fa-sign-out-alt">&nbsp;</i>Đăng xuất</a>
+                                        <a class="dropdown-item text-dark" href="@Url.Action("Logoff", "Account")"><i class="fa fa-sign-out-alt">&nbsp;</i>Đăng xuất</a>
                                     </div>
                                 </li>
                             </ul>

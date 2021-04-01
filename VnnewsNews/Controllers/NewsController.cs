@@ -5,12 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model.EF;
+using VnnewsNews.Function;
 
 namespace VnnewsNews.Controllers
 {
     public class NewsController : Controller
     {
         DBvnewsEntities db = new DBvnewsEntities();
+        FunctionsController functions = new FunctionsController();
         // GET: New
         public ActionResult Details(int ? id)
         {
@@ -81,7 +83,32 @@ namespace VnnewsNews.Controllers
         //Danh sách Tin tức yêu thích
         public ActionResult IndexFavourite()
         {
+            if (functions.CookieID() == null)
+            {
+                return Redirect("/Account/Login");
+            }
             return View();
+        }
+
+        public ActionResult MyNews()
+        {
+            if (functions.CookieID() == null)
+            {
+                return Redirect("/Account/Login");
+            }
+            return View();
+        }
+        public JsonResult Remove(int? id)
+        {
+            if(id == null)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            var user = functions.CookieID();
+            var removeItem = db.Groups.FirstOrDefault(t => t.news_id == id && t.user_id == user.user_id);
+            db.Groups.Remove(removeItem);
+            db.SaveChanges();
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
         //Danh sách Hoat dộng tin tức (comment, like)
         //Chia 2 cái row : 1 bên là thông báo comment và còn lại là đã like

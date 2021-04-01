@@ -23,6 +23,7 @@ namespace Model.EF
             this.News = new HashSet<News>();
             this.Replys = new HashSet<Reply>();
             this.Reports = new HashSet<Report>();
+            this.Ads = new HashSet<Ad>();
         }
     
         public int user_id { get; set; }
@@ -37,6 +38,12 @@ namespace Model.EF
         public Nullable<System.DateTime> user_datelogin { get; set; }
         public string user_email { get; set; }
         public Nullable<int> role_id { get; set; }
+        public string user_address { get; set; }
+        public string user_facebook { get; set; }
+        public string user_twiter { get; set; }
+        public string user_instagram { get; set; }
+        public Nullable<bool> user_sex { get; set; }
+        public Nullable<System.DateTime> user_dateofbirth { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
@@ -51,5 +58,7 @@ namespace Model.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Report> Reports { get; set; }
         public virtual Role Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ad> Ads { get; set; }
     }
 }
