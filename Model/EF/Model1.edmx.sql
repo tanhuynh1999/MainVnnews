@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/31/2021 21:48:38
--- Generated from EDMX file: C:\Users\Tan\Desktop\VnnewsNews\Model\EF\Model1.edmx
+-- Date Created: 03/31/2021 23:40:33
+-- Generated from EDMX file: F:\projectNhom\MainVnnews\Model\EF\Model1.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,14 +17,17 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_Groups_Categorys]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Groups] DROP CONSTRAINT [FK_Groups_Categorys];
+GO
 IF OBJECT_ID(N'[dbo].[FK_Comments_Users]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Comments] DROP CONSTRAINT [FK_Comments_Users];
 GO
+IF OBJECT_ID(N'[dbo].[FK_Replys_Comments]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Replys] DROP CONSTRAINT [FK_Replys_Comments];
+GO
 IF OBJECT_ID(N'[dbo].[FK_Editors_Users]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Editors] DROP CONSTRAINT [FK_Editors_Users];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Groups_Categorys]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Groups] DROP CONSTRAINT [FK_Groups_Categorys];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Groups_Users]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Groups] DROP CONSTRAINT [FK_Groups_Users];
@@ -32,17 +35,17 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_news_Users]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[News] DROP CONSTRAINT [FK_news_Users];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Replys_Comments]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Replys] DROP CONSTRAINT [FK_Replys_Comments];
+IF OBJECT_ID(N'[dbo].[FK_Reports_news]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Reports] DROP CONSTRAINT [FK_Reports_news];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Replys_Users]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Replys] DROP CONSTRAINT [FK_Replys_Users];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Reports_news]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Reports] DROP CONSTRAINT [FK_Reports_news];
-GO
 IF OBJECT_ID(N'[dbo].[FK_Reports_Users]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Reports] DROP CONSTRAINT [FK_Reports_Users];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Groups_News]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Groups] DROP CONSTRAINT [FK_Groups_News];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Users_Roles]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_Users_Roles];

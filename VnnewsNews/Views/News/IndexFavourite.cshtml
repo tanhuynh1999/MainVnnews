@@ -3,6 +3,37 @@
     ViewBag.Title = "IndexFavourite";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>IndexFavourite</h2>
+<h1>Quản lý tin tức đã lưu</h1>
+<table ng-app="myApp" class="table table-bordered">
+    <thead class="bg-warning">
+        <tr>
+            <td>Stt</td>
+            <td>Tiêu đề</td>
+            <td>Ngày tạo</td>
+            <td>Tùy chọn</td>
+        </tr>
+    </thead>
+    <tbody ng-controller="myCtrl">
+        <tr ng-repeat="list in list">
+            <td>1</td>
+            <td>{{list.vnew_title}}</td>
+            <td>{{list.vnew_datecreate}}</td>
+            <td>true</td>
+        </tr>
+    </tbody>
+    
+</table>
+<script>
+    var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    $http.get("/Json/News")
+  .then(function(response) {
+    // First function handles success
+    $scope.list = response.data;
+  }, function(response) {
+    // Second function handles error
+    $scope.list = "Something went wrong";
+  });
+});
+</script>
 
