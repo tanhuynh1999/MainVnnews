@@ -2516,6 +2516,7 @@
     <Content Include="Views\Pays\TakePrice.cshtml" />
     <Content Include="Views\Chats\ChatAll.cshtml" />
     <Content Include="Views\Chats\ChatAlltest.cshtml" />
+    <Content Include="Views\News\MyNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

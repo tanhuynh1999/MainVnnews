@@ -188,8 +188,8 @@
         z-index: 10;
     }
 </style>
-<div class="w3l-searchblock w3l-homeblock1 py-5" ng-app="myApp">
-    <div class="container py-lg-4 py-md-3">
+<div class="w3l-searchblock w3l-homeblock1" ng-app="myApp">
+    <div class="container">
         <!-- block -->
         <div class="row">
             <div class="col-lg-8 most-recent">
@@ -226,8 +226,6 @@
                                         </center>
                                     </td>
                                     <!-- model information news-->
-
-
                                 </tr>
                                 @*<tr>
                     <td>No Name Specified</td>
@@ -382,13 +380,16 @@
                 // First function handles success
                 $scope.list = response.data;
                 $scope.count = $scope.list.length;
-                $scope.remove = function (item, id) {
-                    var index = $scope.list.indexOf(item);
-                    $scope.list.splice(index, 1);
-                    $http.get('/News/Remove' + id).success(function (data) {
-                        $scope.title = data;
-                    })
-                }
+
+
+
+                //$scope.remove = function (item, id) {
+                //    var index = $scope.list.indexOf(item);
+                //    $scope.list.splice(index, 1);
+                //    $http.get('/News/Remove' + id).success(function (data) {
+                //        $scope.title = data;
+                //    })
+                //}
             }, function (response) {
                 // Second function handles error
                 $scope.list = "Something went wrong";
