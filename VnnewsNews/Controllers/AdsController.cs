@@ -13,6 +13,8 @@ namespace VnnewsNews.Controllers
     {
         DBvnewsEntities db = new DBvnewsEntities();
         FunctionsController functions = new FunctionsController();
+        AddFileController addFile = new AddFileController();
+        AdsDAO adsDAO = new AdsDAO();
         public ActionResult CreateAds()
         {
             if(functions.CookieID() == null)
@@ -22,13 +24,22 @@ namespace VnnewsNews.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateAds(Ad ads)
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateAds(Ad ads, HttpPostedFileBase img, string[] ads_tag, bool autocheck = true)
         {
-            if (ModelState.IsValid)
+            ads.user_id = functions.CookieID().user_id;
+            ads.ads_poster = addFile.UpLoadImages(img, null, "Ads");
+            var tag = "";
+            foreach (var item in ads_tag)
             {
-                
+                tag += item + ";";
             }
-            return View();
+            ads.ads_tags = tag;
+            ads.ads_active = autocheck;
+            adsDAO.Insert(ads);
+
+            return RedirectToAction("Index");
         }
         // GET: Ads
         [HttpPost]
