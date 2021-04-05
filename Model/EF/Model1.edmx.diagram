@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="DBvnewsModel.Reply" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DBvnewsModel.Report" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DBvnewsModel.Role" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBvnewsModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBvnewsModel.User" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
         <AssociationConnector Association="DBvnewsModel.FK_Groups_Categorys" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Comments_Users" ManuallyRouted="false" />
@@ -26,6 +25,14 @@
         <AssociationConnector Association="DBvnewsModel.FK_Reports_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Groups_News" />
         <AssociationConnector Association="DBvnewsModel.FK_Users_Roles" />
+<<<<<<< Updated upstream
+=======
+        <EntityTypeShape EntityType="DBvnewsModel.Ad" Width="1.5" PointX="3" PointY="21.875" />
+        <AssociationConnector Association="DBvnewsModel.FK_Ads_Users" />
+        <EntityTypeShape EntityType="DBvnewsModel.Chat" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="DBvnewsModel.FK_Chats_Users" />
+        <EntityTypeShape EntityType="DBvnewsModel.sysdiagram" Width="1.5" PointX="5.375" PointY="0.75" />
+>>>>>>> Stashed changes
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -15,6 +15,17 @@
           <Property Name="category_active" Type="bit" />
           <Property Name="category_datecreate" Type="datetime" />
         </EntityType>
+        <EntityType Name="Chats">
+          <Key>
+            <PropertyRef Name="chat_id" />
+          </Key>
+          <Property Name="chat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="chat_content" Type="nvarchar(max)" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="chat_key" Type="nvarchar" MaxLength="500" />
+          <Property Name="chat_item" Type="int" />
+          <Property Name="chat_datecreate" Type="datetime" />
+        </EntityType>
         <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="comment_id" />
@@ -125,6 +136,33 @@
           <Property Name="user_email" Type="varchar" MaxLength="255" />
           <Property Name="role_id" Type="int" />
         </EntityType>
+<<<<<<< Updated upstream
+=======
+        <Association Name="FK_Ads_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Ads" Type="Self.Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Ads">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chats_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Chats" Type="Self.Chats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Chats">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+>>>>>>> Stashed changes
         <Association Name="FK_Comments_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
@@ -247,6 +285,7 @@
         </Association>
         <EntityContainer Name="DBvnewsModelStoreContainer">
           <EntitySet Name="Categorys" EntityType="Self.Categorys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chats" EntityType="Self.Chats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Editors" EntityType="Self.Editors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
@@ -256,6 +295,17 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+<<<<<<< Updated upstream
+=======
+          <AssociationSet Name="FK_Ads_Users" Association="Self.FK_Ads_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ads" EntitySet="Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chats_Users" Association="Self.FK_Chats_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Chats" EntitySet="Chats" />
+          </AssociationSet>
+>>>>>>> Stashed changes
           <AssociationSet Name="FK_Comments_Users" Association="Self.FK_Comments_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Comments" EntitySet="Comments" />
@@ -409,16 +459,6 @@
           <Property Name="role_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="DBvnewsModel.FK_Users_Roles" FromRole="Role" ToRole="User" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="user_id" />
@@ -442,6 +482,17 @@
           <Property Name="user_email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="role_id" Type="Int32" />
           <NavigationProperty Name="Role" Relationship="DBvnewsModel.FK_Users_Roles" FromRole="User" ToRole="Role" />
+<<<<<<< Updated upstream
+=======
+          <Property Name="user_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_twiter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_instagram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_sex" Type="Boolean" />
+          <Property Name="user_dateofbirth" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ads" Relationship="DBvnewsModel.FK_Ads_Users" FromRole="User" ToRole="Ad" />
+          <NavigationProperty Name="Chats" Relationship="DBvnewsModel.FK_Chats_Users" FromRole="User" ToRole="Chat" />
+>>>>>>> Stashed changes
         </EntityType>
         <Association Name="FK_Groups_Categorys">
           <End Role="Categorys" Type="Self.Category" Multiplicity="0..1" />
@@ -560,7 +611,6 @@
           <EntitySet Name="Replys" EntityType="Self.Reply" />
           <EntitySet Name="Reports" EntityType="Self.Report" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Groups_Categorys" Association="Self.FK_Groups_Categorys">
             <End Role="Categorys" EntitySet="Categorys" />
@@ -606,6 +656,20 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+<<<<<<< Updated upstream
+=======
+          <EntitySet Name="Ads" EntityType="DBvnewsModel.Ad" />
+          <AssociationSet Name="FK_Ads_Users" Association="DBvnewsModel.FK_Ads_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Ad" EntitySet="Ads" />
+          </AssociationSet>
+          <EntitySet Name="Chats" EntityType="DBvnewsModel.Chat" />
+          <AssociationSet Name="FK_Chats_Users" Association="DBvnewsModel.FK_Chats_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Chat" EntitySet="Chats" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="DBvnewsModel.sysdiagram" />
+>>>>>>> Stashed changes
         </EntityContainer>
         <Association Name="FK_Groups_News">
           <End Type="DBvnewsModel.News" Role="News" Multiplicity="0..1" />
@@ -631,6 +695,73 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+<<<<<<< Updated upstream
+=======
+        <EntityType Name="Ad">
+          <Key>
+            <PropertyRef Name="ads_id" />
+          </Key>
+          <Property Name="ads_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ads_title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ads_poster" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ads_money" Type="Double" />
+          <Property Name="ads_totalday" Type="Int32" />
+          <Property Name="ads_datecreate" Type="DateTime" Precision="3" />
+          <Property Name="ads_dateend" Type="DateTime" Precision="3" />
+          <Property Name="ads_active" Type="Boolean" />
+          <Property Name="ads_option" Type="Boolean" />
+          <Property Name="ads_bin" Type="Boolean" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="ads_tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="DBvnewsModel.FK_Ads_Users" FromRole="Ad" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Ads_Users">
+          <End Type="DBvnewsModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="DBvnewsModel.Ad" Role="Ad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Ad">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="chat_id" />
+          </Key>
+          <Property Name="chat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chat_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="chat_key" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="chat_item" Type="Int32" />
+          <Property Name="chat_datecreate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="DBvnewsModel.FK_Chats_Users" FromRole="Chat" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Chats_Users">
+          <End Type="DBvnewsModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="DBvnewsModel.Chat" Role="Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+>>>>>>> Stashed changes
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -767,6 +898,50 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+<<<<<<< Updated upstream
+=======
+          <EntitySetMapping Name="Ads">
+            <EntityTypeMapping TypeName="DBvnewsModel.Ad">
+              <MappingFragment StoreEntitySet="Ads">
+                <ScalarProperty Name="ads_tags" ColumnName="ads_tags" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="ads_bin" ColumnName="ads_bin" />
+                <ScalarProperty Name="ads_option" ColumnName="ads_option" />
+                <ScalarProperty Name="ads_active" ColumnName="ads_active" />
+                <ScalarProperty Name="ads_dateend" ColumnName="ads_dateend" />
+                <ScalarProperty Name="ads_datecreate" ColumnName="ads_datecreate" />
+                <ScalarProperty Name="ads_totalday" ColumnName="ads_totalday" />
+                <ScalarProperty Name="ads_money" ColumnName="ads_money" />
+                <ScalarProperty Name="ads_poster" ColumnName="ads_poster" />
+                <ScalarProperty Name="ads_title" ColumnName="ads_title" />
+                <ScalarProperty Name="ads_id" ColumnName="ads_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chats">
+            <EntityTypeMapping TypeName="DBvnewsModel.Chat">
+              <MappingFragment StoreEntitySet="Chats">
+                <ScalarProperty Name="chat_datecreate" ColumnName="chat_datecreate" />
+                <ScalarProperty Name="chat_item" ColumnName="chat_item" />
+                <ScalarProperty Name="chat_key" ColumnName="chat_key" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="chat_content" ColumnName="chat_content" />
+                <ScalarProperty Name="chat_id" ColumnName="chat_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBvnewsModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+>>>>>>> Stashed changes
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
