@@ -2363,6 +2363,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Gif\R47c3096733a2ffc0151d2aac3ae7a15a.gif" />
     <Content Include="Images\News\01-gettyimages-1129993655_resized-1024x576.jpg" />
     <Content Include="Images\News\1-980.png" />
     <Content Include="Images\News\1-983.png" />
@@ -2625,6 +2626,10 @@
     <Content Include="Views\Chats\ChatAll.cshtml" />
     <Content Include="Views\Chats\ChatAlltest.cshtml" />
     <Content Include="Views\News\MyNews.cshtml" />
+    <Content Include="Views\Editors\Delete.cshtml" />
+    <Content Include="Views\Editors\Details.cshtml" />
+    <Content Include="Views\Editors\Edit.cshtml" />
+    <Content Include="Views\Editors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

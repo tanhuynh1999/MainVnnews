@@ -10,7 +10,6 @@
         display: flex;
         align-items: center
     }
-
     .profile-image {
         border-radius: 10px;
         border: 2px solid #5957f9
@@ -138,12 +137,17 @@
                                     <img class="card-img-bottom d-block radius-image" src="~/Images/News/@Model.vnew_img" alt="Card image cap">
                                 </a>
                             </div>
+                            <style>
+                                .fiz img {
+                                    width: 100%;
+                                }
+                            </style>
                             <div class="card-body p-0 blog-details">
                                 <div class="alert alert-danger mt-3">
                                     @Model.vnews_des
                                 </div>
-                                <div class="mt-3">
-                                    <p>
+                                <div class="mt-3 fiz">
+                                    <p class="">
                                         @Html.Raw(Model.vnew_content)
                                     </p>
                                 </div>
@@ -367,7 +371,7 @@
                         <div class="top-container">
                             <div class="row" style="font-size: 20px !important">
                                 <div class="col-lg-4">
-                                    <img src="https://i.imgur.com/G1pXs7D.jpg" class="img-fluid profile-image" style="width: 100%; height: 60px">
+                                    <img src="@Model.User.user_image" class="img-fluid profile-image" style="width: 100%; height: 60px">
                                 </div>
                                 <div class="col-lg-8">
                                     <h5 class="name text-danger">@Model.User.user_name</h5>

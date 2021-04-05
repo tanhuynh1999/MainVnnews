@@ -19,7 +19,7 @@
                 {
                     <div class="card">
                         <div class="card-header p-0 position-relative">
-                            <a href="#blog-single">
+                            <a href="@Url.Action("Details","News", new { id = item.vnew_id })">
                                 <img class="card-img-bottom d-block radius-image" src="~/Images/News/@item.vnew_img"/>
                             </a>
                         </div>
@@ -51,11 +51,11 @@
                     @foreach (var item in news.Where(n => n.vnew_active == true && n.vnew_option == true && n.User.user_active == true).OrderByDescending(n => n.vnew_datecreate).Take(6))
                     {
                         <div class="grids5-info mt-2">
-                            <a href="#blog-single" class="d-block zoom">
+                            <a href="@Url.Action("Details","News", new { id = item.vnew_id })" class="d-block zoom">
                                 <img src="~/Images/News/@item.vnew_img" alt="" class="img-fluid radius-image news-image">
                             </a>
                             <div class="blog-info align-self">
-                                <a href="#blog-single" class="blog-desc1">
+                                <a href="@Url.Action("Details","News", new { id = item.vnew_id })" class="blog-desc1">
                                     @item.vnew_title
                                 </a>
                                 <div class="author align-items-center mt-3 mb-1">
@@ -73,6 +73,8 @@
                             </div>
                         </div>
                     }
+                    <hr />
+                    <center><b style="font-size: 20px" class="text-center">Xem tất cả</b></center>
                 </div>
             </div>
         </div>
@@ -84,7 +86,7 @@
             <div class="grids5-info">
                 <h4>@i.</h4>
                 <div class="blog-info">
-                    <a href="#blog-single" class="blog-desc1">
+                    <a href="@Url.Action("Details","News", new { id = item.vnew_id })" class="blog-desc1">
                        @item.vnew_title
                     </a>
                     <div class="author align-items-center mt-2 mb-1">
