@@ -26,10 +26,10 @@
         <AssociationConnector Association="DBvnewsModel.FK_Reports_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Groups_News" />
         <AssociationConnector Association="DBvnewsModel.FK_Users_Roles" />
-        <EntityTypeShape EntityType="DBvnewsModel.Chat" Width="1.5" PointX="3" PointY="0.75" />
-        <AssociationConnector Association="DBvnewsModel.FK_Chats_Users" />
         <EntityTypeShape EntityType="DBvnewsModel.Ad" Width="1.5" PointX="3" PointY="21.875" />
         <AssociationConnector Association="DBvnewsModel.FK_Ads_Users" />
+        <EntityTypeShape EntityType="DBvnewsModel.Chat" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="DBvnewsModel.FK_Chats_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
