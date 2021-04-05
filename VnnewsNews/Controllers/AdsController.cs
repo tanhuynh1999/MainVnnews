@@ -24,25 +24,22 @@ namespace VnnewsNews.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateAds(Ad ads, HttpPostedFileBase img, string[] ads_tags, bool autocheck)
+        public ActionResult CreateAds(Ad ads, HttpPostedFileBase img, string[] ads_tag, bool autocheck = true)
         {
-            if (ModelState.IsValid)
+            ads.user_id = functions.CookieID().user_id;
+            ads.ads_poster = addFile.UpLoadImages(img, null, "Ads");
+            var tag = "";
+            foreach (var item in ads_tag)
             {
-                ads.user_id = functions.CookieID().user_id;
-                ads.ads_poster = addFile.UpLoadImages(img, null, "Ads");
-                var tag = "";
-                foreach(var item in ads_tags)
-                {
-                    tag += item + ";";
-                }
-                ads.ads_tags = tag;
-                ads.ads_active = autocheck;
-                adsDAO.Insert(ads);
-
-                return RedirectToAction("Index");
+                tag += item + ";";
             }
-            return View(ads);
+            ads.ads_tags = tag;
+            ads.ads_active = autocheck;
+            adsDAO.Insert(ads);
+
+            return RedirectToAction("Index");
         }
         // GET: Ads
         [HttpPost]

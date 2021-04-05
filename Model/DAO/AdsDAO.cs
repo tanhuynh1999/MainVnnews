@@ -18,6 +18,7 @@ namespace Model.DAO
                 ads.ads_datecreate = DateTime.Now;
                 ads.ads_option = true;
                 db.Ads.Add(ads);
+                db.SaveChanges();
 
                 return 1;
             }
