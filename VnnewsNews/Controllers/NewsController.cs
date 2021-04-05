@@ -11,6 +11,7 @@ namespace VnnewsNews.Controllers
 {
     public class NewsController : Controller
     {
+        FunctionsController functions = new FunctionsController();
         DBvnewsEntities db = new DBvnewsEntities();
         FunctionsController functions = new FunctionsController();
         // GET: New
@@ -31,7 +32,7 @@ namespace VnnewsNews.Controllers
                 comment_content = content,
                 news_id = id,
                 comment_datecreate = DateTime.Now,
-                user_id = 1
+                user_id = functions.CookieID().user_id
             };
             db.Comments.Add(comment);
             db.SaveChanges();
@@ -53,13 +54,13 @@ namespace VnnewsNews.Controllers
 
         public JsonResult Favourite(int? new_id)
         {
-            Group checkLove = db.Groups.SingleOrDefault(n => n.news_id == new_id && n.user_id == 1 && n.group_item == Common.Common.GROUP_THICH);
+            Group checkLove = db.Groups.SingleOrDefault(n => n.news_id == new_id && n.user_id == functions.CookieID().user_id && n.group_item == Common.Common.GROUP_THICH);
             if(checkLove == null)
             {
                 Group group = new Group
                 {
                     news_id = new_id,
-                    user_id = 1,
+                    user_id = functions.CookieID().user_id,
                     group_item = Common.Common.GROUP_THICH,
                     group_datecreate = DateTime.Now,
                 };
@@ -73,7 +74,7 @@ namespace VnnewsNews.Controllers
 
             }
             var list = from item in db.Groups
-                       where item.news_id == new_id && item.user_id == 1 && item.group_item == Common.Common.GROUP_THICH
+                       where item.news_id == new_id && item.user_id == functions.CookieID().user_id && item.group_item == Common.Common.GROUP_THICH
                        select new
                        {
                            id = item.group_id

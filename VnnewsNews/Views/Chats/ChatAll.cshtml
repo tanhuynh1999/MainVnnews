@@ -1,8 +1,109 @@
-﻿
+﻿@using Model.EF;
+@using VnnewsNews.Function
 @{
     ViewBag.Title = "ChatAll";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    FunctionsController functions = new FunctionsController();
+    var user = functions.CookieID();
 }
+<link href="~/Content/Chat.css" rel="stylesheet" />
+<section class="w3l-contact-2" ng-app="myApp">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <h5>Thứ tự nhắn tin</h5>
+                
+            </div>
+            <div class="col-lg-10">
+                <div class="box box-warning direct-chat direct-chat-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Phòng họp biên tập viên</h3>
+                        <div class="box-tools pull-right">Tham gia <span data-toggle="tooltip" title="" class="badge bg-yellow" data-original-title="3 New Messages">20</span>  </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="direct-chat-messages" style="height: 500px;" id="chat">
+                            
+                        </div>
+                    </div>
+                    <div class="box-footer" ng-controller="myCtrl"> 
+                        
+                        <div class="input-group"> <input type="text" name="message" placeholder="Nhập tin nhắn ..." class="form-control"> <span class="input-group-btn"> <button id="myBtn" ng-click="create()" type="button" class="btn btn-warning btn-flat">Gửi</button> </span> </div>
 
-<h2>ChatAll</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+        $scope.create = function () {
+            var content = document.getElementsByName("message")[0].value;
+            $http({
+                method: "GET",
+                url: "/Chats/PostChat?content=" + content
+            }).then(function mySuccess(response) {
+                $scope.myWelcome = response.data;
+                document.getElementsByName("message")[0].value = "";
+            }, function myError(response) {
+                $scope.myWelcome = response.statusText;
+            });
+        }
+    });
+</script>
 
+<script type="text/javascript">
+    $(function () {
+        // Proxy created on the fly
+        var cus = $.connection.chatHub;
+        // Declare a function on the job hub so the server can invoke it
+        cus.client.displayChat = function () {
+            getData();
+        };
+        // Start the connection
+        $.connection.hub.start();
+        getData();
+    });
+    function getData() {
+        var $tbl = $('#chat');
+        $.ajax({
+            url: '/Chats/GetAll',
+            type: 'GET',
+            datatype: 'json',
+            success: function (data) {
+                $tbl.empty();
+                $.each(data.listChat, function (i, model) {
+                    if (model.idus == @user.user_id) {
+                        $tbl.append
+                            (
+                                '<div class="direct-chat-msg right">' +
+                                '<div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-right">Sarah Bullock</span> <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span> </div> <img class="direct-chat-img" src="https://img.icons8.com/office/36/000000/person-female.png" alt="message user image">' +
+                                '<div class="direct-chat-text"> '+model.content+' </div>' +
+                                '</div>'
+                            );
+                    }
+                    else {
+                        $tbl.append
+                            (
+                                '<div class="direct-chat-msg">' +
+                                '<div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-left">Timona Siera</span> <span class="direct-chat-timestamp pull-right">23 Jan 5:37 pm</span> </div> <img class="direct-chat-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="message user image">' +
+                                ' <div class="direct-chat-text">' + model.content+' </div>' +
+                                '</div>'
+                            );
+                        
+                    }
+                });
+            }
+        });
+    }
+</script>
+<script>
+    var input = document.getElementById("message");
+    input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("myBtn").click();
+        }
+    });
+</script>

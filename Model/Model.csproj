@@ -58,6 +58,9 @@
     <Compile Include="EF\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\Chat.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\Comment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -495,7 +495,7 @@
     app.controller('myComment', function ($scope, $http) {
         $http({
             method: "GET",
-            url: "/Json/IndexComment?id=@Model.user_id"
+            url: "/Json/IndexComment?id=@Model.vnew_id"
         }).then(function mySuccess(response) {
             $scope.com = response.data;
             $scope.countcomment = $scope.com.length;

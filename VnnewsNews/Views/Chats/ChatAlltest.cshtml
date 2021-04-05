@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <link href="~/Content/Chat.css" rel="stylesheet" />
+
+
+        <div id="chat">
+            aa
+        </div>
+        <section class="w3l-contact-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2">
+
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="box box-warning direct-chat direct-chat-warning">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Phòng họp biên tập viên</h3>
+                                <div class="box-tools pull-right">Tham gia <span data-toggle="tooltip" title="" class="badge bg-yellow" data-original-title="3 New Messages">20</span>  </div>
+                            </div>
+                            <div class="box-body">
+                                <div class="direct-chat-messages" style="height: 342px;">
+                                    <div class="direct-chat-msg">
+                                        <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-left">Timona Siera</span> <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span> </div> <img class="direct-chat-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="message user image">
+                                        <div class="direct-chat-text"> For what reason would it be advisable for me to think about business content? </div>
+                                    </div>
+                                    <div class="direct-chat-msg right">
+                                        <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-right">Sarah Bullock</span> <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span> </div> <img class="direct-chat-img" src="https://img.icons8.com/office/36/000000/person-female.png" alt="message user image">
+                                        <div class="direct-chat-text"> Thank you for your believe in our supports </div>
+                                    </div>
+                                    <div class="direct-chat-msg">
+                                        <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-left">Timona Siera</span> <span class="direct-chat-timestamp pull-right">23 Jan 5:37 pm</span> </div> <img class="direct-chat-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="message user image">
+                                        <div class="direct-chat-text"> For what reason would it be advisable for me to think about business content? </div>
+                                    </div>
+                                    <div class="direct-chat-msg right">
+                                        <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-right">Sarah Bullock</span> <span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span> </div> <img class="direct-chat-img" src="https://img.icons8.com/office/36/000000/person-female.png" alt="message user image">
+                                        <div class="direct-chat-text"> I would love to. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                <form action="#" method="post">
+                                    <div class="input-group"> <input type="text" name="message" placeholder="Type Message ..." class="form-control"> <span class="input-group-btn"> <button type="button" class="btn btn-warning btn-flat">Send</button> </span> </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+    <script src="~/signalr/hubs" type="text/javascript"></script>
+
+
+
+    <script type="text/javascript">
+        $(function () {
+            // Proxy created on the fly
+            var cus = $.connection.chatHub;
+            // Declare a function on the job hub so the server can invoke it
+            cus.client.displayChat = function () {
+                getData();
+            };
+            // Start the connection
+            $.connection.hub.start();
+            getData();
+        });
+        function getData() {
+            var $tbl = $('#chat');
+            $.ajax({
+                url: '/Chats/GetAll',
+                type: 'GET',
+                datatype: 'json',
+                success: function (data) {
+                    $tbl.empty();
+                    $.each(data.listChat, function (i, model) {
+                        $tbl.append
+                            (
+                                model.comtent
+                            );
+                    });
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
+
