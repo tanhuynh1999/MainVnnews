@@ -32,6 +32,8 @@ namespace Model.DAO
                     }
                     else
                     {
+                        db.Users.Find(result.user_id).user_datelogin = DateTime.Now;
+                        db.SaveChanges();
                         // thanh cong
                         return 1;
                     }
@@ -55,6 +57,7 @@ namespace Model.DAO
                 }
                 else
                 {
+                    user.user_image = "/Images/Users/blank-profile-picture-973460_640.png";
                     user.user_active = true;
                     user.user_bin = false;
                     user.user_datecreate = DateTime.Now;
@@ -69,6 +72,17 @@ namespace Model.DAO
                 }
             }
             catch (Exception) { return 0; }
+        }
+
+        public bool ResetPassword(int id, string NewPassword)
+        {
+            try
+            {
+                db.Users.Find(id).user_password = Encryptor.MD5Hash(NewPassword);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception) { return false; }
         }
     }
 }

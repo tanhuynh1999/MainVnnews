@@ -2,7 +2,7 @@
 @{
     FunctionsController functions = new FunctionsController();
     var user = functions.CookieID();
-    ViewBag.Title = "Tin tức quan tâm | " + user.user_name + " | " + " VNNEWS ";
+    ViewBag.Title = "Quản lý tin tức | " + user.user_name + " | " + " VNNEWS ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -193,7 +193,7 @@
         <!-- block -->
         <div class="row">
             <div class="col-lg-8 most-recent">
-                <h3 class="section-title-left">Tin tức quan tâm</h3>
+                <h3 class="section-title-left">Tin tức cá nhân</h3>
 
                 <div class="row">
                     <div ng-controller="myCtrl" class="col-md-12">
@@ -202,7 +202,7 @@
                                 <tr class="bg-danger text-white">
                                     <th width="10" class="text-center">STT</th>
                                     <th width="50"><i class="fas fa-newspaper">&nbsp;</i>Tiêu đề</th>
-                                    <th width="30"><i class="fas fa-user">&nbsp;</i>Tác giả</th>
+                                    <th width="30"><i class="fas fa-calendar-alt">&nbsp;</i>Ngày đăng</th>
                                     @*<th><i class="far fa-calendar-check">&nbsp;</i>Ngày thêm</th>*@
                                     <th width="10" class="text-center"><i class="fas fa-magic">&nbsp;</i></th>
                                 </tr>
@@ -210,58 +210,77 @@
                             <tbody>
                                 <tr ng-repeat="list in list" ng-show="count == 0">
                                     <td colspan="4">
-                                        <h6>Trong61</h6>
+                                        <h6>Không có dữ liệu</h6>
                                     </td>
                                 </tr>
                                 <tr ng-repeat="list in list" ng-show="count != 0">
                                     <td class="text-center">{{$index + 1}}</td>
                                     <td>{{list.title}}</td>
-                                    <td>{{list.author}}</td>
+                                    <td>{{list.dateadd}}</td>
                                     @*<td>{{list.dateadd}}</td>*@
                                     <td>
                                         <center>
-                                            <a href="@Url.Action("Details" ,"News")" class="text-success"><i class="fa fa-eye"></i></a>
+                                            <a href="#" data-toggle="modal" data-target="#show-{{list.id}}" class="text-success"><i class="fa fa-eye"></i></a>
+                                            <a href="@Url.Action("Edit  " ,"News")" class="text-primary"><i class="fa fa-edit"></i></a>
                                             <a ng-click="remove($index, list.id)" class="text-danger"><i class="fa fa-trash"></i></a>
                                         </center>
                                     </td>
+                                    <!-- model information news-->
+
+
                                 </tr>
                                 @*<tr>
-                        <td>No Name Specified</td>
-                        <td>Unknown</td>
-                        <td class="negative">None</td>
-                    </tr>
-                    <tr class="positive">
-                        <td>Jimmy</td>
-                        <td><i class="icon checkmark"></i> Approved</td>
-                        <td>None</td>
-                    </tr>
-                    <tr>
-                        <td>Jamie</td>
-                        <td>Unknown</td>
-                        <td class="positive"><i class="icon close"></i> Requires call</td>
-                    </tr>
-                    <tr class="negative">
-                        <td>Jill</td>
-                        <td>Unknown</td>
-                        <td>None</td>
-                    </tr>*@
+                    <td>No Name Specified</td>
+                    <td>Unknown</td>
+                    <td class="negative">None</td>
+                </tr>
+                <tr class="positive">
+                    <td>Jimmy</td>
+                    <td><i class="icon checkmark"></i> Approved</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>Jamie</td>
+                    <td>Unknown</td>
+                    <td class="positive"><i class="icon close"></i> Requires call</td>
+                </tr>
+                <tr class="negative">
+                    <td>Jill</td>
+                    <td>Unknown</td>
+                    <td>None</td>
+                </tr>*@
                             </tbody>
                         </table>
+
+                        <div ng-repeat="list in list" class="modal fade bd-example-modal-lg" id="show-{{list.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img src="{{list.img}}" style="width: 100%; height: 200px" alt="{{list.title}}" />
+                                        </div>
+                                        <div class="col-md-9">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- pagination -->
                 @*<div class="pagination-wrapper mt-5">
-                    <ul class="page-pagination">
-                        <li><span aria-current="page" class="page-numbers current">1</span></li>
-                        <li><a class="page-numbers" href="#url">2</a></li>
-                        <li><a class="page-numbers" href="#url">3</a></li>
-                        <li><a class="page-numbers" href="#url">4</a></li>
-                        <li><a class="page-numbers" href="#url">....</a></li>
-                        <li><a class="page-numbers" href="#url">15</a></li>
-                        <li><a class="next" href="#url"><span class="fa fa-angle-right"></span></a></li>
-                    </ul>
-                </div>*@
+                        <ul class="page-pagination">
+                            <li><span aria-current="page" class="page-numbers current">1</span></li>
+                            <li><a class="page-numbers" href="#url">2</a></li>
+                            <li><a class="page-numbers" href="#url">3</a></li>
+                            <li><a class="page-numbers" href="#url">4</a></li>
+                            <li><a class="page-numbers" href="#url">....</a></li>
+                            <li><a class="page-numbers" href="#url">15</a></li>
+                            <li><a class="next" href="#url"><span class="fa fa-angle-right"></span></a></li>
+                        </ul>
+                    </div>*@
                 <!-- //pagination -->
             </div>
             <div class="col-lg-4 trending mt-lg-0 mt-5 mb-lg-5">
@@ -339,7 +358,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -348,14 +367,17 @@
         <div class="ad-block text-center mt-5">
             <a href="#url"><img src="~/Content/Layout/images/ad.gif" class="img-fluid" alt="ad image" /></a>
         </div>
+
         <!-- //ad block -->
     </div>
+
 </div>
+
 
 <script>
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function ($scope, $http) {
-        $http.get("/Json/FavoriteNews")
+        $http.get("/Json/MyNews")
             .then(function (response) {
                 // First function handles success
                 $scope.list = response.data;
