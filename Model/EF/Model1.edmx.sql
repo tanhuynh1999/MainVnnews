@@ -2,10 +2,10 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/31/2021 23:40:33
--- Generated from EDMX file: F:\projectNhom\MainVnnews\Model\EF\Model1.edmx
+-- Date Created: 04/05/2021 21:29:28
+-- Generated from EDMX file: C:\Users\Tan\Desktop\VnnewsNews\Model\EF\Model1.edmx
 -- --------------------------------------------------
-
+create database [DBvnews]
 SET QUOTED_IDENTIFIER OFF;
 GO
 USE [DBvnews];
@@ -50,6 +50,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_Users_Roles]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_Users_Roles];
 GO
+IF OBJECT_ID(N'[dbo].[FK_Chats_Users]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Chats] DROP CONSTRAINT [FK_Chats_Users];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -84,6 +87,9 @@ IF OBJECT_ID(N'[dbo].[sysdiagrams]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Users];
+GO
+IF OBJECT_ID(N'[dbo].[Chats]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Chats];
 GO
 
 -- --------------------------------------------------
@@ -210,6 +216,17 @@ CREATE TABLE [dbo].[Users] (
 );
 GO
 
+-- Creating table 'Chats'
+CREATE TABLE [dbo].[Chats] (
+    [chat_id] int IDENTITY(1,1) NOT NULL,
+    [chat_content] nvarchar(max)  NULL,
+    [user_id] int  NULL,
+    [chat_key] nvarchar(500)  NULL,
+    [chat_item] int  NULL,
+    [chat_datecreate] datetime  NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -272,6 +289,12 @@ GO
 ALTER TABLE [dbo].[Users]
 ADD CONSTRAINT [PK_Users]
     PRIMARY KEY CLUSTERED ([user_id] ASC);
+GO
+
+-- Creating primary key on [chat_id] in table 'Chats'
+ALTER TABLE [dbo].[Chats]
+ADD CONSTRAINT [PK_Chats]
+    PRIMARY KEY CLUSTERED ([chat_id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -441,6 +464,21 @@ GO
 CREATE INDEX [IX_FK_Users_Roles]
 ON [dbo].[Users]
     ([role_id]);
+GO
+
+-- Creating foreign key on [user_id] in table 'Chats'
+ALTER TABLE [dbo].[Chats]
+ADD CONSTRAINT [FK_Chats_Users]
+    FOREIGN KEY ([user_id])
+    REFERENCES [dbo].[Users]
+        ([user_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Chats_Users'
+CREATE INDEX [IX_FK_Chats_Users]
+ON [dbo].[Chats]
+    ([user_id]);
 GO
 
 -- --------------------------------------------------

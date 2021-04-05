@@ -5,6 +5,23 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DBvnewsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ads">
+          <Key>
+            <PropertyRef Name="ads_id" />
+          </Key>
+          <Property Name="ads_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ads_title" Type="nvarchar" MaxLength="128" />
+          <Property Name="ads_poster" Type="nvarchar(max)" />
+          <Property Name="ads_money" Type="float" />
+          <Property Name="ads_totalday" Type="int" />
+          <Property Name="ads_datecreate" Type="datetime" />
+          <Property Name="ads_dateend" Type="datetime" />
+          <Property Name="ads_active" Type="bit" />
+          <Property Name="ads_option" Type="bit" />
+          <Property Name="ads_bin" Type="bit" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="ads_tags" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Categorys">
           <Key>
             <PropertyRef Name="category_id" />
@@ -14,17 +31,6 @@
           <Property Name="category_view" Type="int" />
           <Property Name="category_active" Type="bit" />
           <Property Name="category_datecreate" Type="datetime" />
-        </EntityType>
-        <EntityType Name="Chats">
-          <Key>
-            <PropertyRef Name="chat_id" />
-          </Key>
-          <Property Name="chat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="chat_content" Type="nvarchar(max)" />
-          <Property Name="user_id" Type="int" />
-          <Property Name="chat_key" Type="nvarchar" MaxLength="500" />
-          <Property Name="chat_item" Type="int" />
-          <Property Name="chat_datecreate" Type="datetime" />
         </EntityType>
         <EntityType Name="Comments">
           <Key>
@@ -109,16 +115,6 @@
           <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="role_name" Type="nvarchar" MaxLength="200" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="user_id" />
@@ -135,15 +131,21 @@
           <Property Name="user_datelogin" Type="datetime" />
           <Property Name="user_email" Type="varchar" MaxLength="255" />
           <Property Name="role_id" Type="int" />
+          <Property Name="user_address" Type="nvarchar(max)" />
+          <Property Name="user_facebook" Type="nvarchar(max)" />
+          <Property Name="user_twiter" Type="nvarchar(max)" />
+          <Property Name="user_instagram" Type="nvarchar(max)" />
+          <Property Name="user_sex" Type="bit" />
+          <Property Name="user_dateofbirth" Type="datetime" />
         </EntityType>
-        <Association Name="FK_Chats_Users">
+        <Association Name="FK_Ads_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="Chats" Type="Self.Chats" Multiplicity="*" />
+          <End Role="Ads" Type="Self.Ads" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="user_id" />
             </Principal>
-            <Dependent Role="Chats">
+            <Dependent Role="Ads">
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -181,18 +183,6 @@
             </Principal>
             <Dependent Role="Groups">
               <PropertyRef Name="category_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Groups_News">
-          <End Role="News" Type="Self.News" Multiplicity="0..1" />
-          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="News">
-              <PropertyRef Name="vnew_id" />
-            </Principal>
-            <Dependent Role="Groups">
-              <PropertyRef Name="news_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -281,8 +271,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DBvnewsModelStoreContainer">
+          <EntitySet Name="Ads" EntityType="Self.Ads" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categorys" EntityType="Self.Categorys" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Chats" EntityType="Self.Chats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Editors" EntityType="Self.Editors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
@@ -290,11 +280,10 @@
           <EntitySet Name="Replys" EntityType="Self.Replys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Chats_Users" Association="Self.FK_Chats_Users">
+          <AssociationSet Name="FK_Ads_Users" Association="Self.FK_Ads_Users">
             <End Role="Users" EntitySet="Users" />
-            <End Role="Chats" EntitySet="Chats" />
+            <End Role="Ads" EntitySet="Ads" />
           </AssociationSet>
           <AssociationSet Name="FK_Comments_Users" Association="Self.FK_Comments_Users">
             <End Role="Users" EntitySet="Users" />
@@ -306,10 +295,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Groups_Categorys" Association="Self.FK_Groups_Categorys">
             <End Role="Categorys" EntitySet="Categorys" />
-            <End Role="Groups" EntitySet="Groups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Groups_News" Association="Self.FK_Groups_News">
-            <End Role="News" EntitySet="News" />
             <End Role="Groups" EntitySet="Groups" />
           </AssociationSet>
           <AssociationSet Name="FK_Groups_Users" Association="Self.FK_Groups_Users">
@@ -487,6 +472,13 @@
           <Property Name="role_id" Type="Int32" />
           <NavigationProperty Name="Role" Relationship="DBvnewsModel.FK_Users_Roles" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Chats" Relationship="DBvnewsModel.FK_Chats_Users" FromRole="User" ToRole="Chat" />
+          <Property Name="user_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_twiter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_instagram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_sex" Type="Boolean" />
+          <Property Name="user_dateofbirth" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ads" Relationship="DBvnewsModel.FK_Ads_Users" FromRole="User" ToRole="Ad" />
         </EntityType>
         <Association Name="FK_Groups_Categorys">
           <End Role="Categorys" Type="Self.Category" Multiplicity="0..1" />
@@ -656,6 +648,11 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Chat" EntitySet="Chats" />
           </AssociationSet>
+          <EntitySet Name="Ads" EntityType="DBvnewsModel.Ad" />
+          <AssociationSet Name="FK_Ads_Users" Association="DBvnewsModel.FK_Ads_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Ad" EntitySet="Ads" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_Groups_News">
           <End Type="DBvnewsModel.News" Role="News" Multiplicity="0..1" />
@@ -701,6 +698,36 @@
               <PropertyRef Name="user_id" />
             </Principal>
             <Dependent Role="Chat">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Ad">
+          <Key>
+            <PropertyRef Name="ads_id" />
+          </Key>
+          <Property Name="ads_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ads_title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ads_poster" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ads_money" Type="Double" />
+          <Property Name="ads_totalday" Type="Int32" />
+          <Property Name="ads_datecreate" Type="DateTime" Precision="3" />
+          <Property Name="ads_dateend" Type="DateTime" Precision="3" />
+          <Property Name="ads_active" Type="Boolean" />
+          <Property Name="ads_option" Type="Boolean" />
+          <Property Name="ads_bin" Type="Boolean" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="ads_tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="DBvnewsModel.FK_Ads_Users" FromRole="Ad" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Ads_Users">
+          <End Type="DBvnewsModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="DBvnewsModel.Ad" Role="Ad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Ad">
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -812,21 +839,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="IsTypeOf(DBvnewsModel.sysdiagram)">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="IsTypeOf(DBvnewsModel.User)">
         <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_dateofbirth" ColumnName="user_dateofbirth" />
+                <ScalarProperty Name="user_sex" ColumnName="user_sex" />
+                <ScalarProperty Name="user_instagram" ColumnName="user_instagram" />
+                <ScalarProperty Name="user_twiter" ColumnName="user_twiter" />
+                <ScalarProperty Name="user_facebook" ColumnName="user_facebook" />
+                <ScalarProperty Name="user_address" ColumnName="user_address" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="user_name" ColumnName="user_name" />
           <ScalarProperty Name="user_password" ColumnName="user_password" />
           <ScalarProperty Name="user_image" ColumnName="user_image" />
@@ -841,15 +863,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-          <EntitySetMapping Name="Chats">
-            <EntityTypeMapping TypeName="DBvnewsModel.Chat">
-              <MappingFragment StoreEntitySet="Chats">
-                <ScalarProperty Name="chat_datecreate" ColumnName="chat_datecreate" />
-                <ScalarProperty Name="chat_item" ColumnName="chat_item" />
-                <ScalarProperty Name="chat_key" ColumnName="chat_key" />
+          <EntitySetMapping Name="Ads">
+            <EntityTypeMapping TypeName="DBvnewsModel.Ad">
+              <MappingFragment StoreEntitySet="Ads">
+                <ScalarProperty Name="ads_tags" ColumnName="ads_tags" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="chat_content" ColumnName="chat_content" />
-                <ScalarProperty Name="chat_id" ColumnName="chat_id" />
+                <ScalarProperty Name="ads_bin" ColumnName="ads_bin" />
+                <ScalarProperty Name="ads_option" ColumnName="ads_option" />
+                <ScalarProperty Name="ads_active" ColumnName="ads_active" />
+                <ScalarProperty Name="ads_dateend" ColumnName="ads_dateend" />
+                <ScalarProperty Name="ads_datecreate" ColumnName="ads_datecreate" />
+                <ScalarProperty Name="ads_totalday" ColumnName="ads_totalday" />
+                <ScalarProperty Name="ads_money" ColumnName="ads_money" />
+                <ScalarProperty Name="ads_poster" ColumnName="ads_poster" />
+                <ScalarProperty Name="ads_title" ColumnName="ads_title" />
+                <ScalarProperty Name="ads_id" ColumnName="ads_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
