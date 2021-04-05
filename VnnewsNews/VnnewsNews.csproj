@@ -335,6 +335,7 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PaysController.cs" />
     <Compile Include="Controllers\ViewController.cs" />
+    <Compile Include="Function\AddFileController.cs" />
     <Compile Include="Function\FunctionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2519,9 +2520,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Images\Ads\" />
     <Folder Include="Images\News\" />
     <Folder Include="Images\Users\" />
     <Folder Include="Scripts\Data\" />
+    <Folder Include="Views\AddFile\" />
     <Folder Include="Views\Functions\" />
     <Folder Include="Views\Json\" />
   </ItemGroup>
