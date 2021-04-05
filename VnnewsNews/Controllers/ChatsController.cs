@@ -53,7 +53,9 @@ namespace VnnewsNews.Controllers
                                        idus = item.user_id,
                                        content = item.chat_content,
                                        date = item.chat_datecreate,
-                                       key = item.chat_key
+                                       key = item.chat_key,
+                                       img = item.User.user_image,
+                                       name = item.User.user_name
                                    };
 
                     return Json(new { listChat = listChat }, JsonRequestBehavior.AllowGet);

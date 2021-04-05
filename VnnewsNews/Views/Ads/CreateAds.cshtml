@@ -178,12 +178,13 @@
                 </div>
             </div>
             <div class="contact-right">
-                <form class="ui form">
+                <form class="ui form" action="@Url.Action("CreateAds", "Ads")" method="post" enctype="multipart/form-data">
                     @*<h4 class="ui dividing header">Thông tin quảng cáo</h4>*@
+                    @Html.AntiForgeryToken()
                     <div class="field">
                         <div class="file-upload">
                             <div class="image-upload-wrap">
-                                <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                <input name="img" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" required/>
                                 <div class="drag-text">
                                     <h3>Thêm ảnh quảng cáo</h3>
                                 </div>
@@ -200,7 +201,7 @@
                     <div class="field">
                         <label>Tiêu đề</label>
                         <div class="field">
-                            <input type="text" name="shipping[first-name]" placeholder="First Name">
+                            <input type="text" name="ads_title" placeholder="Tiêu đề quảng cáo..." required>
                         </div>
                     </div>
 
@@ -208,15 +209,15 @@
                         <div class="three fields">
                             <div class="field">
                                 <label>Ngày bắt đầu</label>
-                                <input type="date" id="datestart" name="ads_datecreate" style="height: 38px" placeholder="Ngày bắt đầu" onchange="totalDay()">
+                                <input type="date" id="datestart" name="ads_datecreate" style="height: 38px" placeholder="Ngày bắt đầu" onchange="totalDay()" required>
                             </div>
                             <div class="field">
                                 <label>Ngày kết thúc</label>
-                                <input type="date" id="dateend" name="ads_dateend" style="height: 38px" placeholder="Ngày kết thúc" onchange="totalDay()">
+                                <input type="date" id="dateend" name="ads_dateend" style="height: 38px" placeholder="Ngày kết thúc" onchange="totalDay()" required>
                             </div>
                             <div class="field">
                                 <label>Tổng ngày: </label>
-                                <input type="text" id="total_date" name="ads_totalday" placeholder="Last Name" disabled>
+                                <input type="text" id="total_date" name="ads_totalday" placeholder="Tổng ngày" readonly>
                             </div>
                         </div>
                         <div id="noti_diffdate"></div>
@@ -226,59 +227,8 @@
                         <div class="fields">
                             <div class="twelve wide field">
                                 <label>Tags: </label>
-                                <select class="ui fluid search dropdown" multiple="">
-                                    <option value="">State</option>
-                                    <option value="AL">Alabama</option>
-                                    <option value="AK">Alaska</option>
-                                    <option value="AZ">Arizona</option>
-                                    <option value="AR">Arkansas</option>
-                                    <option value="CA">California</option>
-                                    <option value="CO">Colorado</option>
-                                    <option value="CT">Connecticut</option>
-                                    <option value="DE">Delaware</option>
-                                    <option value="DC">District Of Columbia</option>
-                                    <option value="FL">Florida</option>
-                                    <option value="GA">Georgia</option>
-                                    <option value="HI">Hawaii</option>
-                                    <option value="ID">Idaho</option>
-                                    <option value="IL">Illinois</option>
-                                    <option value="IN">Indiana</option>
-                                    <option value="IA">Iowa</option>
-                                    <option value="KS">Kansas</option>
-                                    <option value="KY">Kentucky</option>
-                                    <option value="LA">Louisiana</option>
-                                    <option value="ME">Maine</option>
-                                    <option value="MD">Maryland</option>
-                                    <option value="MA">Massachusetts</option>
-                                    <option value="MI">Michigan</option>
-                                    <option value="MN">Minnesota</option>
-                                    <option value="MS">Mississippi</option>
-                                    <option value="MO">Missouri</option>
-                                    <option value="MT">Montana</option>
-                                    <option value="NE">Nebraska</option>
-                                    <option value="NV">Nevada</option>
-                                    <option value="NH">New Hampshire</option>
-                                    <option value="NJ">New Jersey</option>
-                                    <option value="NM">New Mexico</option>
-                                    <option value="NY">New York</option>
-                                    <option value="NC">North Carolina</option>
-                                    <option value="ND">North Dakota</option>
-                                    <option value="OH">Ohio</option>
-                                    <option value="OK">Oklahoma</option>
-                                    <option value="OR">Oregon</option>
-                                    <option value="PA">Pennsylvania</option>
-                                    <option value="RI">Rhode Island</option>
-                                    <option value="SC">South Carolina</option>
-                                    <option value="SD">South Dakota</option>
-                                    <option value="TN">Tennessee</option>
-                                    <option value="TX">Texas</option>
-                                    <option value="UT">Utah</option>
-                                    <option value="VT">Vermont</option>
-                                    <option value="VA">Virginia</option>
-                                    <option value="WA">Washington</option>
-                                    <option value="WV">West Virginia</option>
-                                    <option value="WI">Wisconsin</option>
-                                    <option value="WY">Wyoming</option>
+                                <select class="ui fluid search dropdown" id="ads_tag" name="ads_tag" multiple="">
+                                    <option value="">-- Tags quảng cáo --</option>
                                 </select>
 
                                 <script>
@@ -289,19 +239,19 @@
                             </div>
                             <div class="four wide field">
                                 <label>Tổng tiền: </label>
-                                <input type="text" id="total_money" pattern="" name="shipping[address-2]" placeholder="$Money" disabled>
+                                <input type="text" id="total_money" name="ads_money" placeholder="Tổng tiền" readonly>
                             </div>
                         </div>
                     </div>
                     <div class="ui segment">
                         <div class="field">
                             <div class="ui toggle checkbox">
-                                <input type="checkbox" checked name="gift" tabindex="0" class="hidden">
+                                <input type="checkbox" checked name="autocheck" tabindex="0" class="hidden">
                                 <label>Duyệt tự động</label>
                             </div>
                         </div>
                     </div>
-                    <div class="ui button" tabindex="0">Đăng quảng cáo</div>
+                    <button class="ui button" tabindex="0">Đăng quảng cáo</button>
                 </form>
             </div>
         </div>
@@ -358,15 +308,33 @@
         }
         else {
             var day = new Date(total).getDate();
+            var money = document.getElementById("total_money").value;
             document.getElementById("total_date").value = day;
-            document.getElementById("total_money").value = day * 100000;
+            if (day > 0) {
+                document.getElementById("total_money").value = +money + +day * 100000;
+            }
+            document.getElementById("noti_diffdate").innerHTML = "";
         }
     }
 
-    document.getElementById("total_money").onblur = function () {
-        this.value = parseFloat(this.value.replace(/,/g, ""))
-            .toFixed(2)
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+    //document.getElementById("total_money").onchange = function () {
+    //    this.value = parseFloat(this.value.replace(/,/g, ""))
+    //        .toFixed(2)
+    //        .toString()
+    //        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    //}
+</script>
+
+<script>
+    $(".ui.fluid.search.dropdown.selection.multiple").on("keyup", function (e) {
+
+        var val = $(".ui.fluid.search.dropdown.selection.multiple input.search").val();
+        debugger
+        if (e.keyCode == 13) {
+            $("input.search").val("");
+            $('#ads_tag').append('<option value="' + val + '" selected>' + val + '</option>');
+            var money = document.getElementById("total_money").value;
+            document.getElementById("total_money").value = +money + +100000;
+        }
+    })
 </script>

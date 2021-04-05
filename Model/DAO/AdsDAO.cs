@@ -14,11 +14,11 @@ namespace Model.DAO
         {
             try
             {
-                ads.ads_active = true;
                 ads.ads_bin = false;
                 ads.ads_datecreate = DateTime.Now;
                 ads.ads_option = true;
                 db.Ads.Add(ads);
+                db.SaveChanges();
 
                 return 1;
             }
