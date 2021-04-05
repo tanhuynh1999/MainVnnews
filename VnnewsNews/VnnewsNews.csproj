@@ -2207,6 +2207,7 @@
     <Content Include="Content\Layout\js\bootstrap.min.js" />
     <Content Include="Content\Layout\js\jquery-3.3.1.min.js" />
     <Content Include="Content\Layout\js\theme-change.js" />
+    <Content Include="Content\Login.css" />
     <Content Include="Content\Semantic-UI-CSS-master\components\accordion.css" />
     <Content Include="Content\Semantic-UI-CSS-master\components\accordion.js" />
     <Content Include="Content\Semantic-UI-CSS-master\components\accordion.min.css" />
