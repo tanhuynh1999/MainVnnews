@@ -50,6 +50,7 @@ namespace VnnewsNews.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                category.category_datecreate = DateTime.Now;
                 db.Categorys.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,6 +83,7 @@ namespace VnnewsNews.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                category.category_datecreate = DateTime.Now;
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

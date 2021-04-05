@@ -47,11 +47,14 @@ namespace VnnewsNews.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "vnew_id,vnew_title,vnew_content,vnew_view,vnew_active,vnew_option,vnew_datecreate,vnew_dateupdate,user_id,vnews_des,vnew_img")] News news)
         {
             if (ModelState.IsValid)
             {
+                news.vnew_datecreate = DateTime.Now;
+                news.vnew_dateupdate = DateTime.Now;
                 db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
