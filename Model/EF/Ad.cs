@@ -25,6 +25,7 @@ namespace Model.EF
         public Nullable<bool> ads_option { get; set; }
         public Nullable<bool> ads_bin { get; set; }
         public Nullable<int> user_id { get; set; }
+        public string ads_tags { get; set; }
     
         public virtual User User { get; set; }
     }
