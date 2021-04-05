@@ -36,5 +36,6 @@ namespace Model.EF
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Chat> Chats { get; set; }
+        public virtual DbSet<Ad> Ads { get; set; }
     }
 }

@@ -13,7 +13,6 @@ namespace VnnewsNews.Controllers
     {
         FunctionsController functions = new FunctionsController();
         DBvnewsEntities db = new DBvnewsEntities();
-        FunctionsController functions = new FunctionsController();
         // GET: New
         public ActionResult Details(int ? id)
         {
