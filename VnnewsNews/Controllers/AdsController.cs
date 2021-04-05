@@ -31,9 +31,12 @@ namespace VnnewsNews.Controllers
             ads.user_id = functions.CookieID().user_id;
             ads.ads_poster = addFile.UpLoadImages(img, null, "Ads");
             var tag = "";
-            foreach (var item in ads_tag)
+            if(ads_tag != null)
             {
-                tag += item + ";";
+                foreach (var item in ads_tag)
+                {
+                    tag += item + ";";
+                }
             }
             ads.ads_tags = tag;
             ads.ads_active = autocheck;

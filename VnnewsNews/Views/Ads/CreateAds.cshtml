@@ -184,7 +184,7 @@
                     <div class="field">
                         <div class="file-upload">
                             <div class="image-upload-wrap">
-                                <input name="img" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                <input name="img" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" required/>
                                 <div class="drag-text">
                                     <h3>Thêm ảnh quảng cáo</h3>
                                 </div>
@@ -217,7 +217,7 @@
                             </div>
                             <div class="field">
                                 <label>Tổng ngày: </label>
-                                <input type="text" id="total_date" name="ads_totalday" placeholder="Last Name" disabled>
+                                <input type="text" id="total_date" name="ads_totalday" placeholder="Tổng ngày" readonly>
                             </div>
                         </div>
                         <div id="noti_diffdate"></div>
@@ -239,7 +239,7 @@
                             </div>
                             <div class="four wide field">
                                 <label>Tổng tiền: </label>
-                                <input type="text" id="total_money" pattern="" name="shipping[address-2]" placeholder="$Money" disabled>
+                                <input type="text" id="total_money" name="ads_money" placeholder="Tổng tiền" readonly>
                             </div>
                         </div>
                     </div>
@@ -317,12 +317,12 @@
         }
     }
 
-    document.getElementById("total_money").onblur = function () {
-        this.value = parseFloat(this.value.replace(/,/g, ""))
-            .toFixed(2)
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+    //document.getElementById("total_money").onchange = function () {
+    //    this.value = parseFloat(this.value.replace(/,/g, ""))
+    //        .toFixed(2)
+    //        .toString()
+    //        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    //}
 </script>
 
 <script>
