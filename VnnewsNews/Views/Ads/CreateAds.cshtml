@@ -1,8 +1,131 @@
-﻿
+﻿@using VnnewsNews.Function;
 @{
-    ViewBag.Title = "CreateAds";
+    FunctionsController functions = new FunctionsController();
+    var user = functions.CookieID();
+    ViewBag.Title = "Tạo quảng cáo tự động | " + functions.CookieID() + " | VNNEWS";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<style>
+    body {
+      font-family: sans-serif;
+      background-color: #eeeeee;
+    }
+
+    .file-upload {
+      background-color: #ffffff;
+      width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .file-upload-btn {
+      width: 100%;
+      margin: 0;
+      color: #fff;
+      background: #1FB264;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      border-bottom: 4px solid #15824B;
+      transition: all .2s ease;
+      outline: none;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .file-upload-btn:hover {
+      background: #1AA059;
+      color: #ffffff;
+      transition: all .2s ease;
+      cursor: pointer;
+    }
+
+    .file-upload-btn:active {
+      border: 0;
+      transition: all .2s ease;
+    }
+
+    .file-upload-content {
+      display: none;
+      text-align: center;
+    }
+
+    .file-upload-input {
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      outline: none;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .image-upload-wrap {
+      margin-top: 20px;
+      border: 4px dashed #1FB264;
+      position: relative;
+    }
+
+    .image-dropping,
+    .image-upload-wrap:hover {
+      background-color: #1FB264;
+      border: 4px dashed #ffffff;
+    }
+
+    .image-title-wrap {
+      padding: 0 15px 15px 15px;
+      color: #222;
+    }
+
+    .drag-text {
+      text-align: center;
+    }
+
+    .drag-text h3 {
+      font-weight: 100;
+      text-transform: uppercase;
+      color: #15824B;
+      padding: 60px 0;
+    }
+
+    .file-upload-image {
+      max-height: 200px;
+      max-width: 200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .remove-image {
+      width: 200px;
+      margin: 0;
+      color: #fff;
+      background: #cd4535;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      border-bottom: 4px solid #b02818;
+      transition: all .2s ease;
+      outline: none;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .remove-image:hover {
+      background: #c13b2a;
+      color: #ffffff;
+      transition: all .2s ease;
+      cursor: pointer;
+    }
+
+    .remove-image:active {
+      border: 0;
+      transition: all .2s ease;
+    }
+
+</style>
+
 <nav id="breadcrumbs" class="breadcrumbs">
     <div class="container page-wrapper">
         <a href="index.html">Home</a> / <span class="breadcrumb_last" aria-current="page">Contact</span>
@@ -19,7 +142,7 @@
                     <i class="fa fa-check-circle text-success">&nbsp;</i> Ưu tiên hiển thị quảng cáo ở trang cùng chủ để tin tức. <br />
                     <i class="fa fa-check-circle text-success">&nbsp;</i> Vị trí dễ nhìn. <br />
                     <i class="fa fa-check-circle text-success">&nbsp;</i> Có lịch sử hiển thị quảng cáo ở tin tức. <br />
-                    <i class="fa fa-check-circle text-success">&nbsp;</i> Giảm giá 5% trên đơn hàng quảng cáo 1 triệu, 7% cho 5 triệu và 10% trên 10 triệu.  <br />
+                    <i class="fa fa-check-circle text-success">&nbsp;</i> Giảm giá 5% trên đơn hàng quảng cáo 1 triệu, 7% cho 5 triệu và 10% trên 10 triệu.  <br />  
                 </p>
                 <div class="cont-details">
                     <div class="cont-top margin-up">
@@ -55,23 +178,195 @@
                 </div>
             </div>
             <div class="contact-right">
-                <form action="https://sendmail.w3layouts.com/submitForm" method="post" class="signin-form">
-                    <div class="input-grids">
-                        <input type="text" name="w3lName" id="w3lName" placeholder="Your Name*" class="contact-input"
-                               required="" />
-                        <input type="email" name="w3lSender" id="w3lSender" placeholder="Your Email*" class="contact-input"
-                               required="" />
-                        <input type="text" name="w3lSubect" id="w3lSubect" placeholder="Subject*" class="contact-input"
-                               required="" />
+                <form class="ui form">
+                    @*<h4 class="ui dividing header">Thông tin quảng cáo</h4>*@
+                    <div class="field">
+                        <div class="file-upload">
+                            <div class="image-upload-wrap">
+                                <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                <div class="drag-text">
+                                    <h3>Thêm ảnh quảng cáo</h3>
+                                </div>
+                            </div>
+                            <div class="file-upload-content">
+                                <img class="file-upload-image" src="#" alt="your image" />
+                                <div class="image-title-wrap">
+                                    <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Thêm ảnh khác</button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="form-input">
-                        <textarea name="w3lMessage" id="w3lMessage" placeholder="Type your message here*" required=""></textarea>
+                    <div class="field">
+                        <label>Tiêu đề</label>
+                        <div class="field">
+                            <input type="text" name="shipping[first-name]" placeholder="First Name">
+                        </div>
                     </div>
-                    <button class="btn btn-style btn-outline">Send Message</button>
+
+                    <div class="field">
+                        <div class="three fields">
+                            <div class="field">
+                                <label>Ngày bắt đầu</label>
+                                <input type="date" id="datestart" name="ads_datecreate" style="height: 38px" placeholder="Ngày bắt đầu" onchange="totalDay()">
+                            </div>
+                            <div class="field">
+                                <label>Ngày kết thúc</label>
+                                <input type="date" id="dateend" name="ads_dateend" style="height: 38px" placeholder="Ngày kết thúc" onchange="totalDay()">
+                            </div>
+                            <div class="field">
+                                <label>Tổng ngày: </label>
+                                <input type="text" id="total_date" name="ads_totalday" placeholder="Last Name" disabled>
+                            </div>
+                        </div>
+                        <div id="noti_diffdate"></div>
+                    </div>
+
+                    <div class="field">
+                        <div class="fields">
+                            <div class="twelve wide field">
+                                <label>Tags: </label>
+                                <select class="ui fluid search dropdown" multiple="">
+                                    <option value="">State</option>
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="DC">District Of Columbia</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="HI">Hawaii</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="MN">Minnesota</option>
+                                    <option value="MS">Mississippi</option>
+                                    <option value="MO">Missouri</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="OK">Oklahoma</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="SD">South Dakota</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WA">Washington</option>
+                                    <option value="WV">West Virginia</option>
+                                    <option value="WI">Wisconsin</option>
+                                    <option value="WY">Wyoming</option>
+                                </select>
+
+                                <script>
+                                    $('.ui.dropdown').dropdown({
+                                        maxSelections: 5
+                                    });
+                                </script>
+                            </div>
+                            <div class="four wide field">
+                                <label>Tổng tiền: </label>
+                                <input type="text" id="total_money" pattern="" name="shipping[address-2]" placeholder="$Money" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="field">
+                            <div class="ui toggle checkbox">
+                                <input type="checkbox" checked name="gift" tabindex="0" class="hidden">
+                                <label>Duyệt tự động</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui button" tabindex="0">Đăng quảng cáo</div>
                 </form>
             </div>
         </div>
     </div>
 </section>
 
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
 
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.image-upload-wrap').hide();
+
+                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-content').show();
+
+                $('.image-title').html(input.files[0].name);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+        } else {
+            removeUpload();
+        }
+    }
+
+    function removeUpload() {
+        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+        $('.file-upload-content').hide();
+        $('.image-upload-wrap').show();
+    }
+    $('.image-upload-wrap').bind('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+    });
+
+</script>
+
+<script>
+
+    var totalDay = function () {
+        var dstart = document.getElementById("datestart").value;
+        var dend = document.getElementById("dateend").value;
+        debugger
+        var datest = new Date(dstart);
+        var dateen = new Date(dend);
+        var total = dateen.getTime() - datest.getTime();
+        if (total < 1) {
+            document.getElementById("noti_diffdate").innerHTML = "Ngày ko đúng!";
+        }
+        else {
+            var day = new Date(total).getDate();
+            document.getElementById("total_date").value = day;
+            document.getElementById("total_money").value = day * 100000;
+        }
+    }
+
+    document.getElementById("total_money").onblur = function () {
+        this.value = parseFloat(this.value.replace(/,/g, ""))
+            .toFixed(2)
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+</script>
