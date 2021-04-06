@@ -117,5 +117,9 @@ namespace VnnewsNews.Controllers
         {
             return View();
         }
+        public ActionResult AllNews()
+        {
+            return View();
+        }
     }
 }
