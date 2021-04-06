@@ -4,7 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+<<<<<<< HEAD
+      <Diagram DiagramId="3cd7ee8a4349424da2bb575528bf275e" Name="Diagram1">
+=======
       <Diagram DiagramId="737dd61fe18144a8872224b43f6b2793" Name="Diagram1">
+>>>>>>> 20c9ab9789701c00eead1f1479ea29205cc64c62
         <EntityTypeShape EntityType="DBvnewsModel.Ad" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DBvnewsModel.Bill" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DBvnewsModel.Category" Width="1.5" PointX="8" PointY="4.875" IsExpanded="true" />
@@ -16,7 +20,10 @@
         <EntityTypeShape EntityType="DBvnewsModel.Reply" Width="1.5" PointX="7.5" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBvnewsModel.Report" Width="1.5" PointX="7.5" PointY="16.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DBvnewsModel.Role" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+<<<<<<< HEAD
+=======
         <EntityTypeShape EntityType="DBvnewsModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+>>>>>>> 20c9ab9789701c00eead1f1479ea29205cc64c62
         <EntityTypeShape EntityType="DBvnewsModel.User" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
         <AssociationConnector Association="DBvnewsModel.FK_Ads_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Bills_Ads" ManuallyRouted="false" />
