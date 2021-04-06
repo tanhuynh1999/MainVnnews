@@ -29,7 +29,6 @@
         <AssociationConnector Association="DBvnewsModel.FK_Ads_Users" />
         <EntityTypeShape EntityType="DBvnewsModel.Chat" Width="1.5" PointX="3" PointY="0.75" />
         <AssociationConnector Association="DBvnewsModel.FK_Chats_Users" />
-        <EntityTypeShape EntityType="DBvnewsModel.sysdiagram" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

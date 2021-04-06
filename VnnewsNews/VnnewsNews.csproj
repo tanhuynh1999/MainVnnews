@@ -333,6 +333,7 @@
     <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\NewsEditorController.cs" />
     <Compile Include="Controllers\PaysController.cs" />
     <Compile Include="Controllers\ViewController.cs" />
     <Compile Include="Function\AddFileController.cs" />
@@ -2630,6 +2631,12 @@
     <Content Include="Views\Editors\Details.cshtml" />
     <Content Include="Views\Editors\Edit.cshtml" />
     <Content Include="Views\Editors\Index.cshtml" />
+    <Content Include="Views\News\AllNews.cshtml" />
+    <Content Include="Views\NewsEditor\Create.cshtml" />
+    <Content Include="Views\NewsEditor\Delete.cshtml" />
+    <Content Include="Views\NewsEditor\Details.cshtml" />
+    <Content Include="Views\NewsEditor\Edit.cshtml" />
+    <Content Include="Views\NewsEditor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
