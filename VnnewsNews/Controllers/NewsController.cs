@@ -121,5 +121,6 @@ namespace VnnewsNews.Controllers
         {
             return View();
         }
+        // Chi tiết tin tức
     }
 }

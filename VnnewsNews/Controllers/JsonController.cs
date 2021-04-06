@@ -133,5 +133,29 @@ namespace VnnewsNews.Controllers
                        };
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+
+        // Chi tiết tin tức
+        public JsonResult AllNews()
+        {
+
+            //Làm form
+            var list = from item in db.News
+                       where item.vnew_active == true
+                       orderby item.vnew_datecreate descending
+                       select new
+                       {
+                           id = item.user_id,
+                           title = item.vnew_title,
+                           category = item.Groups,
+                           content = item.vnew_content,
+                           view = item.vnew_view,
+                           datecarete = item.vnew_datecreate.ToString(),
+                           vnews_des = item.vnews_des,
+                           img = item.vnew_img,
+                           user_name = item.User.user_name
+                       };
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }
