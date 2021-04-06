@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 ﻿// T4 code generation is enabled for model 'F:\projectNhom\MainVnnews\Model\EF\Model1.edmx'. 
-=======
-﻿// T4 code generation is enabled for model 'C:\Users\tanth\Source\Repos\VNNEWS\MainVnnews\Model\EF\Model1.edmx'. 
->>>>>>> a646b898674b70bceb1aeca72b4b45df6eaf5fd4
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
