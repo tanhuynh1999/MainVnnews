@@ -18,6 +18,7 @@ namespace Model.EF
         public User()
         {
             this.Ads = new HashSet<Ad>();
+            this.Bills = new HashSet<Bill>();
             this.Chats = new HashSet<Chat>();
             this.Comments = new HashSet<Comment>();
             this.Editors = new HashSet<Editor>();
@@ -25,12 +26,6 @@ namespace Model.EF
             this.News = new HashSet<News>();
             this.Replys = new HashSet<Reply>();
             this.Reports = new HashSet<Report>();
-<<<<<<< HEAD
-=======
-            this.Ads = new HashSet<Ad>();
-            this.Chats = new HashSet<Chat>();
-            this.Bills = new HashSet<Bill>();
->>>>>>> 008373b4c9d9447234517ed1109eff67a2f20115
         }
     
         public int user_id { get; set; }
@@ -55,6 +50,8 @@ namespace Model.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ad> Ads { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bill> Bills { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Chat> Chats { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
@@ -69,14 +66,5 @@ namespace Model.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Report> Reports { get; set; }
         public virtual Role Role { get; set; }
-<<<<<<< HEAD
-=======
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ad> Ads { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chat> Chats { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bill> Bills { get; set; }
->>>>>>> 008373b4c9d9447234517ed1109eff67a2f20115
     }
 }
