@@ -1,8 +1,112 @@
-﻿
+﻿@using Model.EF
 @{
     ViewBag.Title = "AllNews";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    DBvnewsEntities db = new DBvnewsEntities();
 }
 
-<h2>AllNews</h2>
+@{ 
+    List<Category> categories = db.Categorys.ToList();
+}
+
+<nav id="breadcrumbs" class="breadcrumbs">
+    <div class="container page-wrapper">
+        <a href="/Home/Index">Trang Chủ</a> / Danh Mục / <span class="breadcrumb_last" aria-current="page">Chi Tiết Danh Mục</span>
+    </div>
+</nav>
+<div class="w3l-searchblock w3l-homeblock1 py-5" ng-app="myApp">
+    <div class="container py-lg-4 py-md-3" ng-controller="myCtrl">
+        <h3 class="mt-1 mb-4">Có {{(list | filter:searchText).length}} kết quả được tìm thấy!</h3>
+        <div class="row">
+            <div class="col-md-6">
+                Tìm kiếm: <input type="text" class="form-control mb-4" ng-model="searchText" />
+            </div>
+            <div class="col-md-3">
+                Danh mục: 
+                <select class="ui fluid dropdown">
+                    @foreach (var item in categories)
+                    {
+                        <option>@item.category_name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3">
+                Sắp xếp:
+                <select class="ui fluid dropdown" ng-model="searchSort">
+                    <option value="searchText">Sắp xếp mặc định</option>
+                    <option value="searchText">Mặc định</option>
+                    <option value="title">Chữ cái</option>
+                    <option value="datecreate">Cũ nhất</option>
+                    <option value="searchText">Mới nhất</option>
+                </select>
+            </div>
+        </div>
+        <!-- block -->
+        <div class="row">
+            <div class="col-lg-12 most-recent">
+                <h3 class="section-title-left">Chi Tiết Tin Tức</h3>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 item mb-2" ng-repeat="list in list | filter: searchText | orderBy:searchSort">
+                        <div class="card">
+                            <div class="card-header p-0 position-relative">
+                                <a href="#blog-single">
+                                    <img class="card-img-bottom d-block radius-image" src="~/Images/News/{{list.img}}" alt="Card image cap" height="160">
+                                </a>
+                            </div>
+                            <div class="card-body p-0 blog-details">
+                                <a href="#blog-single" class="blog-desc">
+                                    {{list.title}}
+                                </a>
+                                <div class="author align-items-center mt-3 mb-1">
+                                    <a href="#author">Tác giả</a> là <a href="#url">{{list.user_name}}</a>
+                                </div>
+                                <ul class="blog-meta">
+                                    <li class="meta-item blog-lesson">
+                                        <span class="meta-value"> {{list.datecarete | date:"dd/MM/yyyy"}} </span>
+                                    </li>
+                                    <li class="meta-item blog-students">
+                                        <span class="meta-value"> <i class="fa fa-eye">&nbsp;</i> {{list.view}}</span>
+                                        <span class="meta-value"> <i class="fa fa-heart">&nbsp;</i> 0</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- pagination -->
+                <div class="pagination-wrapper mt-5">
+                    <ul class="page-pagination">
+                        <li><span aria-current="page" class="page-numbers current">1</span></li>
+                        <li><a class="page-numbers" href="#url">2</a></li>
+                        <li><a class="page-numbers" href="#url">3</a></li>
+                        <li><a class="page-numbers" href="#url">4</a></li>
+                        <li><a class="page-numbers" href="#url">....</a></li>
+                        <li><a class="page-numbers" href="#url">15</a></li>
+                        <li><a class="next" href="#url"><span class="fa fa-angle-right"></span></a></li>
+                    </ul>
+                </div>
+                <!-- //pagination -->
+            </div>
+        </div>
+        <!-- //block-->
+    </div>
+</div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+        $http({
+            method: "GET",
+            url: "/Json/AllNews"
+        }).then(function mySuccess(response) {
+            $scope.list = response.data;
+        }, function myError(response) {
+            $scope.list = response.statusText;
+        });
+        // Sort
+        $scope.searchSort = "datecreate";
+        $scope.searchSort = "title";
+        $scope.searchSort = "searchText";
+    });
+</script>
 
