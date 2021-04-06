@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Model.EF;
+using VnnewsNews.Function;
 
 namespace VnnewsNews.Controllers
 {
@@ -50,8 +51,19 @@ namespace VnnewsNews.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "vnew_id,vnew_title,vnew_content,vnew_view,vnew_active,vnew_option,vnew_datecreate,vnew_dateupdate,user_id,vnews_des,vnew_img")] News news)
         {
+
+            var coo = new FunctionsController();
+            var id = coo.CookieID();
+
             if (ModelState.IsValid)
             {
+                news.vnew_view = 0;
+                news.vnew_active = false;
+                news.vnew_option = true;
+                news.vnew_datecreate = DateTime.Now;
+                news.vnew_dateupdate = DateTime.Now;
+                news.user_id = id.user_id;
+
                 db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");

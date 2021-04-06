@@ -5,8 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
-    .ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
-        height: 800px;
+    .ck-rounded-corners .ck.ck-editor__main > .ck-editor__editable, .ck.ck-editor__main > .ck-editor__editable.ck-rounded-corners {
+ 
+        height: 500px;
     }
 </style>
 
@@ -139,165 +140,66 @@
         {
             @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-
-
-            <div id="login-box" style=" height: 1200px; width: 1000px">
-                <div class="w-100" style="padding: 40px">
-                    <h1 class="text-dark">Soạn thảo tin tức</h1>
-
-                    <div>
-                        <label>Tiều đề</label>
-                        <input class="field w-100" type="text" name="vnew_title" placeholder="Tiêu đề không vượt quá 50 ký tự" />
-                    </div>
-
-                    <div>
-                        <label>Giới thiệu</label>
-                        <input class="field w-100" type="text" name="vnew_title" placeholder="Giới thiệu không quá 100 ký tự" />
-                    </div>
-
-                    <div>
-                        <label>Ảnh minh họa</label>
-                        <div class="field">
-                            <div class="file-upload">
-                                <div class="image-upload-wrap">
-                                    <input name="img" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" required />
-                                    <div class="drag-text">
-                                        <h3>Thêm ảnh quảng cáo</h3>
-                                    </div>
-                                </div>
-                                <div class="file-upload-content">
-                                    <img class="file-upload-image" src="#" alt="your image" />
-                                    <div class="image-title-wrap">
-                                        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Thêm ảnh khác</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <label>Nội dung</label>
-                    <textarea name="vnew_content" id="editor"></textarea>
-                    <script>
-                        ClassicEditor
-                            .create(document.querySelector('#editor'))
-                            .catch(error => {
-                                console.error(error);
-                            });
-                    </script>
-
-
-
-
-
-                    <input type="submit" class="submit" name="signup_submit" value="Đăng tin" />
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.vnew_title, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.vnew_title, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.vnew_title, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            <div class="form-horizontal">
+                <div id="login-box" style=" height: 1400px; width: 1000px">
+                    <div class="w-100" style="padding: 40px">
+                        <h1 class="text-dark">Soạn thảo tin tức</h1>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.vnew_content, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.vnew_content, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.vnew_content, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                        <div>
+                            <label>Tiều đề</label>
+                            <input class="field w-100" type="text" name="vnew_title" placeholder="Tiêu đề không vượt quá 50 ký tự" />
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.vnew_view, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.vnew_view, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.vnew_view, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                        <div>
+                            <label>Giới thiệu</label>
+                            <input class="field w-100" type="text" name="vnew_title" placeholder="Giới thiệu không quá 100 ký tự" />
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.vnew_active, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.vnew_active)
-                        @Html.ValidationMessageFor(model => model.vnew_active, "", new { @class = "text-danger" })
+
+
+                        <label>Nội dung</label>
+                        <br />
+                        <button type="button" class="btn btn-danger">Tải file</button>
+                        <button type="button" class="btn btn-danger">Đọc file</button>
+                        <br />
+                        <br />
+                        <textarea name="vnew_content" id="editor"></textarea>
+                        <script>
+                            ClassicEditor
+                                .create(document.querySelector('#editor'))
+                                .catch(error => {
+                                    console.error(error);
+                                });
+                        </script>
+                        <br />
+                        <div>
+                            <label>Ảnh minh họa</label>
+                            <div class="field">
+                                <div class="file-upload">
+                                    <div class="image-upload-wrap">
+                                        <input name="img" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" required />
+                                        <div class="drag-text">
+                                            <h3>Ảnh minh họa</h3>
+                                        </div>
+                                    </div>
+                                    <div class="file-upload-content">
+                                        <img class="file-upload-image" src="#" alt="your image" />
+                                        <div class="image-title-wrap">
+                                            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Thêm ảnh khác</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr />
+                        <center>
+                            <input type="submit" class="submit" name="signup_submit" value="Đăng tin" />
+                        </center>
                     </div>
                 </div>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.vnew_option, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.vnew_option)
-                        @Html.ValidationMessageFor(model => model.vnew_option, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.vnew_datecreate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.vnew_datecreate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.vnew_datecreate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.vnew_dateupdate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.vnew_dateupdate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.vnew_dateupdate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.user_id, "user_id", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("user_id", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.vnews_des, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.vnews_des, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.vnews_des, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.vnew_img, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.vnew_img, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.vnew_img, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
         }
-
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
     </div>
 </form>
