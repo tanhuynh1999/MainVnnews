@@ -18,8 +18,17 @@ namespace VnnewsNews.Controllers
         // GET: Editors
         public ActionResult Index()
         {
-            var editors = db.Editors.Include(e => e.User);
-            return View(editors.ToList());
+            if(functions.CookieID() == null)
+            {
+                return Redirect("/Account/Login");
+            }
+            var user = functions.CookieID();
+            var editors = db.Editors.FirstOrDefault(t => t.user_id == user.user_id);
+            if(editors.editor_status == 2)
+            {
+                return Redirect("/NewsEditor/Create");
+            }
+            return View(editors);
         }
 
         // GET: Editors/Details/5
