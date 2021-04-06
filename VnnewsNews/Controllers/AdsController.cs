@@ -28,6 +28,9 @@ namespace VnnewsNews.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateAds(Ad ads, HttpPostedFileBase img, string[] ads_tag, bool autocheck = true)
         {
+            var coo = new FunctionsController();
+            var idus = coo.CookieID();
+
             ads.user_id = functions.CookieID().user_id;
             ads.ads_poster = addFile.UpLoadImages(img, null, "Ads");
             var tag = "";
@@ -42,7 +45,11 @@ namespace VnnewsNews.Controllers
             ads.ads_active = autocheck;
             adsDAO.Insert(ads);
 
-            return RedirectToAction("Index");
+            Ad ad = db.Ads.Where(n => n.user_id == idus.user_id).OrderByDescending(n => n.ads_datecreate).First();
+
+
+
+            return Redirect("/Pays/PayMoMo?id="+ad.ads_id);
         }
         // GET: Ads
         [HttpPost]
@@ -54,6 +61,10 @@ namespace VnnewsNews.Controllers
         public ActionResult Index()
         {
             var cookie = functions.CookieID();
+            if(cookie == null)
+            {
+                return Redirect("/Account/Login");
+            }
             if (db.Ads.Where(t => t.user_id == cookie.user_id).Count() == 0)
             {
                 return RedirectToAction("CreateAds");

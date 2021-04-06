@@ -7,129 +7,115 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Model.EF;
-using VnnewsNews.Function;
+
 namespace VnnewsNews.Controllers
 {
-    public class EditorsController : Controller
+    public class NewsEditorController : Controller
     {
-        FunctionsController functions = new FunctionsController();
         private DBvnewsEntities db = new DBvnewsEntities();
 
-        // GET: Editors
+        // GET: NewsEditor
         public ActionResult Index()
         {
-            if(functions.CookieID() == null)
-            {
-                return Redirect("/Account/Login");
-            }
-            var user = functions.CookieID();
-            var editors = db.Editors.FirstOrDefault(t => t.user_id == user.user_id);
-            if(editors.editor_status == 2)
-            {
-                return Redirect("/NewsEditor/Create");
-            }
-            return View(editors);
+            var news = db.News.Include(n => n.User);
+            return View(news.ToList());
         }
 
-        // GET: Editors/Details/5
+        // GET: NewsEditor/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Editor editor = db.Editors.Find(id);
-            if (editor == null)
+            News news = db.News.Find(id);
+            if (news == null)
             {
                 return HttpNotFound();
             }
-            return View(editor);
+            return View(news);
         }
 
-        // GET: Editors/Create
+        // GET: NewsEditor/Create
         public ActionResult Create()
         {
             ViewBag.user_id = new SelectList(db.Users, "user_id", "user_name");
             return View();
         }
 
-        // POST: Editors/Create
+        // POST: NewsEditor/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "editor_id,editor_fullname,editor_sex,editor_fb,editor_phone,editor_time,editor_intro,editor_interests,editor_enthusiasm,user_id,editor_zalo,editor_active,editor_status")] Editor editor)
+        public ActionResult Create([Bind(Include = "vnew_id,vnew_title,vnew_content,vnew_view,vnew_active,vnew_option,vnew_datecreate,vnew_dateupdate,user_id,vnews_des,vnew_img")] News news)
         {
-            var user = functions.CookieID();
             if (ModelState.IsValid)
             {
-                editor.editor_active = true;
-                editor.editor_status = 1;
-                editor.user_id = user.user_id;
-                db.Editors.Add(editor);
+                db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.user_id = new SelectList(db.Users, "user_id", "user_name", editor.user_id);
-            return View(editor);
+            ViewBag.user_id = new SelectList(db.Users, "user_id", "user_name", news.user_id);
+            return View(news);
         }
 
-        // GET: Editors/Edit/5
+        // GET: NewsEditor/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Editor editor = db.Editors.Find(id);
-            if (editor == null)
+            News news = db.News.Find(id);
+            if (news == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.user_id = new SelectList(db.Users, "user_id", "user_name", editor.user_id);
-            return View(editor);
+            ViewBag.user_id = new SelectList(db.Users, "user_id", "user_name", news.user_id);
+            return View(news);
         }
 
-        // POST: Editors/Edit/5
+        // POST: NewsEditor/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "editor_id,editor_fullname,editor_sex,editor_fb,editor_phone,editor_time,editor_intro,editor_interests,editor_enthusiasm,user_id,editor_zalo,editor_active,editor_status")] Editor editor)
+        public ActionResult Edit([Bind(Include = "vnew_id,vnew_title,vnew_content,vnew_view,vnew_active,vnew_option,vnew_datecreate,vnew_dateupdate,user_id,vnews_des,vnew_img")] News news)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(editor).State = EntityState.Modified;
+                db.Entry(news).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.user_id = new SelectList(db.Users, "user_id", "user_name", editor.user_id);
-            return View(editor);
+            ViewBag.user_id = new SelectList(db.Users, "user_id", "user_name", news.user_id);
+            return View(news);
         }
 
-        // GET: Editors/Delete/5
+        // GET: NewsEditor/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Editor editor = db.Editors.Find(id);
-            if (editor == null)
+            News news = db.News.Find(id);
+            if (news == null)
             {
                 return HttpNotFound();
             }
-            return View(editor);
+            return View(news);
         }
 
-        // POST: Editors/Delete/5
+        // POST: NewsEditor/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Editor editor = db.Editors.Find(id);
-            db.Editors.Remove(editor);
+            News news = db.News.Find(id);
+            db.News.Remove(news);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

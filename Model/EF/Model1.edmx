@@ -22,6 +22,18 @@
           <Property Name="user_id" Type="int" />
           <Property Name="ads_tags" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Bills">
+          <Key>
+            <PropertyRef Name="bill_id" />
+          </Key>
+          <Property Name="bill_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="ads_id" Type="int" />
+          <Property Name="bill_datecreate" Type="datetime" />
+          <Property Name="bill_status" Type="int" />
+          <Property Name="bill_sum" Type="int" />
+          <Property Name="bill_summoney" Type="float" />
+        </EntityType>
         <EntityType Name="Categorys">
           <Key>
             <PropertyRef Name="category_id" />
@@ -167,6 +179,30 @@
               <PropertyRef Name="user_id" />
             </Principal>
             <Dependent Role="Ads">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bills_Ads">
+          <End Role="Ads" Type="Self.Ads" Multiplicity="0..1" />
+          <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ads">
+              <PropertyRef Name="ads_id" />
+            </Principal>
+            <Dependent Role="Bills">
+              <PropertyRef Name="ads_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bills_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Bills">
               <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -317,6 +353,7 @@
         </Association>
         <EntityContainer Name="DBvnewsModelStoreContainer">
           <EntitySet Name="Ads" EntityType="Self.Ads" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bills" EntityType="Self.Bills" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categorys" EntityType="Self.Categorys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Chats" EntityType="Self.Chats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
@@ -331,6 +368,14 @@
           <AssociationSet Name="FK_Ads_Users" Association="Self.FK_Ads_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Ads" EntitySet="Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bills_Ads" Association="Self.FK_Bills_Ads">
+            <End Role="Ads" EntitySet="Ads" />
+            <End Role="Bills" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bills_Users" Association="Self.FK_Bills_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Bills" EntitySet="Bills" />
           </AssociationSet>
           <AssociationSet Name="FK_Chats_Users" Association="Self.FK_Chats_Users">
             <End Role="Users" EntitySet="Users" />
@@ -555,6 +600,7 @@
           <Property Name="user_instagram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="user_sex" Type="Boolean" />
           <Property Name="user_dateofbirth" Type="DateTime" Precision="3" />
+<<<<<<< HEAD
           <NavigationProperty Name="Ads" Relationship="Self.FK_Ads_Users" FromRole="Users" ToRole="Ads" />
           <NavigationProperty Name="Chats" Relationship="Self.FK_Chats_Users" FromRole="Users" ToRole="Chats" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Users" FromRole="Users" ToRole="Comments" />
@@ -564,6 +610,11 @@
           <NavigationProperty Name="Replys" Relationship="Self.FK_Replys_Users" FromRole="Users" ToRole="Replys" />
           <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_Users" FromRole="Users" ToRole="Reports" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+=======
+          <NavigationProperty Name="Ads" Relationship="DBvnewsModel.FK_Ads_Users" FromRole="User" ToRole="Ad" />
+          <NavigationProperty Name="Chats" Relationship="DBvnewsModel.FK_Chats_Users" FromRole="User" ToRole="Chat" />
+          <NavigationProperty Name="Bills" Relationship="DBvnewsModel.FK_Bills_Users" FromRole="User" ToRole="Bill" />
+>>>>>>> 008373b4c9d9447234517ed1109eff67a2f20115
         </EntityType>
         <Association Name="FK_Ads_Users">
           <End Role="Users" Type="Self.User" Multiplicity="0..1" />
@@ -774,6 +825,33 @@
             <End Role="News" EntitySet="News" />
             <End Role="Group" EntitySet="Groups" />
           </AssociationSet>
+<<<<<<< HEAD
+=======
+          <AssociationSet Name="FK_Users_Roles" Association="DBvnewsModel.FK_Users_Roles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Ads" EntityType="DBvnewsModel.Ad" />
+          <AssociationSet Name="FK_Ads_Users" Association="DBvnewsModel.FK_Ads_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Ad" EntitySet="Ads" />
+          </AssociationSet>
+          <EntitySet Name="Chats" EntityType="DBvnewsModel.Chat" />
+          <AssociationSet Name="FK_Chats_Users" Association="DBvnewsModel.FK_Chats_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Chat" EntitySet="Chats" />
+          </AssociationSet>
+          <EntitySet Name="Bills" EntityType="DBvnewsModel.Bill" />
+          <EntitySet Name="sysdiagrams" EntityType="DBvnewsModel.sysdiagram" />
+          <AssociationSet Name="FK_Bills_Ads" Association="DBvnewsModel.FK_Bills_Ads">
+            <End Role="Ad" EntitySet="Ads" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bills_Users" Association="DBvnewsModel.FK_Bills_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+>>>>>>> 008373b4c9d9447234517ed1109eff67a2f20115
         </EntityContainer>
         <Association Name="FK_Groups_News">
           <End Type="DBvnewsModel.News" Role="News" Multiplicity="0..1" />
@@ -787,6 +865,124 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+<<<<<<< HEAD
+=======
+        <Association Name="FK_Users_Roles">
+          <End Type="DBvnewsModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="DBvnewsModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Ad">
+          <Key>
+            <PropertyRef Name="ads_id" />
+          </Key>
+          <Property Name="ads_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ads_title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ads_poster" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ads_money" Type="Double" />
+          <Property Name="ads_totalday" Type="Int32" />
+          <Property Name="ads_datecreate" Type="DateTime" Precision="3" />
+          <Property Name="ads_dateend" Type="DateTime" Precision="3" />
+          <Property Name="ads_active" Type="Boolean" />
+          <Property Name="ads_option" Type="Boolean" />
+          <Property Name="ads_bin" Type="Boolean" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="ads_tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="DBvnewsModel.FK_Ads_Users" FromRole="Ad" ToRole="User" />
+          <NavigationProperty Name="Bills" Relationship="DBvnewsModel.FK_Bills_Ads" FromRole="Ad" ToRole="Bill" />
+        </EntityType>
+        <Association Name="FK_Ads_Users">
+          <End Type="DBvnewsModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="DBvnewsModel.Ad" Role="Ad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Ad">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="chat_id" />
+          </Key>
+          <Property Name="chat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chat_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="chat_key" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="chat_item" Type="Int32" />
+          <Property Name="chat_datecreate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="DBvnewsModel.FK_Chats_Users" FromRole="Chat" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Chats_Users">
+          <End Type="DBvnewsModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="DBvnewsModel.Chat" Role="Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="bill_id" />
+          </Key>
+          <Property Name="bill_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="ads_id" Type="Int32" />
+          <Property Name="bill_datecreate" Type="DateTime" Precision="3" />
+          <Property Name="bill_status" Type="Int32" />
+          <Property Name="bill_sum" Type="Int32" />
+          <NavigationProperty Name="Ad" Relationship="DBvnewsModel.FK_Bills_Ads" FromRole="Bill" ToRole="Ad" />
+          <NavigationProperty Name="User" Relationship="DBvnewsModel.FK_Bills_Users" FromRole="Bill" ToRole="User" />
+          <Property Name="bill_summoney" Type="Double" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Bills_Ads">
+          <End Type="DBvnewsModel.Ad" Role="Ad" Multiplicity="0..1" />
+          <End Type="DBvnewsModel.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ad">
+              <PropertyRef Name="ads_id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="ads_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bills_Users">
+          <End Type="DBvnewsModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="DBvnewsModel.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+>>>>>>> 008373b4c9d9447234517ed1109eff67a2f20115
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -921,6 +1117,19 @@
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="role_id" ColumnName="role_id" />
                 <ScalarProperty Name="role_name" ColumnName="role_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="DBvnewsModel.Bill">
+              <MappingFragment StoreEntitySet="Bills">
+                <ScalarProperty Name="bill_summoney" ColumnName="bill_summoney" />
+                <ScalarProperty Name="bill_sum" ColumnName="bill_sum" />
+                <ScalarProperty Name="bill_status" ColumnName="bill_status" />
+                <ScalarProperty Name="bill_datecreate" ColumnName="bill_datecreate" />
+                <ScalarProperty Name="ads_id" ColumnName="ads_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="bill_id" ColumnName="bill_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
