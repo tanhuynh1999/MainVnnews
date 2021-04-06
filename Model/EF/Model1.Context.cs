@@ -26,6 +26,7 @@ namespace Model.EF
         }
     
         public virtual DbSet<Ad> Ads { get; set; }
+        public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<Category> Categorys { get; set; }
         public virtual DbSet<Chat> Chats { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
@@ -35,14 +36,6 @@ namespace Model.EF
         public virtual DbSet<Reply> Replys { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-<<<<<<< HEAD
-=======
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Ad> Ads { get; set; }
-        public virtual DbSet<Chat> Chats { get; set; }
-        public virtual DbSet<Bill> Bills { get; set; }
->>>>>>> 008373b4c9d9447234517ed1109eff67a2f20115
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
 }
