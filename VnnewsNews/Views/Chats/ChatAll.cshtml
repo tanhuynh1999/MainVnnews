@@ -12,8 +12,8 @@
         <div class="row">
             <div class="col-lg-2 border">
                 <h5>Tham gia</h5>
-                <img src="~/Images/Users/blank-profile-picture-973460_640.png" style="width: 50px; height: 50px; border-radius: 50%"  class="mt-3"/>
-                <img src="~/Images/Users/blank-profile-picture-973460_640.png" style="width: 50px; height: 50px; border-radius: 50%"  class="mt-3"/>
+                <img src="~/Images/Users/blank-profile-picture-973460_640.png" style="width: 50px; height: 50px; border-radius: 50%" class="mt-3" />
+                <img src="~/Images/Users/blank-profile-picture-973460_640.png" style="width: 50px; height: 50px; border-radius: 50%" class="mt-3" />
             </div>
             <div class="col-lg-10">
                 <div class="box box-warning direct-chat direct-chat-warning">
@@ -23,12 +23,12 @@
                     </div>
                     <div class="box-body">
                         <div class="direct-chat-messages" style="height: 500px;" id="chat">
-                            
+
                         </div>
                     </div>
-                    <div class="box-footer" ng-controller="myCtrl"> 
-                        
-                        <div class="input-group"> <input type="text" name="message" placeholder="Nhập tin nhắn ..." class="form-control"> <span class="input-group-btn"> <button id="myBtnsh" ng-click="create()" type="button" class="btn btn-warning btn-flat">Gửi</button> </span> </div>
+                    <div class="box-footer" ng-controller="myCtrl">
+
+                        <div class="input-group"> <input type="text" name="message" id="message" placeholder="Nhập tin nhắn ..." class="form-control"> <span class="input-group-btn"> <button id="myBtn" ng-click="create()" type="button" class="btn btn-warning btn-flat">Gửi</button> </span> </div>
 
                     </div>
                 </div>
@@ -46,10 +46,21 @@
                 url: "/Chats/PostChat?content=" + content
             }).then(function mySuccess(response) {
                 $scope.myWelcome = response.data;
-                document.getElementsByName("message")[0].value = "";
             }, function myError(response) {
                 $scope.myWelcome = response.statusText;
             });
+
+            document.getElementById("message").value = "";
+        }
+    });
+</script>
+
+<script>
+    var input = document.getElementById("message");
+    input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("myBtn").click();
         }
     });
 </script>
@@ -92,19 +103,10 @@
                                 ' <div class="direct-chat-text">' + model.content+' </div>' +
                                 '</div>'
                             );
-                        
+
                     }
                 });
             }
         });
     }
-</script>
-<script>
-    var input = document.getElementById("message");
-    input.addEventListener("keyup", function (event) {
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            document.getElementById("myBtn").click();
-        }
-    });
 </script>
