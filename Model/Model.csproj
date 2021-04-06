@@ -116,6 +116,9 @@
     <Compile Include="EF\Role.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

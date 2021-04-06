@@ -54,6 +54,10 @@ namespace VnnewsNews.Controllers
         public ActionResult Index()
         {
             var cookie = functions.CookieID();
+            if(cookie == null)
+            {
+                return Redirect("/Account/Login");
+            }
             if (db.Ads.Where(t => t.user_id == cookie.user_id).Count() == 0)
             {
                 return RedirectToAction("CreateAds");
