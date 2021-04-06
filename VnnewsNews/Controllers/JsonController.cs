@@ -137,7 +137,7 @@ namespace VnnewsNews.Controllers
         // Chi tiết tin tức
         public JsonResult AllNews()
         {
-
+            var user = functions.CookieID();
             //Làm form
             var list = from item in db.News
                        where item.vnew_active == true
@@ -157,5 +157,24 @@ namespace VnnewsNews.Controllers
 
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+        // lich su thanh toan
+        public JsonResult HistoryPays()
+        {
+            var user = functions.CookieID();
+            //Làm form
+            var list = from item in db.Bills
+                       where item.user_id == user.user_id
+                       select new
+                       {
+                           id = item.user_id,
+                           title = item.Ad.ads_title,
+                           money = item.bill_summoney,
+                           datecarete = item.bill_datecreate.ToString(),
+                           user_name = item.User.user_name
+                       };
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
