@@ -34,8 +34,28 @@ namespace VnnewsNews.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             return View(editor);
+        } 
+        //Duyệt 2
+        public ActionResult Pass(int? id)
+        {
+            db.Editors.Find(id).editor_status = 2;
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
         }
-
+        // khong duyệt 3
+        public ActionResult NoPass(int? id)
+        {
+            db.Editors.Find(id).editor_status = 3;
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+        // đang xem sét 1
+        public ActionResult WatchLightning(int? id)
+        {
+            db.Editors.Find(id).editor_status = 1;
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
         // GET: Admin/EditorsAdmin/Create
         public ActionResult Create()
         {

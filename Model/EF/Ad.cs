@@ -14,6 +14,12 @@ namespace Model.EF
     
     public partial class Ad
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Ad()
+        {
+            this.Bills = new HashSet<Bill>();
+        }
+    
         public int ads_id { get; set; }
         public string ads_title { get; set; }
         public string ads_poster { get; set; }
@@ -28,5 +34,7 @@ namespace Model.EF
         public string ads_tags { get; set; }
     
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bill> Bills { get; set; }
     }
 }

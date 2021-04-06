@@ -128,7 +128,7 @@ namespace VnnewsNews.Controllers
                            money = item.ads_money,
                            option = item.ads_option,
                            totalday = item.ads_totalday,
-                           datecreate = item.ads_datecreate,
+                           datecreate = item.ads_datecreate.ToString(),
                            dateend = item.ads_dateend
                        };
             return Json(list, JsonRequestBehavior.AllowGet);
