@@ -28,6 +28,8 @@ namespace VnnewsNews.Controllers
             var coo = new FunctionsController();
             var idus = coo.CookieID();
 
+            Ad ad = db.Ads.Find(id);
+
             //Pakage pakage = db.Pakages.Find(id);
 
             //var money = pakage.pakage_coin * 1000;
@@ -37,11 +39,11 @@ namespace VnnewsNews.Controllers
             string partnerCode = "MOMO5RGX20191128";
             string accessKey = "M8brj9K6E22vXoDB";
             string serectkey = "nqQiVSgDMy809JoPF6OzP5OdBUB550Y4";
-            string orderInfo = "Nạp " + pakage.pakage_coin + " vào tài khoản " + idus.user_email;
-            string returnUrl = "https://localhost:44327/Pays/ReturnUrl";
-            string notifyurl = "https://localhost:44327/Pays/NotifyUrl";
+            string orderInfo = "Thanh toán quảng cáo cho " + ad.ads_title + " của người dùng " + idus.user_email;
+            string returnUrl = "https://localhost:44341/Pays/ReturnUrl";
+            string notifyurl = "https://localhost:44341/Pays/NotifyUrl";
 
-            string amount = money.ToString();
+            string amount = ad.ads_money.ToString();
             string orderid = Guid.NewGuid().ToString();
             string requestId = Guid.NewGuid().ToString();
             string extraData = "";
@@ -80,7 +82,7 @@ namespace VnnewsNews.Controllers
             string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
             JObject jmessage = JObject.Parse(responseFromMomo);
 
-            Session["idpake"] = id;
+            Session["idid"] = id;
 
             return Redirect(jmessage.GetValue("payUrl").ToString());
         }
@@ -91,42 +93,38 @@ namespace VnnewsNews.Controllers
 
             User user = db.Users.Find(id.user_id);
 
-            int idpake = int.Parse(Session["idpake"].ToString());
-            Pakage pakage = db.Pakages.Find(idpake);
+            int idpake = int.Parse(Session["idid"].ToString());
+            Ad ad = db.Ads.Find(idpake);
 
             if (errorCode.Equals(0))
             {
-
-                user.user_coin = user.user_coin + pakage.pakage_coin;
-                db.SaveChanges();
-
-
-                Bill bills = new Bill
+                Bill bill = new Bill
                 {
+                    user_id = user.user_id,
                     bill_datecreate = DateTime.Now,
-                    bill_active = true,
-                    user_id = id.user_id,
-                    pakege_id = pakage.pakege_id,
-                    bill_dealine = DateTime.Now
+                    ads_id = ad.ads_id,
+                    bill_status = 1,
+                    bill_summoney = ad.ads_money
                 };
-                db.Bills.Add(bills);
+                db.Bills.Add(bill);
                 db.SaveChanges();
 
                 return RedirectToAction("History");
             }
             else
             {
-                Bill bills = new Bill
+                Bill bill = new Bill
                 {
+                    user_id = user.user_id,
                     bill_datecreate = DateTime.Now,
-                    bill_active = false,
-                    user_id = id.user_id,
-                    pakege_id = pakage.pakege_id,
-                    bill_dealine = DateTime.Now.AddDays(10)
+                    ads_id = ad.ads_id,
+                    bill_status = 2,
+                    bill_summoney = ad.ads_money
                 };
-                db.Bills.Add(bills);
+                db.Bills.Add(bill);
                 db.SaveChanges();
 
+                db.SaveChanges();
                 return RedirectToAction("History");
             }
         }
