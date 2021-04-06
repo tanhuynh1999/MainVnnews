@@ -17,29 +17,21 @@
                 <table class="table m-3">
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.vnew_title)
+                            Tiêu đề
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.vnew_img)
+                            Ảnh
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.vnew_view)
+                            Lượt xem
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.vnew_active)
+                            Hoạt động
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.vnew_option)
+                            Tùy chọn
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.vnew_datecreate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.vnew_dateupdate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.User.user_name)
-                        </th>
+                        
                         <th></th>
                     </tr>
 
@@ -57,30 +49,26 @@
                                 @Html.DisplayFor(modelItem => item.vnew_view)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.vnew_active)
+                                @if (item.vnew_active == true)
+                                {
+                                    @:Hoạt động
+                                }
+                                else
+                                {
+                                    @:Ngừng hoạt động
+                                }
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.vnew_option)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.vnew_datecreate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.vnew_dateupdate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.User.user_name)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.vnew_id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.vnew_id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.vnew_id })
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.vnew_id }) |
+                                @Html.ActionLink("Xem chi tiết", "Details", new { id = item.vnew_id }) |
+                                @Html.ActionLink("Xóa", "Delete", new { id = item.vnew_id })
                             </td>
                         </tr>
                     }
-
                 </table>
-
             </div>
         </div>
     </div>

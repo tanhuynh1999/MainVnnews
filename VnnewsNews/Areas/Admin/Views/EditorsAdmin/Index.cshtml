@@ -9,7 +9,7 @@
     <div class="card table-card">
         <div class="card-header">
             <h5>Member’s performance</h5>
-            @Html.ActionLink("Create New", "Create")
+            @Html.ActionLink("Thêm ", "Create")
             <div class="card-header-right">
                 <ul class="list-unstyled card-option">
                     <li><i class="fa fa fa-wrench open-card-option"></i></li>
@@ -26,40 +26,20 @@
                 <table class="table">
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.editor_fullname)
+                            Tên
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.editor_sex)
+                            Giới tính
+                        </th>
+                        
+                        <th>
+                            trạng thái
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.editor_fb)
+                            Trạng thái
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.editor_phone)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.editor_time)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.editor_intro)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.editor_interests)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.editor_enthusiasm)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.editor_zalo)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.editor_active)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.editor_status)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.User.user_name)
+                            Tên
                         </th>
                         <th></th>
                     </tr>
@@ -71,31 +51,24 @@
                                 @Html.DisplayFor(modelItem => item.editor_fullname)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.editor_sex)
+                                @if(item.editor_sex == true)
+                                {
+                                    @:Nam
+                                }
+                                else
+                                {
+                                    @:Nữ
+                                }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.editor_fb)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.editor_phone)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.editor_time)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.editor_intro)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.editor_interests)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.editor_enthusiasm)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.editor_zalo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.editor_active)
+                                @if(item.editor_active == true)
+                                {
+                                    @:Hoạt động
+                                }
+                                else
+                                {
+                                    @:Ngừng hoạt động
+                                }
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.editor_status)
@@ -104,8 +77,8 @@
                                 @Html.DisplayFor(modelItem => item.User.user_name)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.editor_id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.editor_id }) |
+                                @Html.ActionLink("sửa", "Edit", new { id = item.editor_id }) |
+                                @Html.ActionLink("Chi tết", "Details", new { id = item.editor_id }) |
                                 @Html.ActionLink("Delete", "Delete", new { id = item.editor_id })
                             </td>
                         </tr>

@@ -6,7 +6,7 @@
 <link href="~/Content/Login.css" rel="stylesheet" />
 <div class="row">
     <div class="col-md-12">
-        <section id="loginForm">
+        <section>
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal ui form", role = "form" }))
             {
                 @Html.AntiForgeryToken()

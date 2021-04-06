@@ -1,0 +1,115 @@
+﻿@model Model.EF.Editor
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Editor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.editor_fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.editor_fullname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.editor_sex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.editor_sex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.editor_fb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.editor_fb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.editor_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.editor_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.editor_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.editor_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.editor_intro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.editor_intro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.editor_interests)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.editor_interests)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.editor_enthusiasm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.editor_enthusiasm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.editor_zalo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.editor_zalo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.editor_active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.editor_active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.editor_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.editor_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.user_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.user_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.editor_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
