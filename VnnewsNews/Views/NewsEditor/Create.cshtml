@@ -1,9 +1,14 @@
 ﻿@model Model.EF.News
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Đăng tin tức biên tập viên";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+        height: 800px;
+    }
+</style>
 <link href="~/Content/Login.css" rel="stylesheet" />
 <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
 <div>
@@ -30,8 +35,13 @@
                         <input class="field w-100" type="text" name="vnew_title" placeholder="Giới thiệu không quá 100 ký tự" />
                     </div>
 
+                    <div>
+                        <label>Ảnh minh họa</label>
+                        <input class="field w-100" type="file" name="vnew_img" placeholder="Giới thiệu không quá 100 ký tự" />
+                    </div>
+
                     <label>Nội dung</label>
-                    <textarea id="editor"></textarea>
+                    <textarea name="vnew_content" id="editor"></textarea>
                     <script>
                         ClassicEditor
                             .create(document.querySelector('#editor'))
@@ -39,7 +49,7 @@
                                 console.error(error);
                             });
                     </script>
-                    
+
 
 
 
