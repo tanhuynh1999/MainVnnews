@@ -25,6 +25,7 @@ namespace Model.EF
             this.Reports = new HashSet<Report>();
             this.Ads = new HashSet<Ad>();
             this.Chats = new HashSet<Chat>();
+            this.Bills = new HashSet<Bill>();
         }
     
         public int user_id { get; set; }
@@ -63,5 +64,7 @@ namespace Model.EF
         public virtual ICollection<Ad> Ads { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Chat> Chats { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bill> Bills { get; set; }
     }
 }
