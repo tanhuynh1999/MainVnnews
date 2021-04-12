@@ -27,6 +27,10 @@ namespace VnnewsNews.Controllers
         }
         public JsonResult GetAll()
         {
+
+            var coo = new FunctionsController();
+            var id = coo.CookieID();
+
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DBvnews"].ConnectionString))
             {
                 connection.Open();
@@ -52,10 +56,11 @@ namespace VnnewsNews.Controllers
                                        id = item.chat_id,
                                        idus = item.user_id,
                                        content = item.chat_content,
-                                       date = item.chat_datecreate,
+                                       date = item.chat_datecreate.ToString(),
                                        key = item.chat_key,
                                        img = item.User.user_image,
-                                       name = item.User.user_name
+                                       name = item.User.user_name,
+                                       color = item.user_id == id.user_id ? "media-chat-reverse" : ""
                                    };
 
                     return Json(new { listChat = listChat }, JsonRequestBehavior.AllowGet);
@@ -70,12 +75,13 @@ namespace VnnewsNews.Controllers
         }
         public JsonResult PostChat(string content)
         {
+
             Chat chat = new Chat()
             {
                 chat_content = content,
                 chat_datecreate = DateTime.Now,
                 chat_item = Common.Common.CHAT_ALL,
-                user_id = functions.CookieID().user_id
+                user_id = functions.CookieID().user_id 
             };
             db.Chats.Add(chat);
             db.SaveChanges();
