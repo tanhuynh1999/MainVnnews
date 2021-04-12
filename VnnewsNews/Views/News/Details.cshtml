@@ -6,6 +6,7 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var countads = 0;
+    var index = 1;
     List<Ad> ads = db.Ads.Where(t => t.ads_active == true && t.ads_option == true && t.ads_totalday > 0).OrderBy(t => t.ads_loop).ToList();
 }
 <style>
@@ -439,83 +440,30 @@
                             <button class="btn btn-primary w-100 mt-1" onclick="window.location.href='/'"><i class=""></i><i class="fa fa-heart">&nbsp;</i>Lưu tin</button>
                         }
                     </div>
-                    <div class="grids5-info mt-3">
-                        <h4>01.</h4>
-                        <div class="blog-info">
-                            <a href="#blog-single" class="blog-desc1">
-                                You can always change your domain name in the future if you like.
-                            </a>
-                            <div class="author align-items-center mt-2 mb-1">
-                                <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                            </div>
-                            <ul class="blog-meta">
-                                <li class="meta-item blog-lesson">
-                                    <span class="meta-value"> April 13, 2020 </span>
-                                </li>
-                                <li class="meta-item blog-students">
-                                    <span class="meta-value"> 6min read</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="grids5-info">
-                        <h4>02.</h4>
-                        <div class="blog-info">
-                            <a href="#blog-single" class="blog-desc1">
-                                Pick a domain name & hosting for your blog
-                            </a>
-                            <div class="author align-items-center mt-2 mb-1">
-                                <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                            </div>
-                            <ul class="blog-meta">
-                                <li class="meta-item blog-lesson">
-                                    <span class="meta-value"> April 13, 2020 </span>
-                                </li>
-                                <li class="meta-item blog-students">
-                                    <span class="meta-value"> 6min read</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="grids5-info">
-                        <h4>03.</h4>
-                        <div class="blog-info">
-                            <a href="#blog-single" class="blog-desc1">
-                                How To Start A Blog From Scratch and with No Experience
 
-                            </a>
-                            <div class="author align-items-center mt-2 mb-1">
-                                <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
+                    @foreach (var item in db.News.Where(t => t.vnew_active == true && t.vnew_option == true).OrderByDescending(t => t.vnew_view).ThenBy(t => t.vnew_datecreate).Take(5))
+                    {
+                        <div class="grids5-info mt-3">
+                            <h4>@index</h4>
+                            <div class="blog-info">
+                                <a href="#blog-single" class="blog-desc1">
+                                    @(item.vnew_title.Length > 35 ? item.vnew_title.Substring(0, 35) + "..." : item.vnew_title)
+                                </a>
+                                <div class="author align-items-center mt-2 mb-1">
+                                    <a href="#author">@item.User.user_name</a> in <a href="#url">Design</a>
+                                </div>
+                                <ul class="blog-meta">
+                                    <li class="meta-item blog-lesson">
+                                        <span class="meta-value"> @(item.vnew_dateupdate == null ? item.vnew_datecreate : item.vnew_dateupdate) </span>
+                                    </li>
+                                    <li class="meta-item blog-students">
+                                        <span class="meta-value"> 6min read</span>
+                                    </li>
+                                </ul>
                             </div>
-                            <ul class="blog-meta">
-                                <li class="meta-item blog-lesson">
-                                    <span class="meta-value"> April 13, 2020 </span>
-                                </li>
-                                <li class="meta-item blog-students">
-                                    <span class="meta-value"> 6min read</span>
-                                </li>
-                            </ul>
                         </div>
-                    </div>
-                    <div class="grids5-info">
-                        <h4>04.</h4>
-                        <div class="blog-info">
-                            <a href="#blog-single" class="blog-desc1">
-                                Within few minutes, you will have your blog up and running.
-                            </a>
-                            <div class="author align-items-center mt-3 mb-1">
-                                <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                            </div>
-                            <ul class="blog-meta">
-                                <li class="meta-item blog-lesson">
-                                    <span class="meta-value"> April 13, 2020 </span>
-                                </li>
-                                <li class="meta-item blog-students">
-                                    <span class="meta-value"> 6min read</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                        index++;
+                    }
                 </div>
             </div>
             <!-- //block-->

@@ -66,7 +66,7 @@
     }
 </style>
 
-<div class="main-body">
+<div class="main-body" ng-app="myApp">
 
     <!-- Breadcrumb -->
     <!--<nav aria-label="breadcrumb" class="main-breadcrumb">
@@ -78,7 +78,7 @@
     </nav>-->
     <!-- /Breadcrumb -->
 
-    <div class="row gutters-sm">
+    <div class="row gutters-sm" ng-controller="myCtrl">
         <div class="col-md-4 mb-3">
             <div class="card">
                 <div class="card-body">
@@ -111,7 +111,7 @@
                         }
                         else
                         {
-                            <span class="text-secondary">@Model.user_facebook <a href="#"><i class="fa fa-edit"></i></a></span>
+                            <span class="text-secondary">{{list.facebook}} <a href="#"><i class="fa fa-edit"></i></a></span>
                         }
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -122,7 +122,7 @@
                         }
                         else
                         {
-                            <span class="text-secondary">@Model.user_twiter <a href="#"><i class="fa fa-edit"></i></a></span>
+                            <span class="text-secondary">{{list.twiter}} <a href="#"><i class="fa fa-edit"></i></a></span>
                         }
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -133,7 +133,7 @@
                         }
                         else
                         {
-                            <span class="text-secondary">@Model.user_instagram <a href="#"><i class="fa fa-edit"></i></a></span>
+                    <span class="text-secondary">{{list.user_instagram}} <a href="#"><i class="fa fa-edit"></i></a></span>
                         }
                     </li>
                 </ul>
@@ -147,7 +147,7 @@
                             <h6 class="mb-0">Họ và tên</h6>
                         </div>
                         <div class="col-sm-8 text-secondary">
-                            @Model.user_name
+                            {{list.name}}
                         </div>
                         <div class="col-sm-1">
                             <h6 class="mb-0"><a href="#"><i class="fa fa-edit"></i></a></h6>
@@ -159,7 +159,7 @@
                             <h6 class="mb-0">Email</h6>
                         </div>
                         <div class="col-sm-8 text-secondary">
-                            @Model.user_email
+                            {{list.email}}
                         </div>
                         <div class="col-sm-1">
                             <h6 class="mb-0"><a href="#"><i class="fa fa-edit"></i></a></h6>
@@ -191,7 +191,7 @@
                         else
                         {
                             <div class="col-sm-8 text-secondary">
-                                @Model.user_phone
+                                {{list.phone}}
                             </div>
                         }
                         <div class="col-sm-1">
@@ -212,7 +212,7 @@
                         else
                         {
                             <div class="col-sm-8 text-secondary">
-                                @Model.user_address
+                                {{list.address}}
                             </div>
                         }
                         <div class="col-sm-1">
@@ -264,3 +264,18 @@
         </div>
     </div>
 </div>
+<!-- angular -->
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+        $http({
+            method: "GET",
+            url: "/Json/Profile"
+        }).then(function mySuccess(response) {
+            $scope.list = response.data;
+        }, function myError(response) {
+            $scope.list = response.statusText;
+        })
+    });
+
+</script>

@@ -260,5 +260,25 @@ namespace VnnewsNews.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult Profile()
+        {
+            var func = functions.CookieID();
+            var list = from item in db.Users
+                       where item.role_id == func.user_id
+                       select new
+                       {
+                           id = item.user_id,
+                           name = item.user_name,
+                           phone = item.user_phone,
+                           address = item.user_address,
+                           facebook = item.user_facebook,
+                           twiter = item.user_twiter,
+                           instaagram = item.user_instagram,
+                           email = item.user_email,
+                           role = item.Role.role_name
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

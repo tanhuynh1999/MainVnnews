@@ -218,6 +218,22 @@ namespace VnnewsNews.Controllers
             return View(user);
         }
 
+        public ActionResult SetupSuggestion()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SetupSuggestion(string[] suggestion)
+        {
+            var sugg = "";
+            foreach(var item in suggestion)
+            {
+                sugg += item + ";";
+            }
+            return View();
+        }
+
         //
         // GET: /Account/ConfirmEmail
         //[AllowAnonymous]

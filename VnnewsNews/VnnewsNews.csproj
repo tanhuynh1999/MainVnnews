@@ -2687,6 +2687,7 @@
     <Content Include="Views\Account\NewsFavorite.cshtml" />
     <Content Include="Views\TakePrice\GetMoney.cshtml" />
     <Content Include="Views\TakePrice\Index.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

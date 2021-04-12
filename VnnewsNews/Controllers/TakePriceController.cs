@@ -27,6 +27,7 @@ namespace VnnewsNews.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult GetMoney(TakePrice takePrice)
         {
             if (ModelState.IsValid)
