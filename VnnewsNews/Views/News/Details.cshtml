@@ -1,15 +1,19 @@
 ﻿@using Model.EF;
 @model News
 @{
+    VnnewsNews.Function.FunctionsController function = new VnnewsNews.Function.FunctionsController();
     DBvnewsEntities db = new DBvnewsEntities();
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var countads = 0;
+    List<Ad> ads = db.Ads.Where(t => t.ads_active == true && t.ads_option == true && t.ads_totalday > 0).OrderBy(t => t.ads_loop).ToList();
 }
 <style>
     .top-container {
         display: flex;
         align-items: center
     }
+
     .profile-image {
         border-radius: 10px;
         border: 2px solid #5957f9
@@ -120,6 +124,50 @@
 <nav id="breadcrumbs" class="breadcrumbs">
     <div class="container page-wrapper">
         <a href="index.html">Home</a> / Categories /<span class="breadcrumb_last" aria-current="page">Culture</span>
+    </div>
+
+    <div>
+        @foreach (var item in ads.ToList())
+        {
+            if(item.ads_tags == null)
+            {
+                continue;
+            }
+            var tags = item.ads_tags.Split(';');
+            foreach (var tag in tags)
+            {
+                if (countads == 10)
+                {
+                    break;
+                }
+                else if (Model.vnew_title.ToLower().Contains(tag.ToLower()) && Model.vnew_content.ToLower().Contains(tag.ToLower()))
+                {
+                    <img src="~/Images/Ads/@item.ads_poster" alt="@item.ads_title"/>
+                    db.Ads.Find(item.ads_id).ads_loop++;
+                    db.SaveChanges();
+                    countads++;
+                    ads.Remove(item);
+                    break;
+                }
+            }
+        }
+
+        @foreach (var item in ads.ToList())
+        {
+
+            if (countads == 10)
+            {
+                break;
+            }
+            else
+            {
+                <img src="~/Images/Ads/@item.ads_poster" alt="@item.ads_title"/>
+                db.Ads.Find(item.ads_id).ads_loop++;
+                db.SaveChanges();
+                countads++;
+                ads.Remove(item);
+            }
+        }
     </div>
 </nav>
 <div class="w3l-searchblock w3l-homeblock1 py-5" ng-app="myApp">
@@ -381,9 +429,15 @@
                         </div>
                     </div>
                     <div class="card mt-3" ng-controller="myFavourite">
-                        <button ng-show="listfavourite.length != 0" class="btn btn-danger w-100" ng-click="favourite(@(Model.vnew_id))"><i class=""></i><i class="fa fa-thumbs-up">&nbsp;</i>Thích</button>
-                        <button ng-show="listfavourite.length  == 0 " class="btn btn-dark w-100" ng-click="favourite(@(Model.vnew_id))"><i class=""></i><i class="fa fa-thumbs-up">&nbsp;</i>Hủy Thích</button>
-                        <button class="btn btn-primary w-100 mt-1"><i class=""></i><i class="fa fa-heart">&nbsp;</i>Lưu tin</button>
+                        @if (function.CookieID() != null)
+                        {
+                            <button ng-show="listfavourite.length == 0" class="btn btn-danger w-100" ng-click="favourite(@(Model.vnew_id))"><i class=""></i><i class="fa fa-thumbs-up">&nbsp;</i>Thích</button>
+                            <button ng-show="listfavourite.length != 0 " class="btn btn-dark w-100" ng-click="favourite(@(Model.vnew_id))"><i class=""></i><i class="fa fa-thumbs-up">&nbsp;</i>Hủy Thích</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-primary w-100 mt-1" onclick="window.location.href='/'"><i class=""></i><i class="fa fa-heart">&nbsp;</i>Lưu tin</button>
+                        }
                     </div>
                     <div class="grids5-info mt-3">
                         <h4>01.</h4>

@@ -53,7 +53,8 @@ namespace VnnewsNews.Controllers
 
         public JsonResult Favourite(int? new_id)
         {
-            Group checkLove = db.Groups.SingleOrDefault(n => n.news_id == new_id && n.user_id == functions.CookieID().user_id && n.group_item == Common.Common.GROUP_THICH);
+            var func = functions.CookieID();
+            Group checkLove = db.Groups.FirstOrDefault(n => n.news_id == new_id && n.user_id == func.user_id && n.group_item == Common.Common.GROUP_THICH);
             if(checkLove == null)
             {
                 Group group = new Group
@@ -64,14 +65,13 @@ namespace VnnewsNews.Controllers
                     group_datecreate = DateTime.Now,
                 };
                 db.Groups.Add(group);
-                db.SaveChanges();
             }
             else
             {
                 db.Groups.Remove(db.Groups.Find(checkLove.group_id));
-                db.SaveChanges();
 
             }
+            db.SaveChanges();
             var list = from item in db.Groups
                        where item.news_id == new_id && item.user_id == functions.CookieID().user_id && item.group_item == Common.Common.GROUP_THICH
                        select new

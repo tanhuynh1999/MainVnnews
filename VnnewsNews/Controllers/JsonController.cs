@@ -53,8 +53,9 @@ namespace VnnewsNews.Controllers
         public JsonResult favourite(int? id)
         {
             //Làm form
+            var user = functions.CookieID();
             var list = from item in db.Groups
-                       where item.news_id == id && item.user_id == 1 && item.group_item == Common.Common.GROUP_THICH
+                       where item.news_id == id && item.user_id == user.user_id && item.group_item == Common.Common.GROUP_THICH
                        select new
                        {
                            id = item.group_id
@@ -99,6 +100,45 @@ namespace VnnewsNews.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        // yeu thich ca nhan
+        public JsonResult MyFavorite()
+        {
+
+            //Làm form
+            var user = functions.CookieID();
+            var list = from item in db.Groups
+                       where item.user_id == user.user_id
+                       select new
+                       {
+                           id = item.News.user_id,
+                           title = item.News.vnew_title,
+                           author = item.News.User.user_name,
+                           dateadd = item.group_datecreate.ToString(),
+                           news_id = item.news_id
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        // xoa yeu thich
+        public JsonResult RemoveMyFavorite(int? id)
+        {
+            var removeItem = db.Groups.Find(id);
+            db.Groups.Remove(removeItem);
+            db.SaveChanges();
+            //Làm form
+            var user = functions.CookieID();
+            var list = from item in db.Groups
+                       where item.user_id == user.user_id
+                       select new
+                       {
+                           id = item.News.user_id,
+                           title = item.News.vnew_title,
+                           author = item.News.User.user_name,
+                           dateadd = item.group_datecreate.ToString(),
+                           news_id = item.news_id
+                       };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult Active()
         {
 
@@ -171,6 +211,48 @@ namespace VnnewsNews.Controllers
                            money = item.bill_summoney,
                            datecarete = item.bill_datecreate.ToString(),
                            user_name = item.User.user_name
+                       };
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
+        // danh sach rut tien
+        public JsonResult GetHistoryTakePrice()
+        {
+            var user = functions.CookieID();
+            //Làm form
+            var list = from item in db.TakePrices
+                       where item.user_id == user.user_id
+                       select new
+                       {
+                           id = item.tp_id,
+                           user_id = item.user_id,
+                           money = item.tp_totalmoney,
+                           datecarete = item.tp_datecreate,
+                           phone = item.User.user_phone
+                       };
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        // danh sach rut tien
+        public JsonResult RemoveHistoryTakePrice(int? id)
+        {
+            var removeItem = db.TakePrices.Find(id);
+            db.TakePrices.Remove(removeItem);
+            db.SaveChanges();
+            var user = functions.CookieID();
+            //Làm form
+            var list = from item in db.TakePrices
+                       where item.user_id == user.user_id
+                       select new
+                       {
+                           id = item.tp_id,
+                           user_id = item.user_id,
+                           money = item.tp_totalmoney,
+                           datecarete = item.tp_datecreate,
+                           phone = item.User.user_phone
                        };
 
             return Json(list, JsonRequestBehavior.AllowGet);

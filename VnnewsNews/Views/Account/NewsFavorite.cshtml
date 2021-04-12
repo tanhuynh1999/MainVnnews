@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "NewsFavorite";
+}
+
+<h2>NewsFavorite</h2>
+
+<div ng-app="myApp">
+    <div ng-controller="myCtrl">
+        <table>
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Name</th>
+                    <th>Custom</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="list in list">
+                    <td>{{$index + 1}}</td>
+                    <td>{{list.title}}</td>
+                    <td>
+                        <a href="/News/Details?id={{list.news_id}}" target="_blank"><span>Xem</span></a>
+                        <a href="" ng-click="remove($index, list.id)"><span>Xoa</span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- angular -->
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+        $http({
+            method: "GET",
+            url: "/Json/MyFavorite"
+        }).then(function mySuccess(response) {
+            $scope.list = response.data;
+            $scope.remove = function (item, id) {
+                var index = $scope.list.indexOf(item);
+                $scope.list.splice(index, 1);
+                $http.get('/Json/RemoveMyFavorite?id=' + id).success(function (data) {
+                    $scope.title = data;
+                })
+            }
+        }, function myError(response) {
+            $scope.list = response.statusText;
+        })
+    });
+
+</script>

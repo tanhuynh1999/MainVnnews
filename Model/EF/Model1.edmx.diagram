@@ -4,27 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-<<<<<<< HEAD
-      <Diagram DiagramId="3cd7ee8a4349424da2bb575528bf275e" Name="Diagram1">
-=======
-      <Diagram DiagramId="737dd61fe18144a8872224b43f6b2793" Name="Diagram1">
->>>>>>> 20c9ab9789701c00eead1f1479ea29205cc64c62
-        <EntityTypeShape EntityType="DBvnewsModel.Ad" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBvnewsModel.Bill" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBvnewsModel.Category" Width="1.5" PointX="8" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBvnewsModel.Chat" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBvnewsModel.Comment" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBvnewsModel.Editor" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBvnewsModel.Group" Width="1.5" PointX="10.25" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBvnewsModel.News" Width="1.5" PointX="5.25" PointY="22" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBvnewsModel.Reply" Width="1.5" PointX="7.5" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBvnewsModel.Report" Width="1.5" PointX="7.5" PointY="16.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBvnewsModel.Role" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
-<<<<<<< HEAD
-=======
-        <EntityTypeShape EntityType="DBvnewsModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
->>>>>>> 20c9ab9789701c00eead1f1479ea29205cc64c62
-        <EntityTypeShape EntityType="DBvnewsModel.User" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+      <Diagram DiagramId="662dbae09351449aa55a0205bed6fd01" Name="Diagram1">
+        <EntityTypeShape EntityType="DBvnewsModel.Ad" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBvnewsModel.Bill" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBvnewsModel.Category" Width="1.5" PointX="5.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBvnewsModel.Chat" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBvnewsModel.Comment" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBvnewsModel.Editor" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBvnewsModel.Group" Width="1.5" PointX="7.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBvnewsModel.News" Width="1.5" PointX="5.25" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBvnewsModel.Reply" Width="1.5" PointX="7.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBvnewsModel.Report" Width="1.5" PointX="10.5" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBvnewsModel.Role" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBvnewsModel.User" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
         <AssociationConnector Association="DBvnewsModel.FK_Ads_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Bills_Ads" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Bills_Users" ManuallyRouted="false" />
@@ -33,13 +25,17 @@
         <AssociationConnector Association="DBvnewsModel.FK_Comments_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Replys_Comments" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Editors_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DBvnewsModel.FK_Groups_News" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Groups_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_news_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Reports_news" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Replys_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Reports_Users" ManuallyRouted="false" />
         <AssociationConnector Association="DBvnewsModel.FK_Users_Roles" ManuallyRouted="false" />
-        <AssociationConnector Association="DBvnewsModel.FK_Groups_News" />
+        <EntityTypeShape EntityType="DBvnewsModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBvnewsModel.BadWord" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DBvnewsModel.TakePrice" Width="1.5" PointX="5.25" PointY="27.125" />
+        <AssociationConnector Association="DBvnewsModel.FK_TakePrice_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

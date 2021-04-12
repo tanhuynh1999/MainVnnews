@@ -1,0 +1,16 @@
+﻿
+@{
+    VnnewsNews.Function.FunctionsController func = new VnnewsNews.Function.FunctionsController();
+    ViewBag.Title = "GetMoney";
+}
+
+<h2>GetMoney</h2>
+
+
+<form action="@Url.Action("GetMoney", "TakePrice")" method="post">
+    @Html.AntiForgeryToken()
+    <input type="text" name="tp_totalmoney" class="form-control"/>
+    <input type="text" value="@func.CookieID().user_name" class="form-control" readonly/>
+    <input type="text" value="@func.CookieID().user_phone" class="form-control" readonly/>
+    <input type="submit" value="Rut tien" />
+</form>

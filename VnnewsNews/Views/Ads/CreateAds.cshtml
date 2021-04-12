@@ -190,7 +190,7 @@
                                 </div>
                             </div>
                             <div class="file-upload-content">
-                                <img class="file-upload-image" src="#" alt="your image" />
+                                <img class="file-upload-image" id="img" src="#" alt="your image" />
                                 <div class="image-title-wrap">
                                     <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Thêm ảnh khác</button>
                                 </div>
@@ -230,12 +230,6 @@
                                 <select class="ui fluid search dropdown" id="ads_tag" name="ads_tag" multiple="">
                                     <option value="">-- Tags quảng cáo --</option>
                                 </select>
-
-                                <script>
-                                    $('.ui.dropdown').dropdown({
-                                        maxSelections: 5
-                                    });
-                                </script>
                             </div>
                             <div class="four wide field">
                                 <label>Tổng tiền: </label>
@@ -293,7 +287,12 @@
     });
 
 </script>
-
+<script>
+    $('.ui.dropdown').dropdown({
+        allowAdditions: true,
+        maxSelections: 5
+    });
+</script>
 <script>
 
     var totalDay = function () {
@@ -325,7 +324,7 @@
     //}
 </script>
 
-<script>
+@*<script>
     $(".ui.fluid.search.dropdown.selection.multiple").on("keyup", function (e) {
 
         var val = $(".ui.fluid.search.dropdown.selection.multiple input.search").val();
@@ -337,4 +336,20 @@
             document.getElementById("total_money").value = +money + +100000;
         }
     })
+</script>*@
+
+<script>    
+
+    const img = document.getElementById('img')
+
+    // Load model from my S3.
+    // See the section hosting the model files on your site.
+    nsfwjs.load()
+        .then(function (model) {
+            // Classify the image
+            return model.classify(img)
+        })
+        .then(function (predictions) {
+            console.log('Predictions: ', predictions)
+        })
 </script>

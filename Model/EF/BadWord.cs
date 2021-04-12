@@ -12,17 +12,9 @@ namespace Model.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Group
+    public partial class BadWord
     {
-        public int group_id { get; set; }
-        public Nullable<int> news_id { get; set; }
-        public Nullable<int> user_id { get; set; }
-        public Nullable<int> group_item { get; set; }
-        public Nullable<System.DateTime> group_datecreate { get; set; }
-        public Nullable<int> category_id { get; set; }
-    
-        public virtual Category Category { get; set; }
-        public virtual News News { get; set; }
-        public virtual User User { get; set; }
+        public int bw_id { get; set; }
+        public string bw_name { get; set; }
     }
 }

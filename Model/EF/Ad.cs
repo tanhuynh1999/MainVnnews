@@ -32,6 +32,7 @@ namespace Model.EF
         public Nullable<bool> ads_bin { get; set; }
         public Nullable<int> user_id { get; set; }
         public string ads_tags { get; set; }
+        public Nullable<int> ads_loop { get; set; }
     
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

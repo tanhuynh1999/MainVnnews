@@ -12,17 +12,14 @@ namespace Model.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Group
+    public partial class TakePrice
     {
-        public int group_id { get; set; }
-        public Nullable<int> news_id { get; set; }
+        public int tp_id { get; set; }
         public Nullable<int> user_id { get; set; }
-        public Nullable<int> group_item { get; set; }
-        public Nullable<System.DateTime> group_datecreate { get; set; }
-        public Nullable<int> category_id { get; set; }
+        public Nullable<double> tp_totalmoney { get; set; }
+        public Nullable<System.DateTime> tp_datecreate { get; set; }
+        public Nullable<bool> tp_active { get; set; }
     
-        public virtual Category Category { get; set; }
-        public virtual News News { get; set; }
         public virtual User User { get; set; }
     }
 }

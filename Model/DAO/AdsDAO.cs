@@ -17,6 +17,7 @@ namespace Model.DAO
                 ads.ads_bin = false;
                 ads.ads_datecreate = DateTime.Now;
                 ads.ads_option = true;
+                ads.ads_loop = 0;
                 db.Ads.Add(ads);
                 db.SaveChanges();
 

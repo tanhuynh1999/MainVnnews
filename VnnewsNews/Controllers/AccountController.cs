@@ -191,6 +191,15 @@ namespace VnnewsNews.Controllers
             return View(model);
         }
 
+        public ActionResult NewsFavorite()
+        {
+            if(functions.CookieID() == null)
+            {
+                return RedirectToAction("Login");
+            }
+            return View();
+        }
+
         public ActionResult Logoff()
         {
             var cookie = Request.Cookies["user_id"];
